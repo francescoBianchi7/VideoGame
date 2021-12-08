@@ -86,7 +86,43 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/main.cpp">
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/entities/Entity.cpp">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/entities/Entity.h">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/headers/Button.h">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/headers/GameEngine.h">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/source/Button.cpp">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/source/GameEngine.cpp">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/source/main.cpp">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/states/GameState.cpp">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/states/GameState.h">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/states/MainMenuState.cpp">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/states/MainMenuState.h">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/states/State.cpp">
+			<Option target="VideoGame"/>
+		</Unit>
+		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/states/State.h">
 			<Option target="VideoGame"/>
 		</Unit>
 		<Unit filename="C:/Users/bianc/CLionProjects/VideoGame/CMakeLists.txt">

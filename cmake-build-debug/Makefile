@@ -128,29 +128,173 @@ VideoGame/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/build
 .PHONY : VideoGame/fast
 
-main.obj: main.cpp.obj
-.PHONY : main.obj
+entities/Entity.obj: entities/Entity.cpp.obj
+.PHONY : entities/Entity.obj
 
 # target to build an object file
-main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/main.cpp.obj
-.PHONY : main.cpp.obj
+entities/Entity.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/entities/Entity.cpp.obj
+.PHONY : entities/Entity.cpp.obj
 
-main.i: main.cpp.i
-.PHONY : main.i
+entities/Entity.i: entities/Entity.cpp.i
+.PHONY : entities/Entity.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/main.cpp.i
-.PHONY : main.cpp.i
+entities/Entity.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/entities/Entity.cpp.i
+.PHONY : entities/Entity.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+entities/Entity.s: entities/Entity.cpp.s
+.PHONY : entities/Entity.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/main.cpp.s
-.PHONY : main.cpp.s
+entities/Entity.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/entities/Entity.cpp.s
+.PHONY : entities/Entity.cpp.s
+
+source/Button.obj: source/Button.cpp.obj
+.PHONY : source/Button.obj
+
+# target to build an object file
+source/Button.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/source/Button.cpp.obj
+.PHONY : source/Button.cpp.obj
+
+source/Button.i: source/Button.cpp.i
+.PHONY : source/Button.i
+
+# target to preprocess a source file
+source/Button.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/source/Button.cpp.i
+.PHONY : source/Button.cpp.i
+
+source/Button.s: source/Button.cpp.s
+.PHONY : source/Button.s
+
+# target to generate assembly for a file
+source/Button.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/source/Button.cpp.s
+.PHONY : source/Button.cpp.s
+
+source/GameEngine.obj: source/GameEngine.cpp.obj
+.PHONY : source/GameEngine.obj
+
+# target to build an object file
+source/GameEngine.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/source/GameEngine.cpp.obj
+.PHONY : source/GameEngine.cpp.obj
+
+source/GameEngine.i: source/GameEngine.cpp.i
+.PHONY : source/GameEngine.i
+
+# target to preprocess a source file
+source/GameEngine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/source/GameEngine.cpp.i
+.PHONY : source/GameEngine.cpp.i
+
+source/GameEngine.s: source/GameEngine.cpp.s
+.PHONY : source/GameEngine.s
+
+# target to generate assembly for a file
+source/GameEngine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/source/GameEngine.cpp.s
+.PHONY : source/GameEngine.cpp.s
+
+source/main.obj: source/main.cpp.obj
+.PHONY : source/main.obj
+
+# target to build an object file
+source/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/source/main.cpp.obj
+.PHONY : source/main.cpp.obj
+
+source/main.i: source/main.cpp.i
+.PHONY : source/main.i
+
+# target to preprocess a source file
+source/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/source/main.cpp.i
+.PHONY : source/main.cpp.i
+
+source/main.s: source/main.cpp.s
+.PHONY : source/main.s
+
+# target to generate assembly for a file
+source/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/source/main.cpp.s
+.PHONY : source/main.cpp.s
+
+states/GameState.obj: states/GameState.cpp.obj
+.PHONY : states/GameState.obj
+
+# target to build an object file
+states/GameState.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/states/GameState.cpp.obj
+.PHONY : states/GameState.cpp.obj
+
+states/GameState.i: states/GameState.cpp.i
+.PHONY : states/GameState.i
+
+# target to preprocess a source file
+states/GameState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/states/GameState.cpp.i
+.PHONY : states/GameState.cpp.i
+
+states/GameState.s: states/GameState.cpp.s
+.PHONY : states/GameState.s
+
+# target to generate assembly for a file
+states/GameState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/states/GameState.cpp.s
+.PHONY : states/GameState.cpp.s
+
+states/MainMenuState.obj: states/MainMenuState.cpp.obj
+.PHONY : states/MainMenuState.obj
+
+# target to build an object file
+states/MainMenuState.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.obj
+.PHONY : states/MainMenuState.cpp.obj
+
+states/MainMenuState.i: states/MainMenuState.cpp.i
+.PHONY : states/MainMenuState.i
+
+# target to preprocess a source file
+states/MainMenuState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.i
+.PHONY : states/MainMenuState.cpp.i
+
+states/MainMenuState.s: states/MainMenuState.cpp.s
+.PHONY : states/MainMenuState.s
+
+# target to generate assembly for a file
+states/MainMenuState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.s
+.PHONY : states/MainMenuState.cpp.s
+
+states/State.obj: states/State.cpp.obj
+.PHONY : states/State.obj
+
+# target to build an object file
+states/State.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/states/State.cpp.obj
+.PHONY : states/State.cpp.obj
+
+states/State.i: states/State.cpp.i
+.PHONY : states/State.i
+
+# target to preprocess a source file
+states/State.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/states/State.cpp.i
+.PHONY : states/State.cpp.i
+
+states/State.s: states/State.cpp.s
+.PHONY : states/State.s
+
+# target to generate assembly for a file
+states/State.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VideoGame.dir\build.make CMakeFiles/VideoGame.dir/states/State.cpp.s
+.PHONY : states/State.cpp.s
 
 # Help Target
 help:
@@ -161,9 +305,27 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... VideoGame
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... entities/Entity.obj
+	@echo ... entities/Entity.i
+	@echo ... entities/Entity.s
+	@echo ... source/Button.obj
+	@echo ... source/Button.i
+	@echo ... source/Button.s
+	@echo ... source/GameEngine.obj
+	@echo ... source/GameEngine.i
+	@echo ... source/GameEngine.s
+	@echo ... source/main.obj
+	@echo ... source/main.i
+	@echo ... source/main.s
+	@echo ... states/GameState.obj
+	@echo ... states/GameState.i
+	@echo ... states/GameState.s
+	@echo ... states/MainMenuState.obj
+	@echo ... states/MainMenuState.i
+	@echo ... states/MainMenuState.s
+	@echo ... states/State.obj
+	@echo ... states/State.i
+	@echo ... states/State.s
 .PHONY : help
 
 

@@ -8,7 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/bianc/CLionProjects/VideoGame/main.cpp" "C:/Users/bianc/CLionProjects/VideoGame/cmake-build-debug/CMakeFiles/VideoGame.dir/main.cpp.obj"
+  "C:/Users/bianc/CLionProjects/VideoGame/entities/Entity.cpp" "C:/Users/bianc/CLionProjects/VideoGame/cmake-build-debug/CMakeFiles/VideoGame.dir/Entities/Entity.cpp.obj"
+  "C:/Users/bianc/CLionProjects/VideoGame/source/Button.cpp" "C:/Users/bianc/CLionProjects/VideoGame/cmake-build-debug/CMakeFiles/VideoGame.dir/source/Button.cpp.obj"
+  "C:/Users/bianc/CLionProjects/VideoGame/source/GameEngine.cpp" "C:/Users/bianc/CLionProjects/VideoGame/cmake-build-debug/CMakeFiles/VideoGame.dir/source/GameEngine.cpp.obj"
+  "C:/Users/bianc/CLionProjects/VideoGame/source/main.cpp" "C:/Users/bianc/CLionProjects/VideoGame/cmake-build-debug/CMakeFiles/VideoGame.dir/source/main.cpp.obj"
+  "C:/Users/bianc/CLionProjects/VideoGame/states/GameState.cpp" "C:/Users/bianc/CLionProjects/VideoGame/cmake-build-debug/CMakeFiles/VideoGame.dir/states/GameState.cpp.obj"
+  "C:/Users/bianc/CLionProjects/VideoGame/states/MainMenuState.cpp" "C:/Users/bianc/CLionProjects/VideoGame/cmake-build-debug/CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.obj"
+  "C:/Users/bianc/CLionProjects/VideoGame/states/State.cpp" "C:/Users/bianc/CLionProjects/VideoGame/cmake-build-debug/CMakeFiles/VideoGame.dir/states/State.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

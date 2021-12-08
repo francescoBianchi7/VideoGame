@@ -65,28 +65,124 @@ include CMakeFiles/VideoGame.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/VideoGame.dir/flags.make
 
-CMakeFiles/VideoGame.dir/main.cpp.obj: CMakeFiles/VideoGame.dir/flags.make
-CMakeFiles/VideoGame.dir/main.cpp.obj: CMakeFiles/VideoGame.dir/includes_CXX.rsp
-CMakeFiles/VideoGame.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\bianc\CLionProjects\VideoGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/VideoGame.dir/main.cpp.obj"
-	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\VideoGame.dir\main.cpp.obj -c C:\Users\bianc\CLionProjects\VideoGame\main.cpp
+CMakeFiles/VideoGame.dir/source/main.cpp.obj: CMakeFiles/VideoGame.dir/flags.make
+CMakeFiles/VideoGame.dir/source/main.cpp.obj: CMakeFiles/VideoGame.dir/includes_CXX.rsp
+CMakeFiles/VideoGame.dir/source/main.cpp.obj: ../source/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\bianc\CLionProjects\VideoGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/VideoGame.dir/source/main.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\VideoGame.dir\source\main.cpp.obj -c C:\Users\bianc\CLionProjects\VideoGame\source\main.cpp
 
-CMakeFiles/VideoGame.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VideoGame.dir/main.cpp.i"
-	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\bianc\CLionProjects\VideoGame\main.cpp > CMakeFiles\VideoGame.dir\main.cpp.i
+CMakeFiles/VideoGame.dir/source/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VideoGame.dir/source/main.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\bianc\CLionProjects\VideoGame\source\main.cpp > CMakeFiles\VideoGame.dir\source\main.cpp.i
 
-CMakeFiles/VideoGame.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VideoGame.dir/main.cpp.s"
-	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\bianc\CLionProjects\VideoGame\main.cpp -o CMakeFiles\VideoGame.dir\main.cpp.s
+CMakeFiles/VideoGame.dir/source/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VideoGame.dir/source/main.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\bianc\CLionProjects\VideoGame\source\main.cpp -o CMakeFiles\VideoGame.dir\source\main.cpp.s
+
+CMakeFiles/VideoGame.dir/source/GameEngine.cpp.obj: CMakeFiles/VideoGame.dir/flags.make
+CMakeFiles/VideoGame.dir/source/GameEngine.cpp.obj: CMakeFiles/VideoGame.dir/includes_CXX.rsp
+CMakeFiles/VideoGame.dir/source/GameEngine.cpp.obj: ../source/GameEngine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\bianc\CLionProjects\VideoGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/VideoGame.dir/source/GameEngine.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\VideoGame.dir\source\GameEngine.cpp.obj -c C:\Users\bianc\CLionProjects\VideoGame\source\GameEngine.cpp
+
+CMakeFiles/VideoGame.dir/source/GameEngine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VideoGame.dir/source/GameEngine.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\bianc\CLionProjects\VideoGame\source\GameEngine.cpp > CMakeFiles\VideoGame.dir\source\GameEngine.cpp.i
+
+CMakeFiles/VideoGame.dir/source/GameEngine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VideoGame.dir/source/GameEngine.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\bianc\CLionProjects\VideoGame\source\GameEngine.cpp -o CMakeFiles\VideoGame.dir\source\GameEngine.cpp.s
+
+CMakeFiles/VideoGame.dir/states/State.cpp.obj: CMakeFiles/VideoGame.dir/flags.make
+CMakeFiles/VideoGame.dir/states/State.cpp.obj: CMakeFiles/VideoGame.dir/includes_CXX.rsp
+CMakeFiles/VideoGame.dir/states/State.cpp.obj: ../states/State.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\bianc\CLionProjects\VideoGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/VideoGame.dir/states/State.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\VideoGame.dir\states\State.cpp.obj -c C:\Users\bianc\CLionProjects\VideoGame\states\State.cpp
+
+CMakeFiles/VideoGame.dir/states/State.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VideoGame.dir/states/State.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\bianc\CLionProjects\VideoGame\states\State.cpp > CMakeFiles\VideoGame.dir\states\State.cpp.i
+
+CMakeFiles/VideoGame.dir/states/State.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VideoGame.dir/states/State.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\bianc\CLionProjects\VideoGame\states\State.cpp -o CMakeFiles\VideoGame.dir\states\State.cpp.s
+
+CMakeFiles/VideoGame.dir/states/GameState.cpp.obj: CMakeFiles/VideoGame.dir/flags.make
+CMakeFiles/VideoGame.dir/states/GameState.cpp.obj: CMakeFiles/VideoGame.dir/includes_CXX.rsp
+CMakeFiles/VideoGame.dir/states/GameState.cpp.obj: ../states/GameState.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\bianc\CLionProjects\VideoGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/VideoGame.dir/states/GameState.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\VideoGame.dir\states\GameState.cpp.obj -c C:\Users\bianc\CLionProjects\VideoGame\states\GameState.cpp
+
+CMakeFiles/VideoGame.dir/states/GameState.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VideoGame.dir/states/GameState.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\bianc\CLionProjects\VideoGame\states\GameState.cpp > CMakeFiles\VideoGame.dir\states\GameState.cpp.i
+
+CMakeFiles/VideoGame.dir/states/GameState.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VideoGame.dir/states/GameState.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\bianc\CLionProjects\VideoGame\states\GameState.cpp -o CMakeFiles\VideoGame.dir\states\GameState.cpp.s
+
+CMakeFiles/VideoGame.dir/entities/Entity.cpp.obj: CMakeFiles/VideoGame.dir/flags.make
+CMakeFiles/VideoGame.dir/entities/Entity.cpp.obj: CMakeFiles/VideoGame.dir/includes_CXX.rsp
+CMakeFiles/VideoGame.dir/entities/Entity.cpp.obj: ../entities/Entity.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\bianc\CLionProjects\VideoGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/VideoGame.dir/entities/Entity.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\VideoGame.dir\entities\Entity.cpp.obj -c C:\Users\bianc\CLionProjects\VideoGame\entities\Entity.cpp
+
+CMakeFiles/VideoGame.dir/entities/Entity.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VideoGame.dir/entities/Entity.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\bianc\CLionProjects\VideoGame\entities\Entity.cpp > CMakeFiles\VideoGame.dir\entities\Entity.cpp.i
+
+CMakeFiles/VideoGame.dir/entities/Entity.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VideoGame.dir/entities/Entity.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\bianc\CLionProjects\VideoGame\entities\Entity.cpp -o CMakeFiles\VideoGame.dir\entities\Entity.cpp.s
+
+CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.obj: CMakeFiles/VideoGame.dir/flags.make
+CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.obj: CMakeFiles/VideoGame.dir/includes_CXX.rsp
+CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.obj: ../states/MainMenuState.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\bianc\CLionProjects\VideoGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\VideoGame.dir\states\MainMenuState.cpp.obj -c C:\Users\bianc\CLionProjects\VideoGame\states\MainMenuState.cpp
+
+CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\bianc\CLionProjects\VideoGame\states\MainMenuState.cpp > CMakeFiles\VideoGame.dir\states\MainMenuState.cpp.i
+
+CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\bianc\CLionProjects\VideoGame\states\MainMenuState.cpp -o CMakeFiles\VideoGame.dir\states\MainMenuState.cpp.s
+
+CMakeFiles/VideoGame.dir/source/Button.cpp.obj: CMakeFiles/VideoGame.dir/flags.make
+CMakeFiles/VideoGame.dir/source/Button.cpp.obj: CMakeFiles/VideoGame.dir/includes_CXX.rsp
+CMakeFiles/VideoGame.dir/source/Button.cpp.obj: ../source/Button.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\bianc\CLionProjects\VideoGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/VideoGame.dir/source/Button.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\VideoGame.dir\source\Button.cpp.obj -c C:\Users\bianc\CLionProjects\VideoGame\source\Button.cpp
+
+CMakeFiles/VideoGame.dir/source/Button.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VideoGame.dir/source/Button.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\bianc\CLionProjects\VideoGame\source\Button.cpp > CMakeFiles\VideoGame.dir\source\Button.cpp.i
+
+CMakeFiles/VideoGame.dir/source/Button.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VideoGame.dir/source/Button.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\bianc\CLionProjects\VideoGame\source\Button.cpp -o CMakeFiles\VideoGame.dir\source\Button.cpp.s
 
 # Object files for target VideoGame
 VideoGame_OBJECTS = \
-"CMakeFiles/VideoGame.dir/main.cpp.obj"
+"CMakeFiles/VideoGame.dir/source/main.cpp.obj" \
+"CMakeFiles/VideoGame.dir/source/GameEngine.cpp.obj" \
+"CMakeFiles/VideoGame.dir/states/State.cpp.obj" \
+"CMakeFiles/VideoGame.dir/states/GameState.cpp.obj" \
+"CMakeFiles/VideoGame.dir/entities/Entity.cpp.obj" \
+"CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.obj" \
+"CMakeFiles/VideoGame.dir/source/Button.cpp.obj"
 
 # External object files for target VideoGame
 VideoGame_EXTERNAL_OBJECTS =
 
-VideoGame.exe: CMakeFiles/VideoGame.dir/main.cpp.obj
+VideoGame.exe: CMakeFiles/VideoGame.dir/source/main.cpp.obj
+VideoGame.exe: CMakeFiles/VideoGame.dir/source/GameEngine.cpp.obj
+VideoGame.exe: CMakeFiles/VideoGame.dir/states/State.cpp.obj
+VideoGame.exe: CMakeFiles/VideoGame.dir/states/GameState.cpp.obj
+VideoGame.exe: CMakeFiles/VideoGame.dir/entities/Entity.cpp.obj
+VideoGame.exe: CMakeFiles/VideoGame.dir/states/MainMenuState.cpp.obj
+VideoGame.exe: CMakeFiles/VideoGame.dir/source/Button.cpp.obj
 VideoGame.exe: CMakeFiles/VideoGame.dir/build.make
 VideoGame.exe: /SFML/lib/libsfml-system-d.a
 VideoGame.exe: /SFML/lib/libsfml-window-d.a
@@ -94,7 +190,7 @@ VideoGame.exe: /SFML/lib/libsfml-graphics-d.a
 VideoGame.exe: CMakeFiles/VideoGame.dir/linklibs.rsp
 VideoGame.exe: CMakeFiles/VideoGame.dir/objects1.rsp
 VideoGame.exe: CMakeFiles/VideoGame.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\bianc\CLionProjects\VideoGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable VideoGame.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\bianc\CLionProjects\VideoGame\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable VideoGame.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\VideoGame.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
