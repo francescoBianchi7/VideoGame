@@ -5,7 +5,7 @@
 #include "MainMenuState.h"
 #include "GameState.h"
 void MainMenuState::initKeybinds() {
-std::ifstream ifs("C:/Users/bianc/CLionProjects/VideoGame/config/mainmenu_keybinds.ini");
+    std::ifstream ifs("C:/Users/bianc/CLionProjects/VideoGame/config/mainmenu_keybinds.ini");
 if(ifs.is_open()){
     std::string key="";
 
@@ -66,10 +66,10 @@ void MainMenuState::render(sf::RenderTarget* target) {
     if(!target)
         target=this->window;
     target->draw(this->background);
-    //this->renderButtons(target);
-    for(auto &it: this->buttons){
-        it.second->render(target);
-    }
+    this->renderButtons(target);
+    //for(auto &it: this->buttons){
+        //it.second->render(target);
+    //}
 }
 
 //don't know if i really need this one

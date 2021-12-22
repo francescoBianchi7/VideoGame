@@ -9,10 +9,13 @@
 
 class GameEngine {
 private:
-    //variables
+        //variables
         sf::Vector2f resolution;
         sf::RenderWindow *window;
         sf::Event sfEvent;
+        sf::ContextSettings windowSettings;
+        std::vector<sf::VideoMode> videoModes;
+        bool fullscreen;
 
         sf::Clock dtClock;//keep track of game-frames so it's not machine dep
         float dt;

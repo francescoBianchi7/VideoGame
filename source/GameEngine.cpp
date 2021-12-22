@@ -13,7 +13,6 @@ GameEngine::GameEngine() {
     this->initKeys();
     this->initStates();
 
-
 }
 
 GameEngine::~GameEngine() {
@@ -29,12 +28,31 @@ GameEngine::~GameEngine() {
 
 //init func
 void GameEngine::createWindow() {
-    resolution=Vector2f(800,600);
-    std::string title="WIP";
-    unsigned fps=120;
-    bool vSync=false;
+    sf::VideoMode windowBounds=sf::VideoMode::getDesktopMode();
+    this->videoModes=sf::VideoMode::getFullscreenModes();
+    std::string title;
+    unsigned fps;
+    bool vSync;
+    unsigned antiAliasing;
+
+    std::ifstream ifs("C:/Users/bianc/CLionProjects/VideoGame/config/window.ini");
+    if(ifs.is_open()){
+        std::getline(ifs,title);
+        ifs>>windowBounds.width>>windowBounds.height;
+        ifs>>fullscreen;
+        ifs>>fps;
+        ifs>>vSync;
+        ifs>>antiAliasing;
+    }
+    ifs.close();
     /*Creates an SFML Window */
-    this->window=new sf::RenderWindow(sf::VideoMode(resolution.x, resolution.y), title);
+    this->windowSettings.antialiasingLevel=antiAliasing;
+    this->fullscreen=fullscreen;
+    if(this->fullscreen)
+        this->window=new sf::RenderWindow(windowBounds,title,sf::Style::Fullscreen);
+    else
+        this->window=new sf::RenderWindow(sf::VideoMode(windowBounds.width,windowBounds.height), title
+                                          ,sf::Style::Titlebar | sf::Style::Close,windowSettings);
     this->window->setFramerateLimit(fps);
     this->window->setVerticalSyncEnabled(vSync);
 
@@ -60,7 +78,7 @@ void GameEngine::initKeys() {
 }
 
 void GameEngine::initStates(){
-    //when the game opens it starts in the main menu
+    //when the game opens it starts in the main menu state
     this->states.push(new MainMenuState(this->window,&this->supportedKeys,&this->states));
 
 
