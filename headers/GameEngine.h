@@ -36,7 +36,7 @@ public:
     GameEngine();
     virtual ~GameEngine();
     //Regular
-    void endApplication();
+    static void endApplication();
     //update functions
     void updateDt();
     void closeWindow();//x on top of window to close it

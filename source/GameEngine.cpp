@@ -9,9 +9,9 @@ using namespace sf;
 
 //Constructors& Destructors
 GameEngine::GameEngine() {
-    this->createWindow();
-    this->initKeys();
-    this->initStates();
+    createWindow();
+    initKeys();
+    initStates();
 
 }
 
@@ -29,11 +29,11 @@ GameEngine::~GameEngine() {
 //init func
 void GameEngine::createWindow() {
     sf::VideoMode windowBounds=sf::VideoMode::getDesktopMode();
-    this->videoModes=sf::VideoMode::getFullscreenModes();
+    videoModes=sf::VideoMode::getFullscreenModes();
     std::string title;
-    unsigned fps;
-    bool vSync;
-    unsigned antiAliasing;
+    unsigned fps=0;
+    bool vSync=false;
+    unsigned antiAliasing=0;
 
     std::ifstream ifs("C:/Users/bianc/CLionProjects/VideoGame/config/window.ini");
     if(ifs.is_open()){
@@ -46,26 +46,25 @@ void GameEngine::createWindow() {
     }
     ifs.close();
     /*Creates an SFML Window */
-    this->windowSettings.antialiasingLevel=antiAliasing;
-    this->fullscreen=fullscreen;
-    if(this->fullscreen)
-        this->window=new sf::RenderWindow(windowBounds,title,sf::Style::Fullscreen);
+    windowSettings.antialiasingLevel=antiAliasing;
+    if(fullscreen)
+        window=new sf::RenderWindow(windowBounds,title,sf::Style::Fullscreen);
     else
-        this->window=new sf::RenderWindow(sf::VideoMode(windowBounds.width,windowBounds.height), title
+        window=new sf::RenderWindow(sf::VideoMode(windowBounds.width,windowBounds.height), title
                                           ,sf::Style::Titlebar | sf::Style::Close,windowSettings);
-    this->window->setFramerateLimit(fps);
-    this->window->setVerticalSyncEnabled(vSync);
+    window->setFramerateLimit(fps);
+    window->setVerticalSyncEnabled(vSync);
 
 }
 
 void GameEngine::initKeys() {
 
-    std::ifstream ifs("C:/Users/bianc/CLionProjects/VideoGame/config/supportedKeys.ini");
+    std::ifstream ifs("./config/supportedKeys.ini");
     if(ifs.is_open()){
-        std::string key="";
+        std::string key=" ";
         int key_value=0;
         while(ifs >> key >> key_value){
-            this->supportedKeys[key]=key_value;
+            supportedKeys[key]=key_value;
         }
 
     }
@@ -83,9 +82,6 @@ void GameEngine::initStates(){
 
 
 }
-
-
-
 
 // update functions
 void GameEngine::updateDt() {
@@ -111,15 +107,14 @@ void GameEngine::update() {
     if(!this->states.empty()){
         this->states.top()->update(this->dt);
         if(this->states.top()->getQuit()){//if quit is true it closes the game
-            this->states.top()->endState();
             delete this->states.top();
             this->states.pop();
         }
 
     }else{
         //application end
-        this->endApplication();
-        this->window->close();
+        endApplication();
+        window->close();
     }
 }
 
@@ -144,9 +139,9 @@ void GameEngine::run() {
     //loop for running the game
     while (this->window->isOpen())
     {
-        this->updateDt();
-        this->update();
-        this->render();
+        updateDt();
+        update();
+        render();
     }
 }
 

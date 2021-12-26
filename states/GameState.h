@@ -12,17 +12,17 @@ private:
     Entity player;
 
     //Functions
-    void initKeybinds();
+    void initKeybinds() override;
 
 public:
     GameState(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states);
     virtual ~GameState();
 
 
-    void endState();//just to see which state is ending
-    void updateInput(const float&dt);
-    void update(const float& dt);
-    void render(sf::RenderTarget* target);
+    void endState() override;//just to see which state is ending
+    void updateInput(const float&dt) override;
+    void update(const float& dt) override;
+    void render(sf::RenderTarget* target) override;
 };
 
 

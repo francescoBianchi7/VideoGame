@@ -12,17 +12,18 @@ private:
     //variables
     sf::Font font;
     sf::RectangleShape background;
-
+    sf::Texture bgTexture;
     std::map<std::string,Button*>buttons;
 
     //Functions
-    void initKeybinds();
+    void initBackground();
+    void initKeybinds() override;
     void initfonts();
     void initButtons();
 
 public:
     //CON & DES
-    MainMenuState(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states);
+    MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys,std::stack<State*> *states);
     virtual ~MainMenuState();
 
 

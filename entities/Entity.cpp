@@ -1,9 +1,9 @@
 //
-// Created by bianc on 05/12/2021.
-//
+//Base class for all entities
+//TBD: make it easier to inherit
 
 #include "Entity.h"
-//Base class for all entities
+
 Entity::Entity() {
     this->shape.setSize(sf::Vector2f(50.f,50.f));
     this->shape.setFillColor(sf::Color::White);
@@ -15,7 +15,7 @@ Entity::~Entity() {
 
 }
 
-void Entity::move(const float&dt,const float dir_x, const float dir_y) {
+void Entity::move(const float&dt,float dir_x, float dir_y) {
     this->shape.move(dir_x*this->moveSpeed*dt,dir_y*this->moveSpeed*dt);
 }
 

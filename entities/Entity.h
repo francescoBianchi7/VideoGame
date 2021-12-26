@@ -22,16 +22,17 @@ private:
 
 protected:
     //to test if it worked properly,later every entity it's gonna have
-    //its own
+    //its own class
     sf::RectangleShape shape;
     float moveSpeed;
+    sf::Shape* tempshape;
 
 public:
     Entity();
 
     virtual ~Entity();
 
-    virtual void move(const float&dt,const float x,const float y);
+    virtual void move(const float&dt,float x,float y);
 
     virtual void update(const float& dt);
     virtual void render(sf::RenderTarget* target);

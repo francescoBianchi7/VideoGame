@@ -10,12 +10,12 @@ void GameState::initKeybinds() {
      * e.g. the main menu(or whatever it's gonna be called) state can have different
      * keybinds */
 
-    std::ifstream ifs("C:/Users/bianc/CLionProjects/VideoGame/config/gamestate_keybinds.ini");
+    std::ifstream ifs("./config/gamestate_keybinds.ini");
     if(ifs.is_open()){
-        std::string key="";
-        std::string key2="";
+        std::string key=" ";
+        std::string key2=" ";
         while(ifs >> key >> key2){
-            this->keybinds[key]=this->supportedKeys->at(key2);
+            keybinds[key]=this->supportedKeys->at(key2);
         }
     }
     ifs.close();
@@ -23,15 +23,12 @@ void GameState::initKeybinds() {
 
 GameState::GameState(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states)
 :State(window,supportedKeys,states){
-    this->initKeybinds();
+    initKeybinds();
 }
 
 GameState::~GameState() {
 
 }
-
-
-
 
 
 void GameState::render(sf::RenderTarget* target) {
@@ -42,7 +39,6 @@ void GameState::render(sf::RenderTarget* target) {
 
 
 void GameState::updateInput(const float &dt) {
-    this->checkForQuit();
     /*move the player
     *momentary* in the future it's gonna be in another class*/
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
@@ -53,6 +49,8 @@ void GameState::updateInput(const float &dt) {
         this->player.move(dt,0.f,-1.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
         this->player.move(dt,0.f,1.f);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))))
+        this->endState();
 }
 
 
@@ -63,7 +61,7 @@ void GameState::update(const float& dt) {
 }
 
 void GameState::endState() {
+    this->quit=true;
     std::cout<<"ending gamestate"<<"\n";
-
 }
 

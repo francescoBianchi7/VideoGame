@@ -3,13 +3,14 @@
 //
 
 #include "MainMenuState.h"
-#include "GameState.h"
-void MainMenuState::initKeybinds() {
-    std::ifstream ifs("C:/Users/bianc/CLionProjects/VideoGame/config/mainmenu_keybinds.ini");
-if(ifs.is_open()){
-    std::string key="";
 
-    std::string key2="";
+
+
+void MainMenuState::initKeybinds() {
+    std::ifstream ifs("./config/mainmenu_keybinds.ini");
+if(ifs.is_open()){
+    std::string key=" ";
+    std::string key2=" ";
     while(ifs >> key >> key2){
         this->keybinds[key]=this->supportedKeys->at(key2);
     }
@@ -20,13 +21,11 @@ ifs.close();
 MainMenuState::MainMenuState(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states)
 :State(window,supportedKeys,states){
 
-    this->initKeybinds();
-    this->initfonts();
+    initKeybinds();
+    initfonts();
 
-    this->background.setSize(sf::Vector2f(window->getSize().x,window->getSize().y));
-    this->background.setFillColor(sf::Color::Green);
-
-    this->initButtons();
+    initBackground();
+    initButtons();
 
 }
 MainMenuState::~MainMenuState() {
@@ -36,12 +35,12 @@ MainMenuState::~MainMenuState() {
 }
 
 void MainMenuState::endState() {
+    this->quit=true;
     std::cout<<"ending MainMenuState"<<"\n";
-
 }
 
 void MainMenuState::initfonts() {
-    if(!this->font.loadFromFile("C:/Users/bianc/CLionProjects/Videogame/assets/fonts/Amarante.ttf"))
+    if(!this->font.loadFromFile("assets/fonts/Amarante.ttf"))
     {
         throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
     }
@@ -57,8 +56,19 @@ void MainMenuState::initButtons() {
                                                   sf::Color(100,100,150,200),
                                                   sf::Color(255,0,25,255));
 }
+
+void MainMenuState::initBackground() {
+    this->background.setSize(sf::Vector2f((float)this->window->getSize().x,(float)this->window->getSize().y));
+    if(!this->bgTexture.loadFromFile("assets/mainmenu/bg.png"))
+        std::cout<<"ERROR::COULDN'T LOAD TEXTURE FROM FILE";
+
+    this->bgTexture.loadFromFile("assets/mainmenu/bg.png");
+    this->background.setTexture(&bgTexture);
+
+}
+
+
 void MainMenuState::updateInput(const float &dt) {
-    this->checkForQuit();
 }
 
 
@@ -66,13 +76,10 @@ void MainMenuState::render(sf::RenderTarget* target) {
     if(!target)
         target=this->window;
     target->draw(this->background);
-    this->renderButtons(target);
-    //for(auto &it: this->buttons){
-        //it.second->render(target);
-    //}
+    renderButtons(target);
 }
 
-//don't know if i really need this one
+//don't know if I really need this one
 void MainMenuState::renderButtons(sf::RenderTarget* target) {
     for(auto &it: this->buttons){
         it.second->render(target);
@@ -84,18 +91,16 @@ void MainMenuState::updateButtons() {
     for(auto &it: this->buttons){
         it.second->update(this->mouseposView);
     }
-    //new game,pushes gstate on top of stack
+    //new game,pushes g-state on top of stack
     if(this->buttons["GAME_STATE_BUTTON"]->isBTNPressed()){
         this->states->push(new GameState(this->window,this->supportedKeys,this->states));
     }
 
     //quit game
     if(this->buttons["EXIT_STATE_BUTTON"]->isBTNPressed()){
-        this->quit=true;
+        endState();
     }
 }
-
-
 
 void MainMenuState::update(const float& dt) {
     this->updateInput(dt);
@@ -103,7 +108,3 @@ void MainMenuState::update(const float& dt) {
     this->updateButtons();
 
 }
-
-
-
-

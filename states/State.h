@@ -10,16 +10,13 @@
 
 //Base class to create various state of the game e.g starting menu,game state
 class State {
-private:
-
 protected:
-    std::stack<State*> *states;
+    std::stack<State *> *states;
     sf::RenderWindow* window;
     std::vector<sf::Texture> textures;
     std::map<std::string,int>* supportedKeys;
-    std::map<std::string,int>keybinds;
+    std::map<std::string,int> keybinds;
     bool quit;
-
     sf::Vector2i mousePosScreen;
     sf::Vector2i mouseposWindow;
     sf::Vector2f mouseposView;
@@ -32,8 +29,6 @@ public:
     virtual ~State();
 
     const bool& getQuit() const;
-    virtual void checkForQuit();
-
 
     virtual void endState()=0;
 
