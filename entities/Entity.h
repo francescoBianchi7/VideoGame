@@ -6,6 +6,7 @@
 #define VIDEOGAME_ENTITY_H
 #include "ctime"
 #include "iostream"
+#include "../Components/MovementComponent.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
@@ -19,18 +20,23 @@
 
 class Entity {
 private:
-
+    void initVariables();
 protected:
     //to test if it worked properly,later every entity it's gonna have
     //its own class
-    sf::RectangleShape shape;
-    float moveSpeed;
-    sf::Shape* tempshape;
 
+
+    sf::Sprite sprite;
+
+    MovementComponent* movementComponent;
 public:
     Entity();
-
     virtual ~Entity();
+    //init
+    virtual void setPosition(float x,float y);
+    void setTexture(sf::Texture& texture);
+    void createMovementComponent(float maxVelocity);
+
 
     virtual void move(const float&dt,float x,float y);
 

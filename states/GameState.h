@@ -9,10 +9,12 @@
 
 class GameState :public State{
 private:
-    Entity player;
+    GameCharacter* player;//cause memory is dinamically allocated
 
     //Functions
     void initKeybinds() override;
+    void initTextures();
+    void initPlayer();
 
 public:
     GameState(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states);

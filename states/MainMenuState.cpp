@@ -47,11 +47,15 @@ void MainMenuState::initfonts() {
 }
 
 void MainMenuState::initButtons() {
-    this->buttons["GAME_STATE_BUTTON"]=new Button(100,100,150,50,&this->font,"Play",
+    this->buttons["GAME_STATE_BUTTON"]=new Button(300,480,250,50,&this->font,"Play",
                                                   sf::Color(51,51,51,200),
                                                   sf::Color(100,100,150,200),
                                                   sf::Color(255,0,25,255));
-    this->buttons["EXIT_STATE_BUTTON"]=new Button(100,300,150,50,&this->font,"Quit",
+    this->buttons["EXIT_STATE_BUTTON"]=new Button(300,680,250,50,&this->font,"Quit",
+                                                  sf::Color(51,51,51,200),
+                                                  sf::Color(100,100,150,200),
+                                                  sf::Color(255,0,25,255));
+    this->buttons["SETTINGS"]=new Button(300,580,250,50,&this->font,"Settings",
                                                   sf::Color(51,51,51,200),
                                                   sf::Color(100,100,150,200),
                                                   sf::Color(255,0,25,255));

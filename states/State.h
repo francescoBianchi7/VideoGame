@@ -6,14 +6,15 @@
 #define VIDEOGAME_STATE_H
 
 
-#include "C:\Users\bianc\CLionProjects\VideoGame\entities\Entity.h"
+
+#include "../entities/GameCharacter.h"
 
 //Base class to create various state of the game e.g starting menu,game state
 class State {
 protected:
     std::stack<State *> *states;
     sf::RenderWindow* window;
-    std::vector<sf::Texture> textures;
+    std::map<std::string ,sf::Texture> textures;
     std::map<std::string,int>* supportedKeys;
     std::map<std::string,int> keybinds;
     bool quit;
@@ -36,7 +37,7 @@ public:
     virtual void updateInput(const float& dt)=0;
 
     virtual void update(const float& dt)=0;// pure virtual make sure you can instantiate only through inheritance
-    virtual void render(sf::RenderTarget* target= nullptr)=0;//same here
+    virtual void render(sf::RenderTarget* target)=0;//same here
 };
 
 

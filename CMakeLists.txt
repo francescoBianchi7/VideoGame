@@ -3,7 +3,7 @@ project(VideoGame)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(VideoGame source/main.cpp source/GameEngine.cpp headers/GameEngine.h states/State.cpp states/State.h states/GameState.cpp states/GameState.h entities/Entity.cpp entities/Entity.h states/MainMenuState.cpp states/MainMenuState.h source/Button.cpp headers/Button.h)
+add_executable(VideoGame source/main.cpp source/GameEngine.cpp headers/GameEngine.h states/State.cpp states/State.h states/GameState.cpp states/GameState.h entities/Entity.cpp entities/Entity.h states/MainMenuState.cpp states/MainMenuState.h source/Button.cpp headers/Button.h entities/GameCharacter.cpp entities/GameCharacter.h Components/MovementComponent.cpp Components/MovementComponent.h)
 
 include_directories(headers c:/SFML/include)
 

@@ -124,9 +124,7 @@ void GameEngine::render() {
     this->window->clear();
     //render items
     if(!this->states.empty())
-        this->states.top()->render();
-
-
+        this->states.top()->render(window);
     this->window->display();
 
 }
