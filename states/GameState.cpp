@@ -22,8 +22,7 @@ void GameState::initKeybinds() {
 }
 
 void GameState::initTextures() {
-
-    if(!this->textures["PLAYER_IDLE"].loadFromFile("./assets/Sprites/test.png"))
+    if(!this->textures["PLAYER_SHEET"].loadFromFile("./assets/Sprites/GC/GC_Sheet.png"))
         throw "ERROR::GAME_STATE::COULDNOTLOADIDLETEXTURE";
 }
 
@@ -31,15 +30,14 @@ GameState::GameState(sf::RenderWindow* window,std::map<std::string,int>* support
 :State(window,supportedKeys,states){
     initKeybinds();
     initTextures();
-
     initPlayer();
 }
 
 GameState::~GameState() {
-    //delete this->player;
+    delete this->player;
 }
 
-//funtions
+//functions
 void GameState::render(sf::RenderTarget* target) {
     if(!target)
         target= (this->window);
@@ -47,8 +45,6 @@ void GameState::render(sf::RenderTarget* target) {
 }
 
 void GameState::updateInput(const float &dt) {
-    /*move the player
-    *momentary* in the future it's gonna be in another class*/
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
         this->player->move(dt,-1.f,0.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
@@ -73,8 +69,7 @@ void GameState::endState() {
 }
 
 void GameState::initPlayer() {
-
-    this->player=new GameCharacter(0,0,this->textures["PLAYER_IDLE"]);
+    this->player=new GameCharacter(0,0,this->textures["PLAYER_SHEET"]);
 }
 
 

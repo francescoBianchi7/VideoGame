@@ -22,7 +22,7 @@ public:
 
 
     void endState() override;//just to see which state is ending
-    void updateInput(const float&dt) override;
+    void updateInput(const float& dt) override;
     void update(const float& dt) override;
     void render(sf::RenderTarget* target) override;
 };

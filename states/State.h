@@ -35,7 +35,6 @@ public:
 
     virtual void updateMousePosition();
     virtual void updateInput(const float& dt)=0;
-
     virtual void update(const float& dt)=0;// pure virtual make sure you can instantiate only through inheritance
     virtual void render(sf::RenderTarget* target)=0;//same here
 };

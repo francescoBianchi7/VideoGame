@@ -33,8 +33,8 @@ public:
     void renderButtons(sf::RenderTarget* target);//renders buttons
 
     void updateButtons();//changes button status
-    void updateInput(const float&dt);
-    void update(const float& dt);
+    void updateInput(const float& dt) override;
+    void update(const float& dt)override;
 
 
 };

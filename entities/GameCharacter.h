@@ -16,8 +16,8 @@ private:
     void initComponents();//each entity it's gonna have it's own
 public:
     GameCharacter(float x, float y,sf::Texture& texture);
-
     virtual ~GameCharacter();
+    void update(const float& dt);
 };
 
 

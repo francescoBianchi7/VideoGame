@@ -47,18 +47,27 @@ void MainMenuState::initfonts() {
 }
 
 void MainMenuState::initButtons() {
-    this->buttons["GAME_STATE_BUTTON"]=new Button(300,480,250,50,&this->font,"Play",
-                                                  sf::Color(51,51,51,200),
-                                                  sf::Color(100,100,150,200),
-                                                  sf::Color(255,0,25,255));
-    this->buttons["EXIT_STATE_BUTTON"]=new Button(300,680,250,50,&this->font,"Quit",
-                                                  sf::Color(51,51,51,200),
-                                                  sf::Color(100,100,150,200),
-                                                  sf::Color(255,0,25,255));
-    this->buttons["SETTINGS"]=new Button(300,580,250,50,&this->font,"Settings",
-                                                  sf::Color(51,51,51,200),
-                                                  sf::Color(100,100,150,200),
-                                                  sf::Color(255,0,25,255));
+    this->buttons["GAME_STATE_BUTTON"]=new Button(200.f,280.f,250.f,50.f,
+                                                  &this->font,"Play",50,
+                                                  sf::Color(71,71,71,200),sf::Color(150,151,151,200),
+                                                  sf::Color(20,20,20,50),
+                                                  sf::Color(100,100,150,0),sf::Color(51,51,51,0),
+                                                  sf::Color(255,0,25,0));
+    this->buttons["EDITOR"]=new Button(200.f,380.f,250.f,50.f,&this->font,"Editor",50,
+                                       sf::Color(71,71,71,200),sf::Color(150,151,151,200),
+                                       sf::Color(20,20,20,50),
+                                       sf::Color(100,100,150,0),sf::Color(51,51,51,0),
+                                       sf::Color(255,0,25,0));
+    this->buttons["SETTINGS"]=new Button(200.f,480.f,250.f,50.f,&this->font,"Settings",50,
+                                         sf::Color(71,71,71,200),sf::Color(150,151,151,200),
+                                         sf::Color(20,20,20,50),
+                                         sf::Color(100,100,150,0),sf::Color(51,51,51,0),
+                                         sf::Color(255,0,25,0));
+    this->buttons["EXIT_STATE_BUTTON"]=new Button(200.f,680.f,250.f,50.f,&this->font,"Quit",50,
+                                                  sf::Color(71,71,71,200),sf::Color(150,151,151,200),
+                                                  sf::Color(20,20,20,50),
+                                                  sf::Color(100,100,150,0),sf::Color(51,51,51,0),
+                                                  sf::Color(255,0,25,0));
 }
 
 void MainMenuState::initBackground() {

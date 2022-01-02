@@ -7,6 +7,7 @@
 #include "ctime"
 #include "iostream"
 #include "../Components/MovementComponent.h"
+#include "../Components/AnimationComponent.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
@@ -22,21 +23,18 @@ class Entity {
 private:
     void initVariables();
 protected:
-    //to test if it worked properly,later every entity it's gonna have
-    //its own class
-
-
     sf::Sprite sprite;
 
     MovementComponent* movementComponent;
+    AnimationComponent* animationComponent;
 public:
     Entity();
     virtual ~Entity();
     //init
     virtual void setPosition(float x,float y);
     void setTexture(sf::Texture& texture);
-    void createMovementComponent(float maxVelocity);
-
+    void createMovementComponent(float maxSpeed,float acceleration,float deceleration);
+    void createAnimationComponent(sf::Texture &textureSheet);
 
     virtual void move(const float&dt,float x,float y);
 
