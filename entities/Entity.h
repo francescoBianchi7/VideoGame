@@ -8,6 +8,7 @@
 #include "iostream"
 #include "../Components/MovementComponent.h"
 #include "../Components/AnimationComponent.h"
+#include "../Components/HitboxComponent.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
@@ -27,19 +28,22 @@ protected:
 
     MovementComponent* movementComponent;
     AnimationComponent* animationComponent;
+    HitboxComponent* hitboxComponent;
+
 public:
     Entity();
     virtual ~Entity();
     //init
     virtual void setPosition(float x,float y);
     void setTexture(sf::Texture& texture);
+    void createHitboxComponent(float offset_x,float offset_y,sf::Sprite& sprite,float width,float height);
     void createMovementComponent(float maxSpeed,float acceleration,float deceleration);
     void createAnimationComponent(sf::Texture &textureSheet);
 
     virtual void move(const float&dt,float x,float y);
 
     virtual void update(const float& dt);
-    virtual void render(sf::RenderTarget* target);
+    virtual void render(sf::RenderTarget& target);
 
 };
 

@@ -7,6 +7,7 @@
 
 #include "GameState.h"
 #include "Button.h"
+#include "EditorState.h"
 class MainMenuState:public State {
 private:
     //variables
@@ -30,13 +31,11 @@ public:
     void endState();//just to see which state is ending
 
     void render(sf::RenderTarget* target);
-    void renderButtons(sf::RenderTarget* target);//renders buttons
+    void renderButtons(sf::RenderTarget& target);//renders buttons
 
     void updateButtons();//changes button status
     void updateInput(const float& dt) override;
     void update(const float& dt)override;
-
-
 };
 
 

@@ -42,7 +42,7 @@ public:
     bool isBTNPressed() const;
 
     //Functions
-    void render(sf::RenderTarget* Target);
+    void render(sf::RenderTarget& Target);
     void update(sf::Vector2f mousePos);//checks if the mouse is on the button(clicking it doesn't do anything rn
 };
 

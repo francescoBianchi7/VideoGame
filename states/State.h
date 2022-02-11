@@ -17,6 +17,7 @@ protected:
     std::map<std::string ,sf::Texture> textures;
     std::map<std::string,int>* supportedKeys;
     std::map<std::string,int> keybinds;
+    bool paused;
     bool quit;
     sf::Vector2i mousePosScreen;
     sf::Vector2i mouseposWindow;
@@ -32,7 +33,8 @@ public:
     const bool& getQuit() const;
 
     virtual void endState()=0;
-
+    void pauseState();
+    void unpauseState();
     virtual void updateMousePosition();
     virtual void updateInput(const float& dt)=0;
     virtual void update(const float& dt)=0;// pure virtual make sure you can instantiate only through inheritance

@@ -89,11 +89,11 @@ void MainMenuState::render(sf::RenderTarget* target) {
     if(!target)
         target=this->window;
     target->draw(this->background);
-    renderButtons(target);
+    renderButtons(*target);
 }
 
 //don't know if I really need this one
-void MainMenuState::renderButtons(sf::RenderTarget* target) {
+void MainMenuState::renderButtons(sf::RenderTarget& target) {
     for(auto &it: this->buttons){
         it.second->render(target);
     }
@@ -108,7 +108,12 @@ void MainMenuState::updateButtons() {
     if(this->buttons["GAME_STATE_BUTTON"]->isBTNPressed()){
         this->states->push(new GameState(this->window,this->supportedKeys,this->states));
     }
+    //Settings(to be implemented)
 
+    //Editor state
+    if(this->buttons["EDITOR"]->isBTNPressed()){
+        this->states->push(new EditorState(this->window,this->supportedKeys,this->states));
+    }
     //quit game
     if(this->buttons["EXIT_STATE_BUTTON"]->isBTNPressed()){
         endState();

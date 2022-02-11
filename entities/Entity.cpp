@@ -4,7 +4,7 @@
 
 #include "Entity.h"
 
-Entity::Entity() {
+Entity::Entity(){
     this->initVariables();//to store important vars
 
 }
@@ -12,6 +12,7 @@ Entity::Entity() {
 Entity::~Entity() {
     delete this->movementComponent;
     delete this->animationComponent;
+    //delete this->hitboxComponent;
 }
 void Entity::move(const float&dt,float dir_x, float dir_y) {
     if(this->movementComponent){
@@ -19,8 +20,10 @@ void Entity::move(const float&dt,float dir_x, float dir_y) {
     }
 }
 
-void Entity::render(sf::RenderTarget* target) {
-    target->draw(sprite);
+void Entity::render(sf::RenderTarget& target) {
+    target.draw(sprite);
+    if(this->hitboxComponent)
+        this->hitboxComponent->render(target);
 }
 
 
@@ -46,5 +49,10 @@ void Entity::createMovementComponent(const float maxSpeed,float acceleration,flo
 void Entity::update(const float& dt ) {
     if(this->movementComponent)
         this->movementComponent->update(dt);
+}
+
+void Entity::createHitboxComponent(float offset_x,float offset_y,sf::Sprite& sprite,float width,float height) {
+    this->hitboxComponent=new HitboxComponent(offset_x,offset_y,sprite,width,
+                                              height);
 }
 

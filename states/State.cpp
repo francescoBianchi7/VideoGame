@@ -9,6 +9,7 @@ State::State(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,s
     this->supportedKeys=supportedKeys;
     this->states=states;
     this->quit=false;
+    this->paused=false;
 
 }
 State::~State() {
@@ -24,6 +25,14 @@ void State::updateMousePosition() {
     this->mousePosScreen=sf::Mouse::getPosition();
     this->mouseposWindow=sf::Mouse::getPosition(*window);
     this->mouseposView=this->window->mapPixelToCoords(sf::Mouse::getPosition(*window));
+}
+
+void State::pauseState() {
+    this->paused=true;
+}
+
+void State::unpauseState() {
+    this->paused=false;
 }
 
 
