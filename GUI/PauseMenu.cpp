@@ -1,7 +1,7 @@
 //
 // Created by bianc on 11/02/2022.
 //
-
+#include "PreCompHeaders.h"
 #include "PauseMenu.h"
 
 PauseMenu::PauseMenu(sf::RenderWindow& window,sf::Font& font) :font(font){
@@ -35,7 +35,7 @@ void PauseMenu::addButton(const std::string key, float y, const std::string text
     float width=250.f;
     float height=50.f;
     float x=container.getPosition().x+container.getSize().x/2.f-width/2.f;
-    this->buttons[key]=new Button(x,y,width,height,
+    this->buttons[key]=new GUI::Button(x,y,width,height,
                                   &this->font,text,50,
                                   sf::Color(71,71,71,200),sf::Color(150,151,151,200),
                                   sf::Color(20,20,20,50),
@@ -58,7 +58,7 @@ void PauseMenu::render(sf::RenderTarget& target) {
     target.draw(menuText);
 }
 
-std::map<std::string, Button *> &PauseMenu::getButtons() {
+std::map<std::string, GUI::Button *> &PauseMenu::getButtons() {
     return this->buttons;
 }
 

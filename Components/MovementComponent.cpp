@@ -1,7 +1,7 @@
 //
 // Created by bianc on 27/12/2021.
 //
-
+#include "PreCompHeaders.h"
 #include "MovementComponent.h"
 
 MovementComponent::MovementComponent(sf::Sprite& sprite,float maxSpeed,float acceleration,float deceleration)

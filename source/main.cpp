@@ -1,5 +1,4 @@
-#include "iostream"
-#include <SFML/Graphics.hpp>
+#include "PreCompHeaders.h"
 #include "GameEngine.h"
 
 using namespace std;

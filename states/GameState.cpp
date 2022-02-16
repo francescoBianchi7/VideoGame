@@ -1,7 +1,7 @@
 //
 // Created by bianc on 05/12/2021.
 //
-
+#include "PreCompHeaders.h"
 #include "GameState.h"
 
 
@@ -81,7 +81,9 @@ void GameState::updatePlayerInput(const float &dt) {
 
 void GameState::update(const float& dt) {
     this->updateMousePosition();
+    this->updateKeyTime(dt);
     this->updateInput(dt);
+
 
     if(!this->paused){
         this->updatePlayerInput(dt);
@@ -100,7 +102,7 @@ void GameState::endState() {
 
 
 void GameState::updateInput(const float &dt) {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE")))){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE")))&& this->getKeyTime()){
         if(!paused)
             this->pauseState();
         else

@@ -7,12 +7,12 @@
 
 //need this class to make tiles etc
 #include "State.h"
-#include "Button.h"
+#include "GUI.h"
 class EditorState :public State{
 private:
     sf::Font font;
 
-    std::map<std::string, Button*> buttons;
+    std::map<std::string, GUI::Button*> buttons;
 
     void initVariables();
     void initBackground();

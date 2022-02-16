@@ -1,7 +1,7 @@
 //
 // Created by bianc on 10/02/2022.
 //
-
+#include "PreCompHeaders.h"
 #include "HitboxComponent.h"
 
 HitboxComponent::HitboxComponent(float offset_x, float offset_y, sf::Sprite &sprite, float width, float height)

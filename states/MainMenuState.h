@@ -6,15 +6,16 @@
 #define VIDEOGAME_MAINMENUSTATE_H
 
 #include "GameState.h"
-#include "Button.h"
+#include "GUI.h"
 #include "EditorState.h"
+#include "SettingState.h"
 class MainMenuState:public State {
 private:
     //variables
     sf::Font font;
     sf::RectangleShape background;
     sf::Texture bgTexture;
-    std::map<std::string,Button*>buttons;
+    std::map<std::string,GUI::Button*> buttons;
 
     //Functions
     void initBackground();

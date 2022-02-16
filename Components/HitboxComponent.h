@@ -4,12 +4,7 @@
 
 #ifndef VIDEOGAME_HITBOXCOMPONENT_H
 #define VIDEOGAME_HITBOXCOMPONENT_H
-#include <cstdlib>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
+
 
 class HitboxComponent {
 private:

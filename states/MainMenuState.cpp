@@ -1,7 +1,7 @@
 //
 // Created by bianc on 07/12/2021.
 //
-
+#include "PreCompHeaders.h"
 #include "MainMenuState.h"
 
 
@@ -18,27 +18,6 @@ if(ifs.is_open()){
 ifs.close();
 }
 
-MainMenuState::MainMenuState(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states)
-:State(window,supportedKeys,states){
-
-    initKeybinds();
-    initfonts();
-
-    initBackground();
-    initButtons();
-
-}
-MainMenuState::~MainMenuState() {
-    for(auto b:buttons){
-        delete b.second;
-    }
-}
-
-void MainMenuState::endState() {
-    this->quit=true;
-    std::cout<<"ending MainMenuState"<<"\n";
-}
-
 void MainMenuState::initfonts() {
     if(!this->font.loadFromFile("assets/fonts/Amarante.ttf"))
     {
@@ -47,23 +26,23 @@ void MainMenuState::initfonts() {
 }
 
 void MainMenuState::initButtons() {
-    this->buttons["GAME_STATE_BUTTON"]=new Button(200.f,280.f,250.f,50.f,
+    this->buttons["GAME_STATE_BUTTON"]=new GUI::Button(200.f,280.f,250.f,50.f,
                                                   &this->font,"Play",50,
                                                   sf::Color(71,71,71,200),sf::Color(150,151,151,200),
                                                   sf::Color(20,20,20,50),
                                                   sf::Color(100,100,150,0),sf::Color(51,51,51,0),
                                                   sf::Color(255,0,25,0));
-    this->buttons["EDITOR"]=new Button(200.f,380.f,250.f,50.f,&this->font,"Editor",50,
+    this->buttons["EDITOR"]=new GUI::Button(200.f,380.f,250.f,50.f,&this->font,"Editor",50,
                                        sf::Color(71,71,71,200),sf::Color(150,151,151,200),
                                        sf::Color(20,20,20,50),
                                        sf::Color(100,100,150,0),sf::Color(51,51,51,0),
                                        sf::Color(255,0,25,0));
-    this->buttons["SETTINGS"]=new Button(200.f,480.f,250.f,50.f,&this->font,"Settings",50,
+    this->buttons["SETTINGS"]=new GUI::Button(200.f,480.f,250.f,50.f,&this->font,"Settings",50,
                                          sf::Color(71,71,71,200),sf::Color(150,151,151,200),
                                          sf::Color(20,20,20,50),
                                          sf::Color(100,100,150,0),sf::Color(51,51,51,0),
                                          sf::Color(255,0,25,0));
-    this->buttons["EXIT_STATE_BUTTON"]=new Button(200.f,680.f,250.f,50.f,&this->font,"Quit",50,
+    this->buttons["EXIT_STATE_BUTTON"]=new GUI::Button(200.f,680.f,250.f,50.f,&this->font,"Quit",50,
                                                   sf::Color(71,71,71,200),sf::Color(150,151,151,200),
                                                   sf::Color(20,20,20,50),
                                                   sf::Color(100,100,150,0),sf::Color(51,51,51,0),
@@ -80,6 +59,27 @@ void MainMenuState::initBackground() {
 
 }
 
+MainMenuState::MainMenuState(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states)
+:State(window,supportedKeys,states){
+
+    initKeybinds();
+    initfonts();
+
+    initBackground();
+    initButtons();
+
+}
+
+MainMenuState::~MainMenuState() {
+    for(auto b:buttons){
+        delete b.second;
+    }
+}
+
+void MainMenuState::endState() {
+    this->quit=true;
+    std::cout<<"ending MainMenuState"<<"\n";
+}
 
 void MainMenuState::updateInput(const float &dt) {
 }
@@ -92,7 +92,7 @@ void MainMenuState::render(sf::RenderTarget* target) {
     renderButtons(*target);
 }
 
-//don't know if I really need this one
+
 void MainMenuState::renderButtons(sf::RenderTarget& target) {
     for(auto &it: this->buttons){
         it.second->render(target);
@@ -109,7 +109,9 @@ void MainMenuState::updateButtons() {
         this->states->push(new GameState(this->window,this->supportedKeys,this->states));
     }
     //Settings(to be implemented)
-
+    if(this->buttons["SETTINGS"]->isBTNPressed()){
+        this->states->push(new SettingState(this->window,this->supportedKeys,this->states));
+    }
     //Editor state
     if(this->buttons["EDITOR"]->isBTNPressed()){
         this->states->push(new EditorState(this->window,this->supportedKeys,this->states));

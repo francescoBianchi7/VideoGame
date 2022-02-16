@@ -1,9 +1,7 @@
 //
 // Created by bianc on 30/11/2021.
 //
-
-
-
+#include "PreCompHeaders.h"
 #include "GameEngine.h"
 using namespace sf;
 

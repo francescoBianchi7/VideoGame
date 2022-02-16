@@ -5,13 +5,6 @@
 #ifndef VIDEOGAME_ANIMATIONCOMPONENT_H
 #define VIDEOGAME_ANIMATIONCOMPONENT_H
 
-#include "iostream"
-#include <map>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
 
 class AnimationComponent {
 private:

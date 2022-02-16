@@ -1,7 +1,7 @@
 //
 //Base class for all entities
 //TBD: make it easier to inherit
-
+#include "PreCompHeaders.h"
 #include "Entity.h"
 
 Entity::Entity(){

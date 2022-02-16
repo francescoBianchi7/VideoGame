@@ -4,21 +4,10 @@
 
 #ifndef VIDEOGAME_ENTITY_H
 #define VIDEOGAME_ENTITY_H
-#include "ctime"
-#include "iostream"
+
 #include "../Components/MovementComponent.h"
 #include "../Components/AnimationComponent.h"
 #include "../Components/HitboxComponent.h"
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <stack>
-#include <map>
 
 class Entity {
 private:

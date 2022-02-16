@@ -1,7 +1,7 @@
 //
 // Created by bianc on 09/02/2022.
 //
-
+#include "PreCompHeaders.h"
 #include "EditorState.h"
 
 EditorState::EditorState(sf::RenderWindow *window, std::map<std::string, int> *supportedKeys,
