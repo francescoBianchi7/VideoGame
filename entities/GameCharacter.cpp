@@ -17,9 +17,7 @@ GameCharacter::GameCharacter( float x, float y, sf::Texture &textureSheet){
     this->animationComponent->addAnimation("WALK_RIGHT",10.f,0,2,3,2,72,107);
 }
 
-GameCharacter::~GameCharacter() {
-
-}
+GameCharacter::~GameCharacter() {}
 
 //init function
 void GameCharacter::initVariables() {
@@ -29,7 +27,8 @@ void GameCharacter::initVariables() {
 void GameCharacter::initComponents() {
 }
 
-void GameCharacter::update(const float &dt) {
+void GameCharacter::update(const float &dt) {//updates which animation is playing and components
+    this->movementComponent->update(dt);
     if(this->movementComponent->getState(IDLE)){
         this->animationComponent->play("IDLE_DOWN",dt);
     }
@@ -41,8 +40,6 @@ void GameCharacter::update(const float &dt) {
         this->animationComponent->play("WALK_LEFT",dt);
     else if(this->movementComponent->getState(MOVING_RIGHT))
         this->animationComponent->play("WALK_RIGHT",dt);
-    this->movementComponent->update(dt);
-
     this->hitboxComponent->update();
 }
 

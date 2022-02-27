@@ -1,6 +1,3 @@
-//
-// Created by bianc on 10/02/2022.
-//
 #include "PreCompHeaders.h"
 #include "HitboxComponent.h"
 
@@ -13,20 +10,16 @@ HitboxComponent::HitboxComponent(float offset_x, float offset_y, sf::Sprite &spr
     this->hitbox.setOutlineColor(sf::Color::Red);
 }
 
-
-HitboxComponent::~HitboxComponent() {
-
-}
-
+HitboxComponent::~HitboxComponent() {}
+//keeps hitbox on player sprite
 void HitboxComponent::update() {
     this->hitbox.setPosition(sprite.getPosition().x+offsetX,sprite.getPosition().y+offsetY);
 }
-
+//renders hitbox rect
 void HitboxComponent::render(sf::RenderTarget &target) {
     target.draw(this->hitbox);
-
 }
-
+//checks if 2 hitbox intersect
 bool HitboxComponent::checkIntersect(const sf::FloatRect& rect) {
     return this->hitbox.getGlobalBounds().intersects(rect);
 }

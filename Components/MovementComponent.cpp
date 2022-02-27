@@ -53,7 +53,7 @@ void MovementComponent::update(const float &dt) {
     //Final move
     this->sprite.move(this->velocity * dt); //Uses velocity
 }
-
+//accelerates
 void MovementComponent::move(const float& dt,float dir_x, float dir_y) {
     this->velocity.x+=this->acceleration*dir_x;
     this->velocity.y+=this->acceleration*dir_y;
@@ -65,7 +65,7 @@ const sf::Vector2f &MovementComponent::getVelocity() const {
 const float &MovementComponent::getSpeed() const {
     return this->maxSpeed;
 }
-
+//movement state used to set the proper animation
 bool MovementComponent::getState(short unsigned state) const {
     switch(state){
     case IDLE:
@@ -104,11 +104,9 @@ void MovementComponent::stopVelocity()
     this->velocity.x = 0.f;
     this->velocity.y = 0.f;
 }
-
 void MovementComponent::stopVelocityX() {
     this->velocity.x = 0.f;
 }
-
 void MovementComponent::stopVelocityY() {
     this->velocity.y = 0.f;
 }

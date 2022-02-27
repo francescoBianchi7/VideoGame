@@ -12,13 +12,11 @@ private:
     public:
         sf::Sprite& sprite;
         sf::Texture& textureSheet;
-        float animationTimer;
+        float animationTimer;//time to pass between an anim and another
         float timer;
         int width;
         int height;
-        sf::IntRect startRect;
-        sf::IntRect currentRect;
-        sf::IntRect endRect;
+        sf::IntRect startRect,currentRect,endRect;//currentRect cycles throught start and end
         Animation(sf::Sprite& sprite,sf::Texture& textureSheet,float animation_timer,
                   int start_frame_x,int start_frame_y,int frames_x
                   ,int frames_y,int width,int height)
@@ -33,7 +31,6 @@ private:
             this->sprite.setTexture(this->textureSheet,true);
             this->sprite.setTextureRect(this->startRect);
         }
-
         void play(const float& dt){
             //update timer
             this->timer+=50.f*dt;
@@ -50,14 +47,13 @@ private:
                 }
                 this->sprite.setTextureRect(this->currentRect);
             }
-        }//updates which it's on
-
+        }//updates which Rect is on
         void reset(){
             this->timer=0.f;
             this->currentRect=this->startRect;
         }//resets cycle
     };
-
+    //ATTRIBUTES FOR ANIMATIONCOMPONENT CLASS
     sf::Sprite& sprite;
     sf::Texture& textureSheet;
     std::map<std::string,Animation*> animations;
@@ -69,7 +65,6 @@ public:
     void addAnimation(const std::string& key,float animation_timer,
                                             int start_frame_x,int start_frame_y,int frames_x
                                             ,int frames_y,int width,int height);
-
     void play(const std::string& key,const float& dt);
 };
 

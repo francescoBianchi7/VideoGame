@@ -12,22 +12,23 @@ private:
         //variables
         sf::Vector2f resolution;
         sf::RenderWindow *window;
+        StateData stateData;
         sf::Event sfEvent;
-        sf::ContextSettings windowSettings;
-        std::vector<sf::VideoMode> videoModes;
-        bool fullscreen;
-
+        GSettings gSettings;
         sf::Clock dtClock;//keep track of game-frames so it's not machine dep
         float dt;
-
+        float tileSize;
         std::stack<State*> states; //top one of stack is the active state
         //so they can be changed
         std::map<std::string,int> supportedKeys;//basic set of keys,read from file
 
 
         //init functions
+        void initVariables();
         void createWindow();
         void initKeys();
+        void initGSettings();
+        void initStateData();
         void initStates();
 
 public:

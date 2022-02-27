@@ -3,11 +3,12 @@
 //
 #include "PreCompHeaders.h"
 #include "State.h"
-State::State(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states) {
+State::State(StateData& stateData):stateData(stateData) {
 
-    this->window=window;
-    this->supportedKeys=supportedKeys;
-    this->states=states;
+    tileSize=stateData.tileSize;
+    this->window=stateData.window;
+    this->supportedKeys=stateData.supportedKeys;
+    this->states=stateData.states;
     this->quit=false;
     this->paused=false;
     this->keyTime=0.f;
@@ -16,31 +17,7 @@ State::State(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,s
 State::~State() {
 
 }
-
-const bool &State::getQuit() const {
-    return this->quit;
-}
-
-//continuosly checks mouse pos
-void State::updateMousePosition() {
-    this->mousePosScreen=sf::Mouse::getPosition();
-    this->mouseposWindow=sf::Mouse::getPosition(*window);
-    this->mouseposView=this->window->mapPixelToCoords(sf::Mouse::getPosition(*window));
-}
-
-void State::pauseState() {
-    this->paused=true;
-}
-
-void State::unpauseState() {
-    this->paused=false;
-}
-
-void State::updateKeyTime(const float &dt) {
-    if(keyTime<keyTimeMax)
-        keyTime+=100.f*dt;
-}
-
+//GETTERS
 bool State::getKeyTime() {
     if(this->keyTime>=keyTimeMax){
         this->keyTime=0.f;
@@ -49,8 +26,26 @@ bool State::getKeyTime() {
     return false;
 }
 
+const bool &State::getQuit() const {
+    return this->quit;
+}
+//others
+void State::pauseState() {
+    this->paused=true;
+}
+void State::unpauseState() {
+    this->paused=false;
+}
 
-
-
-
-
+//UPDATE
+void State::updateMousePosition() {//continuosly checks mouse pos
+    this->mousePosScreen=sf::Mouse::getPosition();
+    this->mouseposWindow=sf::Mouse::getPosition(*window);
+    this->mouseposView=this->window->mapPixelToCoords(sf::Mouse::getPosition(*window));
+    mousePosGrid=sf::Vector2u(static_cast<unsigned>(mouseposView.x)/static_cast<unsigned>(tileSize),
+                              static_cast<unsigned>(mouseposView.y)/static_cast<unsigned>(tileSize));
+}
+void State::updateKeyTime(const float &dt) {
+    if(keyTime<keyTimeMax)
+        keyTime+=100.f*dt;
+}

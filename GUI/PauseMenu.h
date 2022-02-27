@@ -7,7 +7,6 @@
 
 #include "GUI.h"
 
-
 class PauseMenu {
 private:
     sf::Font& font;

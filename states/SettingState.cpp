@@ -3,7 +3,7 @@
 //
 #include "PreCompHeaders.h"
 #include "SettingState.h"
-
+//INIT FUNCTIONS
 void SettingState::initVariables() {
     this->modes=sf::VideoMode::getFullscreenModes();
 }
@@ -28,7 +28,6 @@ void SettingState::initfonts() {
 }
 
 void SettingState::initGUI() {
-
     this->buttons["EXIT_STATE_BUTTON"]=new GUI::Button(500.f,680.f,250.f,50.f,&this->font,"Back",50,
                                                   sf::Color(71,71,71,200),sf::Color(150,151,151,200),
                                                   sf::Color(20,20,20,50),
@@ -42,9 +41,7 @@ void SettingState::initGUI() {
     //testing if the dropdownlist works
     std::vector<std::string> modes_string;
     for (auto&i :this->modes)
-    {
         modes_string.push_back(std::to_string(i.width)+'x'+std::to_string(i.height));
-    }
     this->dropDownLists["RESOLUTION"]=new GUI::DropDownList(500,360,200,50,font,modes_string.data(),modes_string.size());
 }
 
@@ -64,15 +61,16 @@ void SettingState::initText() {
     this->optionsText.setFillColor(sf::Color(255,255,255,200));
     this->optionsText.setString("Resolution\n\nFullscreen\n\nVsync\n\nAntiliasing\n");
 }
-SettingState::SettingState(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states)
-:State(window,supportedKeys,states) {
+//
+//CON & DES
+SettingState::SettingState(StateData &stateData)
+:State(stateData){
     initVariables();
     initKeybinds();
     initfonts();
     initBackground();
     initGUI();
     initText();
-
 }
 SettingState::~SettingState() {
     for(auto b:buttons){
@@ -82,15 +80,13 @@ SettingState::~SettingState() {
         delete d.second;
     }
 }
-
+// VARIOUS
 void SettingState::endState() {
     this->quit=true;
     std::cout<<"ending MainMenuState"<<"\n";
 }
-
-void SettingState::updateInput(const float &dt) {
-}
-
+//
+//RENDER FUNCTIONS
 void SettingState::render(sf::RenderTarget* target) {
     if(!target)
         target=this->window;
@@ -107,13 +103,14 @@ void SettingState::renderGUI(sf::RenderTarget& target) {
         it.second->render(target);
     }
 }
-
+//
+//UPDATE FUNCTIONS
+void SettingState::updateInput(const float &dt) {}
 void SettingState::updateGUI(const float &dt) {
     /*Updates the GUI elements and handles their functionalities*/
     for(auto &it: this->buttons){
         it.second->update(this->mouseposView);
     }
-
     //goes back to main menu state
     if(this->buttons["EXIT_STATE_BUTTON"]->isBTNPressed()){
         endState();
@@ -121,7 +118,9 @@ void SettingState::updateGUI(const float &dt) {
     //Apply selected settings
     if(this->buttons["APPLY"]->isBTNPressed()){
         //TEST TO BE REMOVED
-        this->window->create(this->modes[this->dropDownLists["RESOLUTION"]->getActiveElementId()],"test",sf::Style::Default);
+        stateData.gxSettings->resolution=this->modes[this->dropDownLists["RESOLUTION"]->getActiveElementId()];
+        std::cout<<stateData.gxSettings->resolution.width<<""<<stateData.gxSettings->resolution.height;
+        window->create(stateData.gxSettings->resolution,stateData.gxSettings->title,sf::Style::Default);
     }
     //DropDownList
     for(auto &it: this->dropDownLists){

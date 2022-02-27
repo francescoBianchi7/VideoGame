@@ -24,7 +24,8 @@ GUI::Button::Button(float x,float y,float width,float height,
     this->buttonText.setCharacterSize(characterSize);//to be adjusted
     this->buttonText.setPosition(
             shape.getPosition().x+(this->shape.getGlobalBounds().width/2.f) -this->buttonText.getGlobalBounds().width/2.f,
-            shape.getPosition().y+(this->shape.getGlobalBounds().height/2.f)-this->buttonText.getGlobalBounds().height/2.f);
+            shape.getPosition().y);
+            //+(this->shape.getGlobalBounds().height/2.f)-this->buttonText.getGlobalBounds().height/2.f);
 
     this->text_IdleColor=text_idleColor;
     this->text_hoverColor=text_hoverColor;
@@ -117,6 +118,7 @@ GUI::DropDownList::DropDownList(float x,float y,float width,float height,sf::Fon
                                              sf::Color(255,255,255,200),
                                              sf::Color(255,255,255,0),
                                              sf::Color(20,20,20,50),i));
+        this->list[i]->setId(i);
     }
 }
 

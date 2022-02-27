@@ -2,7 +2,7 @@
 #define VIDEOGAME_SETTINGSTATE_H
 #include "State.h"
 #include "GUI.h"
-
+#include "GSettings.h"
 class SettingState:public State {
 private:
     sf::Font font;
@@ -10,7 +10,6 @@ private:
     sf::Texture bgTexture;
     std::map<std::string,GUI::Button*>buttons;
     std::map<std::string,GUI::DropDownList*> dropDownLists;
-
     sf::Text optionsText;
     std::vector<sf::VideoMode> modes;
 
@@ -22,7 +21,7 @@ private:
     void initGUI();
     void initText();
 public:
-    SettingState(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states);
+    SettingState(StateData &stateData);
     virtual ~SettingState();
 
     void render(sf::RenderTarget* target) override;

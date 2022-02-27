@@ -25,7 +25,7 @@ private:
 
 public:
     //CON & DES
-    MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys,std::stack<State*> *states);
+    MainMenuState(StateData& stateData);
     virtual ~MainMenuState();
 
 

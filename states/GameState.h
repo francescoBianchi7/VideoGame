@@ -7,7 +7,7 @@
 
 #include "State.h"
 #include "..\GUI\PauseMenu.h"
-
+#include "..\Map\TileMap.h"
 class GameState :public State{
 private:
     PauseMenu *pmenu;
@@ -15,15 +15,18 @@ private:
 
     GameCharacter* player;//cause memory is dinamically allocated
     sf::Texture texture;
+
+    TileMap* tileMap;
     //Functions
     void initKeybinds() override;
     void initTextures();
     void initFonts();
     void initPlayer();
     void initPauseMenu();
+    void initTileMap();
 
 public:
-    GameState(sf::RenderWindow* window,std::map<std::string,int>* supportedKeys,std::stack<State*> *states);
+    GameState(StateData &stateData);
     virtual ~GameState();
 
 
