@@ -11,20 +11,23 @@ enum movement_states {IDLE=0,MOVING,MOVING_LEFT,MOVING_RIGHT,MOVING_UP,MOVING_DO
 class MovementComponent {
 private:
     sf::Sprite& sprite;
-    float acceleration, deceleration;
-    float maxSpeed;
+    float speed;
     sf::Vector2f velocity;// speed and direction
 
 public:
-    MovementComponent(sf::Sprite& sprite,float maxSpeed,float acceleration,float deceleration);
+    MovementComponent(sf::Sprite& sprite,float maxSpeed);
     virtual ~MovementComponent();
-
-    const sf::Vector2f& getVelocity() const;
+    //getter
+    bool isMoving() const;
+    const float& getVelocityX()const;
+    const float& getVelocityY()const;
+    const sf::Vector2f& getVelocity();
     const float& getSpeed() const;
-    bool getState(short unsigned state) const;
+    //setter
     void stopVelocity();
     void stopVelocityX();
     void stopVelocityY();
+
     void move(const float &dt,float dir_x,float dir_y);
     void update(const float& dt);
 };

@@ -99,7 +99,7 @@ void GameEngine::closeWindow() {
 void GameEngine::update() {
     //changes the state you are on
     this->closeWindow();
-    if(!this->states.empty()){
+    if(!this->states.empty()){//so it doesn't update while it's alt-tab etc
         this->states.top()->update(this->dt);
         if(this->states.top()->getQuit()){//if quit is true it closes the game
             delete this->states.top();
@@ -116,7 +116,7 @@ void GameEngine::update() {
 void GameEngine::render() {
     this->window->clear();
     //render items
-    if(!this->states.empty())
+    if(!this->states.empty()&& this->window->hasFocus())
         this->states.top()->render(window);
     this->window->display();
 

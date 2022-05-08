@@ -6,9 +6,9 @@
 
 GameCharacter::GameCharacter( float x, float y, sf::Texture &textureSheet){
     this->initVariables();
-    this->createMovementComponent(140.f,20.f,3.f);
+    this->createMovementComponent(300.f);
     this->createAnimationComponent(textureSheet);
-    this->createHitboxComponent(20.f,20.f,this->sprite,35.f,75.f);
+    this->createHitboxComponent(20.f,20.f,this->sprite,35.f,85.f);
     this->setPosition(x,y);
     this->animationComponent->addAnimation("IDLE_DOWN",10.f,0,0,0,0,71,109);
     this->animationComponent->addAnimation("WALK_DOWN",10.f,0,0,3,0,72,109);
@@ -21,7 +21,6 @@ GameCharacter::~GameCharacter() {}
 
 //init function
 void GameCharacter::initVariables() {
-
 }
 
 void GameCharacter::initComponents() {
@@ -29,17 +28,16 @@ void GameCharacter::initComponents() {
 
 void GameCharacter::update(const float &dt) {//updates which animation is playing and components
     this->movementComponent->update(dt);
-    if(this->movementComponent->getState(IDLE)){
+    if(!movementComponent->isMoving())
         this->animationComponent->play("IDLE_DOWN",dt);
-    }
-    else if(this->movementComponent->getState(MOVING_DOWN))
-        this->animationComponent->play("WALK_DOWN",dt);
-    else if(this->movementComponent->getState(MOVING_UP))
-        this->animationComponent->play("WALK_UP",dt);
-    else if(this->movementComponent->getState(MOVING_LEFT))
-        this->animationComponent->play("WALK_LEFT",dt);
-    else if(this->movementComponent->getState(MOVING_RIGHT))
+    else if(movementComponent->getVelocityX()>0.f)
         this->animationComponent->play("WALK_RIGHT",dt);
+    else if(movementComponent->getVelocityX()<0.f)
+        this->animationComponent->play("WALK_LEFT",dt);
+    else if(movementComponent->getVelocityY()<0.f)
+        this->animationComponent->play("WALK_UP",dt);
+    else if(movementComponent->getVelocityY()>0.f)
+        this->animationComponent->play("WALK_DOWN",dt);
     this->hitboxComponent->update();
 }
 

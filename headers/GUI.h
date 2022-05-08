@@ -67,7 +67,7 @@ namespace GUI
         bool getKeyTime();
         void updateKeyTime(const float &dt);
         void render(sf::RenderTarget& target);
-        void update(const sf::Vector2f &mousePos,const float &dt);
+        void update(const sf::Vector2i &mousePosWindow,const float &dt);
     };
 }
 

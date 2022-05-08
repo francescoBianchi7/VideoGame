@@ -138,9 +138,9 @@ void GUI::DropDownList::render(sf::RenderTarget &target) {
     }
 }
 
-void GUI::DropDownList::update(const sf::Vector2f &mousePos,const float &dt) {
+void GUI::DropDownList::update(const sf::Vector2i &mousePosWindow,const float &dt) {
     this->updateKeyTime(dt);
-    this->activeElement->update(mousePos);
+    this->activeElement->update(static_cast<sf::Vector2f>(mousePosWindow));
     //shows and hides list
     if(this->activeElement->isBTNPressed() && this->getKeyTime()){
         if(showList)
@@ -154,7 +154,7 @@ void GUI::DropDownList::update(const sf::Vector2f &mousePos,const float &dt) {
     if (this->showList){
         for (auto &i : this->list)
         {
-            i->update(mousePos);
+            i->update(static_cast<sf::Vector2f>(mousePosWindow));
             if(i->isBTNPressed()&& this->getKeyTime()){
                 this->showList = false;
                 this->activeElement->setText(i->getText());

@@ -20,8 +20,13 @@ public:
     Tile(unsigned x,unsigned y,float tileSizeF,sf::Texture& texture,sf::IntRect& rect,bool collision=false,short type=tileTypes::DEFAULT);
     virtual ~Tile();
 
+    //getter
+    const sf::Vector2f& getPosition() const;
+    const bool &getCollision() const;
+    sf::FloatRect getGlobalBounds()const;
+    bool intersects(sf::FloatRect bounds)const;
+    std::string getAsString() const;
     //functions+
-    const std::string getAsString() const;
     void update();
     void render(sf::RenderTarget& target);
 };

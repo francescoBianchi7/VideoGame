@@ -12,7 +12,7 @@ State::State(StateData& stateData):stateData(stateData) {
     this->quit=false;
     this->paused=false;
     this->keyTime=0.f;
-    this->keyTimeMax=10.f;
+    this->keyTimeMax=20.f;
 }
 State::~State() {
 
@@ -38,12 +38,15 @@ void State::unpauseState() {
 }
 
 //UPDATE
-void State::updateMousePosition() {//continuosly checks mouse pos
+void State::updateMousePosition(sf::View* view) {//continuosly checks mouse pos
     this->mousePosScreen=sf::Mouse::getPosition();
     this->mouseposWindow=sf::Mouse::getPosition(*window);
+    if(view)
+        this->window->setView(*view);
     this->mouseposView=this->window->mapPixelToCoords(sf::Mouse::getPosition(*window));
     mousePosGrid=sf::Vector2u(static_cast<unsigned>(mouseposView.x)/static_cast<unsigned>(tileSize),
                               static_cast<unsigned>(mouseposView.y)/static_cast<unsigned>(tileSize));
+    this->window->setView(this->window->getDefaultView());
 }
 void State::updateKeyTime(const float &dt) {
     if(keyTime<keyTimeMax)

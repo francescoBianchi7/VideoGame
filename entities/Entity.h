@@ -22,15 +22,24 @@ protected:
 public:
     Entity();
     virtual ~Entity();
-    //init
-    virtual void setPosition(float x,float y);
+    //INITIALIZERS
     void setTexture(sf::Texture& texture);
     void createHitboxComponent(float offset_x,float offset_y,sf::Sprite& sprite,float width,float height);
-    void createMovementComponent(float maxSpeed,float acceleration,float deceleration);
+    void createMovementComponent(float speed);
     void createAnimationComponent(sf::Texture &textureSheet);
-
+    //Getter
+    virtual const sf::Vector2f& getPosition() const;
+    virtual sf::Vector2u getGridPosition(const unsigned tileSizeU);
+    virtual sf::FloatRect getGlobalBounds();
+    virtual const sf::FloatRect& getNextPositionBounds(const float &dt);
+    virtual const sf::Vector2f& getVelocity();
+    //SETTER
+    virtual void setPosition(float x,float y);
+    virtual void stopVelocity();
+    virtual void stopVelocityX();
+    virtual void stopVelocityY();
+    //FUNCTIONS
     virtual void move(const float&dt,float x,float y);
-
     virtual void update(const float& dt);
     virtual void render(sf::RenderTarget& target);
 

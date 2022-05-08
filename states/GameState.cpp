@@ -4,8 +4,21 @@
 #include "PreCompHeaders.h"
 #include "GameState.h"
 
+void GameState::initDelayedRender() {
+    renderTexture.create(stateData.gxSettings->resolution.width,
+                         stateData.gxSettings->resolution.height);//empty texture size of window
+    renderSprite.setTexture(renderTexture.getTexture());
+    this->renderSprite.setTextureRect(sf::IntRect(0,0,
+                                                  stateData.gxSettings->resolution.width,
+                                                  stateData.gxSettings->resolution.height));
+}
+void GameState::initView() {
+    this->view.setSize(sf::Vector2f(stateData.gxSettings->resolution.width,
+                                    stateData.gxSettings->resolution.height));
+    this->view.setCenter(sf::Vector2f(stateData.gxSettings->resolution.width/2.f,
+                                    stateData.gxSettings->resolution.height/2.f));
 
-
+}
 void GameState::initKeybinds() {
     /*this function permits to assign the keybinds for a state based on
      * the available supportedkeys,by reading them from a file
@@ -34,19 +47,21 @@ void GameState::initTextures() {
         throw "ERROR::GAME_STATE::COULDNOTLOADIDLETEXTURE";
 }
 void GameState::initPlayer() {
-
-    this->player= new GameCharacter(0, 0, this->textures["PLAYER_SHEET"]);
+    this->player= new GameCharacter(500, 500, this->textures["PLAYER_SHEET"]);
 }
 void GameState::initPauseMenu() {
     this->pmenu=new PauseMenu(*window,this->font);
     this->pmenu->addButton("QUIT",800.f,"Quit");
 }
 void GameState::initTileMap() {
-    tileMap=new TileMap(stateData.tileSize,10,10,"maps/map1.txt");
+    this->tileMap=new TileMap(stateData.tileSize,100,100,"./assets/tiles/tilesheet1.png");
+    this->tileMap->loadFromFile("./assets/maps/map1.txt");
 }
 //CON & DES
 GameState::GameState(StateData &stateData)
 :State(stateData){
+    initDelayedRender();
+    initView();
     initKeybinds();
     initFonts();
     initTextures();
@@ -64,13 +79,21 @@ GameState::~GameState() {
 //RENDER FUNCTIONS
 void GameState::render(sf::RenderTarget* target) {
     if(!target)
-        target= (this->window);
-    //tileMap->render(*target);
-    player->render(*target);
+        target= this->window;
+
+    this->renderTexture.clear();
+    this->renderTexture.setView(this->view);
+    tileMap->render(renderTexture, this->player);
+    player->render(renderTexture);
     if(paused)
     {
-        this->pmenu->render(*target);
+        renderTexture.setView(renderTexture.getDefaultView());
+        this->pmenu->render(renderTexture);
     }
+    //FINAL RENDER
+    this->renderTexture.display();
+    renderSprite.setTexture(this->renderTexture.getTexture());
+    target->draw(this->renderSprite);
 }
 //
 //UPDATE FUNCTIONS
@@ -85,22 +108,30 @@ void GameState::updatePlayerInput(const float &dt) {
         this->player->move(dt,0.f,1.f);
 
 }
-
+void GameState::updateView(const float &dt) {
+    this->view.setCenter(std::floor(player->getPosition().x),std::floor(player->getPosition().y));
+}
+void GameState::updateTileMap(const float &dt) {
+    tileMap->update();
+    tileMap->updateCollision(player,dt);
+}
 void GameState::update(const float& dt) {
-    updateMousePosition();
+    updateMousePosition(&view);
     updateKeyTime(dt);
     updateInput(dt);
     if(!this->paused){
+        this->updateView(dt);
         this->updatePlayerInput(dt);
         player->update(dt);
+        this->updateTileMap(dt);
     }else{//paused state
-        pmenu->update(this->mouseposView);
+        pmenu->update(this->mouseposWindow);
         this->updatePMenuButtons();
     }
 }
 void GameState::updateInput(const float &dt) {
     //pause& unpause
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE")))&& this->getKeyTime()){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getKeyTime()){
         if(!paused)
             this->pauseState();
         else
@@ -117,7 +148,6 @@ void GameState::endState() {
     this->quit=true;
     std::cout<<"ending gamestate"<<"\n";
 }
-
 
 
 

@@ -8,16 +8,31 @@
 #include "State.h"
 #include "..\GUI\PauseMenu.h"
 #include "..\Map\TileMap.h"
-class GameState :public State{
+
+class GameCharacter;
+class PauseMenu;
+class TileMap;
+class View;
+class Font;
+class RenderTexture;
+
+class GameState:
+        public State{
 private:
+    sf::View view;
+    sf::RenderTexture renderTexture; //renders all tiles in a canvas
+    sf::Sprite renderSprite;// paste the canvas on window
+
     PauseMenu *pmenu;
     sf::Font font;
 
-    GameCharacter* player;//cause memory is dinamically allocated
+    GameCharacter* player;//memory is dinamically allocated
     sf::Texture texture;
 
     TileMap* tileMap;
     //Functions
+    void initDelayedRender();
+    void initView();
     void initKeybinds() override;
     void initTextures();
     void initFonts();
@@ -29,11 +44,12 @@ public:
     GameState(StateData &stateData);
     virtual ~GameState();
 
-
     void endState() override;//just to see which state is ending
     void updatePlayerInput(const float& dt);//changed name
     void updateInput(const float& dt) override;
     void updatePMenuButtons();
+    void updateView(const float& dt);
+    void updateTileMap(const float& dt);
     void update(const float& dt) override;
     void render(sf::RenderTarget* target) override;
 };

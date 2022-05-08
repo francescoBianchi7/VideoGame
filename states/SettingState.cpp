@@ -124,7 +124,7 @@ void SettingState::updateGUI(const float &dt) {
     }
     //DropDownList
     for(auto &it: this->dropDownLists){
-        it.second->update(this->mouseposView,dt);
+        it.second->update(this->mouseposWindow,dt);
     }
 }
 
