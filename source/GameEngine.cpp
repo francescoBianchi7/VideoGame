@@ -1,27 +1,9 @@
 //
 // Created by bianc on 30/11/2021.
 //
-#include "PreCompHeaders.h"
+
 #include "GameEngine.h"
 using namespace sf;
-
-//Constructors& Destructors
-GameEngine::GameEngine() {
-    initVariables();
-    initGSettings();
-    createWindow();
-    initKeys();
-    initStateData();
-    initStates();
-}
-GameEngine::~GameEngine() {
-    delete this->window;
-    while(!this->states.empty()){
-        delete this->states.top();
-        states.pop();
-    }
-}
-
 //init func
 void GameEngine::initVariables() {
     window= nullptr;
@@ -46,7 +28,7 @@ void GameEngine::createWindow() {
 }
 
 void GameEngine::initKeys() {
-//reads data and set it up for the starting state
+    //reads data and set it up for the starting state
     std::ifstream ifs("./config/supportedKeys.ini");
     if(ifs.is_open()){
         std::string key=" ";
@@ -57,7 +39,7 @@ void GameEngine::initKeys() {
     }
     ifs.close();
     //To be removed DEBUG
-    for(auto i:this->supportedKeys){
+    for(const auto& i:this->supportedKeys){
         std::cout<<i.first<<" "<<i.second<<"\n";
     }
 }
@@ -78,6 +60,22 @@ void GameEngine::initStates(){
     this->states.push(new MainMenuState(stateData));
 }
 
+//Constructors& Destructors
+GameEngine::GameEngine() {
+    initVariables();
+    initGSettings();
+    createWindow();
+    initKeys();
+    initStateData();
+    initStates();
+}
+GameEngine::~GameEngine() {
+    delete this->window;
+    while(!this->states.empty()){
+        delete this->states.top();
+        states.pop();
+    }
+}
 // update functions
 void GameEngine::updateDt() {
     /*Updates dt var with the time it takes to update and render 1 frame */

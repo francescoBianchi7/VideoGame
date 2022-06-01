@@ -13,7 +13,6 @@
 class EditorState :public State{
 private:
     sf::View view;
-
     sf::Font font;
     sf::Text cursorText;
     PauseMenu* pmenu;//this is used to quit the state
@@ -22,7 +21,7 @@ private:
     sf::RectangleShape selectorRect;//shows which tile you are about to place
     sf::IntRect textureRect; //tileTexture
 
-    bool collision;
+    bool collision=false;
     short type;
     float cameraSpeed;
     //init functions
@@ -37,10 +36,10 @@ private:
     void initTileSheet();
     void initView();
 public:
-    EditorState(StateData &stateData);
-    virtual ~EditorState();
+    explicit EditorState(StateData &stateData);
+    ~EditorState() override;
     //render functions
-    void render(sf::RenderTarget* target);
+    void render(sf::RenderTarget* target) override;
     void renderButtons(sf::RenderTarget& target);
     void renderGui(sf::RenderTarget &target);
     //update functions
@@ -51,7 +50,7 @@ public:
     void updateGui();
     void update(const float& dt)override;
     //other funtions
-    void endState();
+    void endState() override;
 
 };
 

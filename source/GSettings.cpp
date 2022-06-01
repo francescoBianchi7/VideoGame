@@ -1,7 +1,7 @@
 //
 // Created by bianc on 22/02/2022.
 //
-#include "../headers/PreCompHeaders.h"
+
 #include "GSettings.h"
 
 GSettings::GSettings(){
@@ -14,7 +14,7 @@ GSettings::GSettings(){
     videoModes=sf::VideoMode::getFullscreenModes();
 }
 //not used yet
-void GSettings::saveToFile(const std::string path){
+void GSettings::saveToFile(const std::string& path) const{
     std::ofstream ofs(path);
     if(ofs.is_open()){
         ofs<<title;
@@ -27,7 +27,7 @@ void GSettings::saveToFile(const std::string path){
     ofs.close();
 }
 //not used yet
-void GSettings::loadFromFile(const std::string path){
+void GSettings::loadFromFile(const std::string& path){
     std::ifstream ifs(path);
     if(ifs.is_open()){
         std::getline(ifs,this->title);

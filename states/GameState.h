@@ -41,7 +41,7 @@ private:
     void initTileMap();
 
 public:
-    GameState(StateData &stateData);
+    explicit GameState(StateData &stateData);
     virtual ~GameState();
 
     void endState() override;//just to see which state is ending

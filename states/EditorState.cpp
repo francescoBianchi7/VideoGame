@@ -1,7 +1,7 @@
 //
 // Created by bianc on 09/02/2022.
 //
-#include "PreCompHeaders.h"
+
 #include "EditorState.h"
 
 EditorState::EditorState(StateData &stateData) : State(stateData) {
@@ -23,8 +23,7 @@ EditorState::~EditorState() {
 // initialiazer functions
 void EditorState::initButtons() {}
 void EditorState::initVariables() {
-    textureRect=sf::IntRect(0,0,stateData.tileSize,stateData.tileSize);
-    this->collision=false;
+    textureRect=sf::IntRect(0,0,static_cast<int>(stateData.tileSize),static_cast<int>(stateData.tileSize));
     this->type=tileTypes::DEFAULT;
     cameraSpeed=500.f;
 }
@@ -62,7 +61,7 @@ void EditorState::initPauseMenu() {
     this->pmenu->addButton("LOAD",500.f,"Load");
 }
 void EditorState::initTileSheet() {
-    this->tileMap=new TileMap(stateData.tileSize,100,100,"assets/tiles/tilesheet1.png");
+    this->tileMap=new TileMap(stateData.tileSize, 100, 100, "assets/tiles/tilesheet1.png");
 }
 void EditorState::initGui() {
     selectorRect.setSize(sf::Vector2f(stateData.tileSize,stateData.tileSize));
@@ -73,10 +72,10 @@ void EditorState::initGui() {
     selectorRect.setTextureRect(textureRect);
 }
 void EditorState::initView() {
-    this->view.setSize(sf::Vector2f(stateData.gxSettings->resolution.width,
-                                     stateData.gxSettings->resolution.height));
-    this->view.setCenter(stateData.gxSettings->resolution.width/2.f,
-                          stateData.gxSettings->resolution.height/2.f);
+    this->view.setSize(sf::Vector2f(static_cast<float>(stateData.gxSettings->resolution.width),
+                                    static_cast<float>(stateData.gxSettings->resolution.height)));
+    this->view.setCenter(static_cast<float>(stateData.gxSettings->resolution.width)/2.f,
+                         static_cast<float>(stateData.gxSettings->resolution.height)/2.f);
 }
 //rendering functions
 void EditorState::render(sf::RenderTarget *target) {
@@ -178,7 +177,8 @@ void EditorState::updateGui(){
     //the selector moves on tiles
     selectorRect.setTexture(tileMap->getTileSheet());
     selectorRect.setTextureRect(textureRect);
-    selectorRect.setPosition(mousePosGrid.x*stateData.tileSize,mousePosGrid.y*stateData.tileSize);
+    selectorRect.setPosition(static_cast<float>(mousePosGrid.x)*stateData.tileSize,
+                             static_cast<float>(mousePosGrid.y)*stateData.tileSize);
     //showing the text next mouse
     cursorText.setPosition(mouseposView.x,mouseposView.y-50.f);
     std::stringstream ss;

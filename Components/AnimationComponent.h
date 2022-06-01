@@ -4,7 +4,7 @@
 
 #ifndef VIDEOGAME_ANIMATIONCOMPONENT_H
 #define VIDEOGAME_ANIMATIONCOMPONENT_H
-
+#include "PreCompHeaders.h"
 
 class AnimationComponent {
 private:
@@ -16,7 +16,7 @@ private:
         float timer;
         int width;
         int height;
-        sf::IntRect startRect,currentRect,endRect;//currentRect cycles throught start and end
+        sf::IntRect startRect{},currentRect{},endRect{};//currentRect cycles throught start and end
         Animation(sf::Sprite& sprite,sf::Texture& textureSheet,float animation_timer,
                   int start_frame_x,int start_frame_y,int frames_x
                   ,int frames_y,int width,int height)

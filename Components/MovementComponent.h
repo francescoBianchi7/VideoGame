@@ -4,10 +4,7 @@
 
 #ifndef VIDEOGAME_MOVEMENTCOMPONENT_H
 #define VIDEOGAME_MOVEMENTCOMPONENT_H
-
-
-
-enum movement_states {IDLE=0,MOVING,MOVING_LEFT,MOVING_RIGHT,MOVING_UP,MOVING_DOWN};
+#include "PreCompHeaders.h"
 class MovementComponent {
 private:
     sf::Sprite& sprite;

@@ -1,7 +1,6 @@
 //
 // Created by bianc on 11/02/2022.
 //
-#include "PreCompHeaders.h"
 #include "PauseMenu.h"
 
 PauseMenu::PauseMenu(sf::RenderWindow& window,sf::Font& font) :font(font){
@@ -10,8 +9,8 @@ PauseMenu::PauseMenu(sf::RenderWindow& window,sf::Font& font) :font(font){
                                                static_cast<float>(window.getSize().y)));
     this->background.setFillColor(sf::Color(20,20,20,100));
     //init container
-    this->container.setSize(sf::Vector2f(static_cast<float>(window.getSize().x/4.f),
-                                         static_cast<float>(window.getSize().y- 60.f)));
+    this->container.setSize(sf::Vector2f(static_cast<float>(window.getSize().x)/4.f,
+                                         static_cast<float>(window.getSize().y)- 60.f));
     this->container.setFillColor(sf::Color(20,20,20,200));
     this->container.setPosition(static_cast<float>(window.getSize().x)/2.f-this->container.getSize().x,30.f);
     //init text
@@ -26,12 +25,12 @@ PauseMenu::PauseMenu(sf::RenderWindow& window,sf::Font& font) :font(font){
 
 
 PauseMenu::~PauseMenu() {
-    for(auto b:buttons){
+    for(const auto& b:buttons){
         delete b.second;
     }
 }
 
-void PauseMenu::addButton(const std::string key, float y, const std::string text) {
+void PauseMenu::addButton(const std::string& key, float y, const std::string& text) {
     float width=250.f;
     float height=65.f;
     float x=container.getPosition().x+container.getSize().x/2.f-width/2.f;
@@ -62,7 +61,7 @@ std::map<std::string, GUI::Button *> &PauseMenu::getButtons() {
     return this->buttons;
 }
 
-const bool PauseMenu::isButtonPressed(const std::string key) {
+bool PauseMenu::isButtonPressed(const std::string& key) {
     return this->buttons[key]->isBTNPressed();
 }
 

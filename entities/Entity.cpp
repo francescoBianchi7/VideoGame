@@ -1,7 +1,5 @@
 //
 //Base class for all entities
-//TBD: make it easier to inherit
-#include "PreCompHeaders.h"
 #include "Entity.h"
 
 Entity::Entity(){
@@ -17,6 +15,7 @@ Entity::~Entity() {
 void Entity::initVariables() {
     this->movementComponent=nullptr;
     this->animationComponent=nullptr;
+    this->hitboxComponent=nullptr;
 }
 
 void Entity::createAnimationComponent(sf::Texture &textureSheet) {
@@ -25,7 +24,7 @@ void Entity::createAnimationComponent(sf::Texture &textureSheet) {
 void Entity::createMovementComponent(const float speed) {
     this->movementComponent=new MovementComponent(this->sprite,speed);
 }
-void Entity::createHitboxComponent(float offset_x,float offset_y,sf::Sprite& sprite,float width,float height) {
+void Entity::createHitboxComponent(float offset_x,float offset_y,float width,float height) {
     this->hitboxComponent=new HitboxComponent(offset_x,offset_y,sprite,width,
                                               height);
 }
@@ -33,25 +32,35 @@ void Entity::createHitboxComponent(float offset_x,float offset_y,sf::Sprite& spr
 const sf::Vector2f &Entity::getPosition() const{
     if(this->hitboxComponent)
         return this->hitboxComponent->getPosition();
-
     return this->sprite.getPosition();
 }
-sf::Vector2u Entity::getGridPosition(const unsigned tileSizeU) {
+const float &Entity::getPositionX() {
+    if(this->hitboxComponent)
+        return this->hitboxComponent->getPosition().x;
+    return this->sprite.getPosition().x;
+}
+const float &Entity::getPositionY() {
+    if(this->hitboxComponent)
+        return this->hitboxComponent->getPosition().y;
+    return this->sprite.getPosition().y;
+}
+
+sf::Vector2i Entity::getGridPosition(const int tileSizeI) {
     /* returns position base on tile*/
     if(this->hitboxComponent)
-        return sf::Vector2u(static_cast<unsigned>(this->hitboxComponent->getPosition().x)/tileSizeU,
-                            static_cast<unsigned>(this->hitboxComponent->getPosition().y)/tileSizeU);
-    return sf::Vector2u(static_cast<unsigned>(this->sprite.getPosition().x)/tileSizeU,
-                        static_cast<unsigned>(this->sprite.getPosition().y)/tileSizeU);;
+        return {static_cast<int>(this->hitboxComponent->getPosition().x)/tileSizeI,
+                            static_cast<int>(this->hitboxComponent->getPosition().y)/tileSizeI};
+    return {static_cast<int>(this->sprite.getPosition().x)/tileSizeI,
+                        static_cast<int>(this->sprite.getPosition().y)/tileSizeI};
 }
-const sf::FloatRect &Entity::getNextPositionBounds(const float &dt){
+sf::FloatRect Entity::getNextPositionBounds(const float &dt) const{
     if(hitboxComponent && movementComponent)
-        return this->hitboxComponent->getNextPosition(this->movementComponent->getVelocity()*dt);
-    return sf::FloatRect();
+        return hitboxComponent->getNextPosition(this->movementComponent->getVelocity(),dt);
+    return {1.f,1.f,1.f,1.f};
 }
 sf::FloatRect Entity::getGlobalBounds() {
     if(this->hitboxComponent)
-        return this->hitboxComponent->getGlobalBounds();
+        return hitboxComponent->getGlobalBounds();
     else
         return sprite.getGlobalBounds();
 }
@@ -97,4 +106,6 @@ void Entity::render(sf::RenderTarget& target) {
 const sf::Vector2f &Entity::getVelocity() {
     return movementComponent->getVelocity();
 }
+
+
 

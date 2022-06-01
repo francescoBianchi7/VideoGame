@@ -4,8 +4,7 @@
 
 #ifndef VIDEOGAME_GUI_H
 #define VIDEOGAME_GUI_H
-
-
+#include "PreCompHeaders.h"
 enum button_states{BTN_Idle=0,BTN_Hover,BTN_Pressed};
 /*buttons to be clicked with mouse*/
 namespace GUI
@@ -35,15 +34,15 @@ namespace GUI
        short unsigned id;
     public:
         Button(float x,float y,float width,float height,sf::Font* font,
-               std::string buttonText,unsigned characterSize,
+               const std::string& buttonText,unsigned characterSize,
                sf::Color text_idleColor,sf::Color text_hoverColor,sf::Color text_pressedColor,
                sf::Color idleColor,sf::Color hoverColor,sf::Color pressedColor,
                sf::Color outlineIdleColor=sf::Color::Transparent,sf::Color outlineHoverColor=sf::Color::Transparent
                        ,sf::Color outlinePressedColor=sf::Color::Transparent,short unsigned id=0);
         virtual ~Button();
 
-        void setText(std::string text);
-        void setId(const short unsigned id);
+        void setText(const std::string& text);
+        void setId(short unsigned id);
         const short unsigned& getId() const;
         bool isBTNPressed() const;
         std::string getText();

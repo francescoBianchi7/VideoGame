@@ -1,9 +1,9 @@
 
-#include "PreCompHeaders.h"
+//#include "PreCompHeaders.h"
 #include "GUI.h"
 
 GUI::Button::Button(float x,float y,float width,float height,
-               sf::Font* font,const std::string buttonText,unsigned characterSize,
+               sf::Font* font,const std::string& buttonText,unsigned characterSize,
                sf::Color text_idleColor,sf::Color text_hoverColor,sf::Color text_pressedColor,
                sf::Color idleColor,sf::Color hoverColor,sf::Color pressedColor ,sf::Color outlineIdleColor,sf::Color outlineHoverColor,sf::Color outlinePressedColor,
                short unsigned id) {
@@ -39,9 +39,7 @@ GUI::Button::Button(float x,float y,float width,float height,
 
 }
 
-GUI::Button::~Button() {
-
-}
+GUI::Button::~Button() = default;
 void GUI::Button::render(sf::RenderTarget &target) {
     target.draw(this->shape);
     target.draw(this->buttonText);
@@ -84,11 +82,11 @@ const short unsigned &GUI::Button::getId() const {
     return this->id;
 }
 //MODIFIER
-void GUI::Button::setText(const std::string buttonText) {
+void GUI::Button::setText(const std::string& buttonText) {
     this->buttonText.setString(buttonText);
 }
 
-void GUI::Button::setId(const unsigned short id) {
+void GUI::Button::setId(unsigned short id) {
     this->id=id;
 }
 
@@ -107,7 +105,7 @@ GUI::DropDownList::DropDownList(float x,float y,float width,float height,sf::Fon
                                         sf::Color(255,255,255,0),
                                         sf::Color(20,20,20,50));
     for(size_t i=0;i<nrofElements;i++){
-        this->list.push_back(new GUI::Button(x,y+((i+1)*height),width,height,
+        this->list.push_back(new GUI::Button(x,y+((static_cast<float>(i+1))*height),width,height,
                                              &this->font,list[i],14,
                                              sf::Color(255,255,255,200),
                                              sf::Color(255,255,255,255),
@@ -124,9 +122,9 @@ GUI::DropDownList::DropDownList(float x,float y,float width,float height,sf::Fon
 
 GUI::DropDownList::~DropDownList() {
     delete this->activeElement;
-    for (size_t i = 0; i < this->list.size(); i++)
+    for (auto & i : this->list)
     {
-        delete this->list[i];
+        delete i;
     }
 }
 

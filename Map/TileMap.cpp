@@ -1,7 +1,7 @@
 //
 // Created by bianc on 15/02/2022.
 //
-#include "PreCompHeaders.h"
+
 #include "TileMap.h"
 void TileMap::clear() {
     for(size_t x=0;x<this->mapSizeGrid.x; x++){
@@ -19,7 +19,7 @@ void TileMap::clear() {
 
 TileMap::TileMap(float tileSize,unsigned width,unsigned height,std::string texture_file) {
     tileSizeF=tileSize;
-    tileSizeU=static_cast<unsigned>(tileSizeF);
+    tileSizeI=static_cast<int>(tileSizeF);
     mapSizeGrid.x=width;
     mapSizeGrid.y=height;
     MapSizeF.x= static_cast<float>(width) * tileSize;
@@ -27,7 +27,7 @@ TileMap::TileMap(float tileSize,unsigned width,unsigned height,std::string textu
     layers=1;
     textureFile=texture_file;
     map.resize(mapSizeGrid.x, std::vector<std::vector<Tile*>>());
-    //prob gonna be changed later really inefficient
+    //prob going to be changed later really inefficient
     for(size_t x=0;x<this->mapSizeGrid.x; x++){
         for(size_t y=0;y<this->mapSizeGrid.y; y++){
             map[x].resize(mapSizeGrid.y, std::vector<Tile*>());
@@ -42,7 +42,7 @@ TileMap::TileMap(float tileSize,unsigned width,unsigned height,std::string textu
     this->collisionBox.setSize(sf::Vector2f(tileSizeF,tileSizeF));
     this->collisionBox.setFillColor(sf::Color(255,0,0,50));
     this->collisionBox.setOutlineColor(sf::Color::Red);
-    this->collisionBox.setOutlineThickness(1.f);
+    this->collisionBox.setOutlineThickness(-1.f);
 }
 
 TileMap::~TileMap() {
@@ -65,7 +65,7 @@ void TileMap::render(sf::RenderTarget & target, Entity* entity) {
     for(auto &x: this->map ){
         for(auto &y:x){
             for(auto *z:y){
-                if(z){//if this is not null i render, helps with memory
+                if(z){//if this is not null I render, helps with memory
                     z->render(target);
                     if(z->getCollision()){
                         this->collisionBox.setPosition(z->getPosition());
@@ -77,7 +77,7 @@ void TileMap::render(sf::RenderTarget & target, Entity* entity) {
     }
 }
 
-void TileMap::updateCollision(Entity *entity,const float &dt) {
+void TileMap::updateCollision(Entity *entity, const float &dt) {
     //WORlD BOUNDS
     if(entity->getPosition().x<0.f)
         entity->setPosition(0.f,entity->getPosition().y);
@@ -90,67 +90,59 @@ void TileMap::updateCollision(Entity *entity,const float &dt) {
     //TILE COLLISION
     /*setting up for loop;should find a better way to this*/
     this->layer=0;
-    this->fromX=static_cast<int>(entity->getGridPosition(this->tileSizeU).x-1);
+    this->fromX=entity->getGridPosition(this->tileSizeI).x - 1;
     if(this->fromX<0)
         this->fromX=0;
     else if(fromX>mapSizeGrid.x)
         fromX=static_cast<int>(mapSizeGrid.x);
 
-    this->toX=static_cast<int>(entity->getGridPosition(this->tileSizeU).x+5);
+    this->toX=entity->getGridPosition(this->tileSizeI).x + 5;
     if(toX<0)
         toX=0;
     else if(toX>mapSizeGrid.x)
         toX=static_cast<int>(mapSizeGrid.x);
 
-    this->fromY=static_cast<int>(entity->getGridPosition(this->tileSizeU).y-2);
+    this->fromY=entity->getGridPosition(this->tileSizeI).y - 2;
     if(this->fromY<0)
         this->fromY=0;
     else if(fromY>mapSizeGrid.y)
         fromY=static_cast<int>(mapSizeGrid.y);
 
-    this->toY=static_cast<int>(entity->getGridPosition(this->tileSizeU).y+5);
+    this->toY=entity->getGridPosition(this->tileSizeI).y + 5;
     if(toY<0)
         toY=0;
     else if(toY>mapSizeGrid.y)
         toY=static_cast<int>(mapSizeGrid.y);
+    sf::FloatRect entityBounds=entity->getGlobalBounds();
+    sf::FloatRect nextPosition=entity->getNextPositionBounds(dt);
     for(size_t x=fromX;x<this->toX;x++){
         for(size_t y=fromY;y<this->toY;y++){
-            sf::FloatRect entityBounds=entity->getGlobalBounds();
             sf::FloatRect wallBounds=this->map[x][y][this->layer]->getGlobalBounds();
-            sf::FloatRect nextPosition=entity->getNextPositionBounds(dt);
             if(this->map[x][y][this->layer]->getCollision()
             && this->map[x][y][this->layer]->intersects(nextPosition)){
                 //Right collision
-                if (entityBounds.left < wallBounds.left
-                    && entityBounds.left + entityBounds.width < wallBounds.left + wallBounds.width
-                    && entity->getVelocity().x>0
-                    && entityBounds.top < wallBounds.top + wallBounds.height
-                    && entityBounds.top + entityBounds.height > wallBounds.top){
-                        entity->setPosition(wallBounds.left - entityBounds.width, entityBounds.top);
+                if(entity->getVelocity().x>0){
+                    entity->setPosition(wallBounds.left - entityBounds.width, entityBounds.top);
+                    std::cout<<" "<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
                 }
                 //Left collision
-                else if (entityBounds.left > wallBounds.left
-                    && entityBounds.left + entityBounds.width > wallBounds.left + wallBounds.width
-                    && entity->getVelocity().x<0
-                    && entityBounds.top < wallBounds.top + wallBounds.height
-                    && entityBounds.top + entityBounds.height > wallBounds.top){
+                if (entity->getVelocity().x<0)
+                    {
+                        std::cout<<"left collision"<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
                         entity->setPosition(wallBounds.left + wallBounds.width, entityBounds.top);
+                        std::cout<<" "<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
                 }
                 //Bottom collision
-                if (entityBounds.top < wallBounds.top
-                && entityBounds.top + entityBounds.height < wallBounds.top + wallBounds.height
-                && entity->getVelocity().y>0
-                && entityBounds.left < wallBounds.left + wallBounds.width
-                && entityBounds.left + entityBounds.width > wallBounds.left){
-                    entity->setPosition(entityBounds.left, wallBounds.top-entityBounds.height);
+                if (entity->getVelocity().y>0){
+                    std::cout<<"bot collision"<<static_cast<int>(entityBounds.top)<<", "<<static_cast<int>(entityBounds.left);
+                    entity->setPosition(static_cast<int>(entityBounds.left), static_cast<int>(wallBounds.top-entityBounds.height));
+                    std::cout<<static_cast<int>(entityBounds.top)<<", "<<static_cast<int>(entityBounds.left)<<"\n";
                 }
                 //Top collision
-                else if (entityBounds.top > wallBounds.top
-                && entityBounds.top + entityBounds.height > wallBounds.top + wallBounds.height
-                && entity->getVelocity().y<0
-                && entityBounds.left < wallBounds.left + wallBounds.width
-                && entityBounds.left + entityBounds.width > wallBounds.left){
+                if (entity->getVelocity().y<0){
+                    std::cout<<"top collision"<<entityBounds.top<<" ,"<<entityBounds.left;
                     entity->setPosition(entityBounds.left, wallBounds.top + wallBounds.height);
+                    std::cout<<" "<<entityBounds.top<<", "<<entityBounds.left<<"\n";
                 }
             }
         }
@@ -166,7 +158,7 @@ void TileMap::addTile(unsigned x,unsigned y,unsigned z,sf::IntRect& textureRect,
     }
 }
 void TileMap::removeTile(unsigned x,unsigned y,unsigned z) {
-//remove if a tile if present
+//remove if a tile is present
     if(x < mapSizeGrid.x && x >= 0 && y < mapSizeGrid.y && y >= 0 && z < layers && z >= 0){
         if(map[x][y][z]!= nullptr){//can remove
             delete map[x][y][z];
@@ -175,7 +167,7 @@ void TileMap::removeTile(unsigned x,unsigned y,unsigned z) {
         }
     }
 }
-void TileMap::saveToFile(const std::string file_name) {
+void TileMap::saveToFile(const std::string &file_name) {
 //saves the tile maps to a text file
 // Format: Size x,y tileSize
 //pos x,y textureRect type
@@ -183,14 +175,14 @@ void TileMap::saveToFile(const std::string file_name) {
     out_file.open(file_name);
     if(out_file.is_open()){
         out_file << mapSizeGrid.x << " " << mapSizeGrid.y << "\n"
-        <<tileSizeU<<"\n"
+                 << tileSizeI << "\n"
         <<layers<<"\n"
         <<textureFile<<"\n";
-        for(size_t x=0;x<this->mapSizeGrid.x; x++){
-            for(size_t y=0;y<this->mapSizeGrid.y; y++){
-                for(size_t z=0;z<this->layers;z++){
+        for(size_t x=0;x<mapSizeGrid.x; x++){
+            for(size_t y=0;y<mapSizeGrid.y; y++){
+                for(size_t z=0;z<layers;z++){
                     if(this->map[x][y][z])
-                        out_file<<x<<" "<<y<<" "<<z<<" "<<this->map[x][y][z]->getAsString()<<" ";//MAKE sure last space isn't saved
+                        out_file<<x<<" "<<y<<" "<<z<<" "<<map[x][y][z]->getAsString()<<" ";//MAKE sure last space isn't saved
                 }
             }
             std::cout<<"saved";
@@ -200,35 +192,34 @@ void TileMap::saveToFile(const std::string file_name) {
         out_file.close();
     }
 }
-void TileMap::loadFromFile(const std::string file_name) {
+void TileMap::loadFromFile(const std::string& file_name) {
     std::ifstream in_file;
     in_file.open(file_name);
 
     if(in_file.is_open()){
         sf::Vector2i size;
-        unsigned tileSize=0;
-        unsigned layers=0;
-        std::string texture_file="";
+        int tileSize=0;
+        layers=0;
+        std::string texture_file;
         unsigned x=0,y=0,z=0,trX=0,trY=0;
         bool collision=false;
         short type=0;
         //basics
         in_file>> size.x >> size.y >> tileSize >> layers >> texture_file;
         //tiles data
-        tileSizeF=static_cast<float> (tileSize);
-        tileSizeU=tileSize;
+        tileSizeF=static_cast<float>(tileSize);
+        tileSizeI=tileSize;
         mapSizeGrid.x=size.x;
         mapSizeGrid.y=size.y;
-        layers=layers;
         textureFile=texture_file;
         this->clear();
 
         map.resize(mapSizeGrid.x, std::vector<std::vector<Tile*>>());
-        for(size_t x=0;x<this->mapSizeGrid.x; x++){
-            for(size_t y=0;y<this->mapSizeGrid.y; y++){
-                map[x].resize(mapSizeGrid.y, std::vector<Tile*>());
-                for(size_t z=0;z<this->layers;z++){
-                    map[x][y].resize(layers, nullptr);
+        for(size_t i=0;i<this->mapSizeGrid.x; i++){
+            for(size_t j=0;j<this->mapSizeGrid.y; j++){
+                map[i].resize(mapSizeGrid.y, std::vector<Tile*>());
+                for(size_t k=0;k<this->layers;k++){
+                    map[i][j].resize(layers, nullptr);
                 }
             }
         }
@@ -236,8 +227,8 @@ void TileMap::loadFromFile(const std::string file_name) {
             std::cout<<"Error";
         //load all tiles
         while(in_file>> x>> y>> z>> trX>> trY>>collision>>type){
-            sf::IntRect textureRect=sf::IntRect(static_cast<int>(trX),static_cast<int>(trY),
-                                                static_cast<int>(tileSizeU),static_cast<int>(tileSizeU));
+            sf::IntRect textureRect=sf::IntRect(static_cast<int>(trX), static_cast<int>(trY),
+                                                static_cast<int>(tileSizeI), static_cast<int>(tileSizeI));
             this->map[x][y][z]=new Tile(x,y,this->tileSizeF,tileTextureSheet,
                                         textureRect,collision,type);
             }

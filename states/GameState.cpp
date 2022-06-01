@@ -9,20 +9,20 @@ void GameState::initDelayedRender() {
                          stateData.gxSettings->resolution.height);//empty texture size of window
     renderSprite.setTexture(renderTexture.getTexture());
     this->renderSprite.setTextureRect(sf::IntRect(0,0,
-                                                  stateData.gxSettings->resolution.width,
-                                                  stateData.gxSettings->resolution.height));
+                                                  static_cast<int>(stateData.gxSettings->resolution.width),
+                                                  static_cast<int>(stateData.gxSettings->resolution.height)));
 }
 void GameState::initView() {
-    this->view.setSize(sf::Vector2f(stateData.gxSettings->resolution.width,
-                                    stateData.gxSettings->resolution.height));
-    this->view.setCenter(sf::Vector2f(stateData.gxSettings->resolution.width/2.f,
-                                    stateData.gxSettings->resolution.height/2.f));
+    this->view.setSize(sf::Vector2f(static_cast<float>(stateData.gxSettings->resolution.width),
+                                    static_cast<float>(stateData.gxSettings->resolution.height)));
+    this->view.setCenter(sf::Vector2f(static_cast<float>(stateData.gxSettings->resolution.width)/2.f,
+                                      static_cast<float>(stateData.gxSettings->resolution.height)/2.f));
 
 }
 void GameState::initKeybinds() {
     /*this function permits to assign the keybinds for a state based on
      * the available supportedkeys,by reading them from a file
-     * e.g. the main menu(or whatever it's gonna be called) state can have different
+     * e.g. the main menu(or whatever it's going to be called) state can have different
      * keybinds */
     std::ifstream ifs("./config/gamestate_keybinds.ini");
     if(ifs.is_open()){
@@ -54,7 +54,7 @@ void GameState::initPauseMenu() {
     this->pmenu->addButton("QUIT",800.f,"Quit");
 }
 void GameState::initTileMap() {
-    this->tileMap=new TileMap(stateData.tileSize,100,100,"./assets/tiles/tilesheet1.png");
+    this->tileMap=new TileMap(stateData.tileSize, 100, 100, "./assets/tiles/tilesheet1.png");
     this->tileMap->loadFromFile("./assets/maps/map1.txt");
 }
 //CON & DES
@@ -98,15 +98,7 @@ void GameState::render(sf::RenderTarget* target) {
 //
 //UPDATE FUNCTIONS
 void GameState::updatePlayerInput(const float &dt) {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
-        this->player->move(dt,-1.f,0.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
-        this->player->move(dt,1.f,0.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))
-        this->player->move(dt,0.f,-1.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
-        this->player->move(dt,0.f,1.f);
-
+    this->player->update(dt);
 }
 void GameState::updateView(const float &dt) {
     this->view.setCenter(std::floor(player->getPosition().x),std::floor(player->getPosition().y));

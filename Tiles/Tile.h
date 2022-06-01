@@ -6,7 +6,7 @@
 #define VIDEOGAME_TILE_H
 
 #include "GUI.h"
-
+#include "PreCompHeaders.h"
 enum tileTypes{DEFAULT=0,SLOWING};
 
 class Tile {
@@ -26,6 +26,7 @@ public:
     sf::FloatRect getGlobalBounds()const;
     bool intersects(sf::FloatRect bounds)const;
     std::string getAsString() const;
+    void setCollision();
     //functions+
     void update();
     void render(sf::RenderTarget& target);

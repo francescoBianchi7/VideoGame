@@ -21,8 +21,8 @@ private:
     void initGUI();
     void initText();
 public:
-    SettingState(StateData &stateData);
-    virtual ~SettingState();
+    explicit SettingState(StateData &stateData);
+    ~SettingState() override;
 
     void render(sf::RenderTarget* target) override;
     void renderGUI(sf::RenderTarget& target);//renders buttons

@@ -6,7 +6,7 @@
 #define VIDEOGAME_PAUSEMENU_H
 
 #include "GUI.h"
-
+#include "PreCompHeaders.h"
 class PauseMenu {
 private:
     sf::Font& font;
@@ -21,8 +21,8 @@ public:
     PauseMenu(sf::RenderWindow& window,sf::Font& font);
     virtual ~PauseMenu();
     std::map<std::string ,GUI::Button*>& getButtons();
-    void addButton(std::string key,float y,std::string text);
-    const bool isButtonPressed(const std::string key);
+    void addButton(const std::string& key,float y,const std::string& text);
+    bool isButtonPressed(const std::string& key);
     void update(const sf::Vector2i& mousePosWindow);
     void render(sf::RenderTarget& target);
 };

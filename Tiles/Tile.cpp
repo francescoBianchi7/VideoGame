@@ -1,4 +1,3 @@
-#include "PreCompHeaders.h"
 #include "Tile.h"
 Tile::Tile() {
  collision= false;
@@ -44,4 +43,8 @@ void Tile::render(sf::RenderTarget &target) {
 
 sf::FloatRect Tile::getGlobalBounds() const{
     return this->tile.getGlobalBounds();
+}
+
+void Tile::setCollision() {
+    this->collision=true;
 }

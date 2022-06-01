@@ -1,6 +1,6 @@
 #ifndef VIDEOGAME_HITBOXCOMPONENT_H
 #define VIDEOGAME_HITBOXCOMPONENT_H
-
+#include "PreCompHeaders.h"
 class HitboxComponent {
 private:
     sf::Sprite& sprite;
@@ -11,7 +11,7 @@ public:
     HitboxComponent(float offset_x,float offset_y,sf::Sprite &sprite,float width,float height);
     virtual ~HitboxComponent();
     //GETTERS & SETTERS
-    const sf::FloatRect & getNextPosition(const sf::Vector2f& velocity);
+    const sf::FloatRect & getNextPosition(const sf::Vector2f& velocity,const float &dt);
     const sf::Vector2f& getPosition();
     sf::FloatRect getGlobalBounds() const;
     void setPosition(const sf::Vector2f& position);

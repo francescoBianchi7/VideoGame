@@ -3,14 +3,14 @@
 
 #include "..\Tiles\Tile.h"
 #include "..\entities\Entity.h"
+#include "PreCompHeaders.h"
 class TileMap {
 private:
     void clear();
     std::vector<std::vector<std::vector<Tile*>>> map;
     float tileSizeF;
-    unsigned tileSizeU;
     int tileSizeI;
-    unsigned layers;
+    int layers;
     sf::Vector2u mapSizeGrid;//grid
     sf::Vector2f MapSizeF;//to get limits for collisions
     sf::Texture tileTextureSheet;
@@ -30,8 +30,8 @@ public:
     void removeTile(unsigned x,unsigned y,unsigned z);
     void updateCollision(Entity* entity,const float &dt);
     //save & load
-    void saveToFile(const std::string file_name);
-    void loadFromFile(const std::string file_name);
+    void saveToFile(const std::string& file_name);
+    void loadFromFile(const std::string &file_name);
 };
 
 

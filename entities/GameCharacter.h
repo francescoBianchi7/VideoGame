@@ -13,11 +13,13 @@ private:
     //variables
     float speed;
     void initVariables();
-    void initComponents();//each entity it's gonna have it's own
+    void initComponents();//each entity it's going ot have his own
 public:
+    GameCharacter();
     GameCharacter(float x, float y, sf::Texture &textureSheet);
-    virtual ~GameCharacter();
+    ~GameCharacter() override;
     void update(const float& dt) override;
+    void updateInput(const float & dt);
 };
 
 

@@ -1,7 +1,3 @@
-//
-// Created by bianc on 07/12/2021.
-//
-
 #ifndef VIDEOGAME_MAINMENUSTATE_H
 #define VIDEOGAME_MAINMENUSTATE_H
 
@@ -25,13 +21,13 @@ private:
 
 public:
     //CON & DES
-    MainMenuState(StateData& stateData);
-    virtual ~MainMenuState();
+    explicit MainMenuState(StateData& stateData);
+    ~MainMenuState() override;
 
 
-    void endState();//just to see which state is ending
+    void endState() override;//just to see which state is ending
 
-    void render(sf::RenderTarget* target);
+    void render(sf::RenderTarget* target)override;
     void renderButtons(sf::RenderTarget& target);//renders buttons
 
     void updateButtons();//changes button status

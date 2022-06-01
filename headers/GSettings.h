@@ -4,7 +4,7 @@
 
 #ifndef VIDEOGAME_GSETTINGS_H
 #define VIDEOGAME_GSETTINGS_H
-
+#include "PreCompHeaders.h"
 
 class GSettings{
 public:
@@ -19,8 +19,8 @@ public:
 
     GSettings();
 
-    void saveToFile(const std::string path);
-    void loadFromFile(const std::string path);
+    void saveToFile(const std::string& path) const;
+    void loadFromFile(const std::string& path);
 };
 
 #endif //VIDEOGAME_GSETTINGS_H

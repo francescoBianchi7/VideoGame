@@ -4,7 +4,7 @@
 
 #ifndef VIDEOGAME_ENTITY_H
 #define VIDEOGAME_ENTITY_H
-
+#include "PreCompHeaders.h"
 #include "../Components/MovementComponent.h"
 #include "../Components/AnimationComponent.h"
 #include "../Components/HitboxComponent.h"
@@ -18,21 +18,22 @@ protected:
     MovementComponent* movementComponent;
     AnimationComponent* animationComponent;
     HitboxComponent* hitboxComponent;
-
 public:
     Entity();
     virtual ~Entity();
     //INITIALIZERS
-    void setTexture(sf::Texture& texture);
-    void createHitboxComponent(float offset_x,float offset_y,sf::Sprite& sprite,float width,float height);
+    virtual void setTexture(sf::Texture& texture);
+    void createHitboxComponent(float offset_x,float offset_y,float width,float height);
     void createMovementComponent(float speed);
     void createAnimationComponent(sf::Texture &textureSheet);
     //Getter
     virtual const sf::Vector2f& getPosition() const;
-    virtual sf::Vector2u getGridPosition(const unsigned tileSizeU);
+    virtual sf::Vector2i getGridPosition(const int tileSizeI);
     virtual sf::FloatRect getGlobalBounds();
-    virtual const sf::FloatRect& getNextPositionBounds(const float &dt);
+    virtual sf::FloatRect getNextPositionBounds(const float &dt) const;
     virtual const sf::Vector2f& getVelocity();
+    virtual const float& getPositionX();
+    virtual const float& getPositionY();
     //SETTER
     virtual void setPosition(float x,float y);
     virtual void stopVelocity();

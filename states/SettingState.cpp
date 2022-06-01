@@ -1,7 +1,7 @@
 //
 // Created by bianc on 13/02/2022.
 //
-#include "PreCompHeaders.h"
+
 #include "SettingState.h"
 //INIT FUNCTIONS
 void SettingState::initVariables() {
@@ -73,10 +73,10 @@ SettingState::SettingState(StateData &stateData)
     initText();
 }
 SettingState::~SettingState() {
-    for(auto b:buttons){
+    for(const auto& b:buttons){
         delete b.second;
     }
-    for(auto d:dropDownLists){
+    for(const auto& d:dropDownLists){
         delete d.second;
     }
 }

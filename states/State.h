@@ -3,6 +3,7 @@
 
 #include "../entities/GameCharacter.h"
 #include "../headers/GSettings.h"
+#include "../headers/PreCompHeaders.h"
 class State;
 
 class StateData{//class used to make it simplier to pass data between various states

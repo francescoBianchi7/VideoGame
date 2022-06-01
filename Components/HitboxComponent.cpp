@@ -1,4 +1,4 @@
-#include "PreCompHeaders.h"
+
 #include "HitboxComponent.h"
 
 HitboxComponent::HitboxComponent(float offset_x, float offset_y, sf::Sprite &sprite, float width, float height)
@@ -15,35 +15,33 @@ HitboxComponent::HitboxComponent(float offset_x, float offset_y, sf::Sprite &spr
     this->hitbox.setOutlineColor(sf::Color::Red);
 }
 
-HitboxComponent::~HitboxComponent() {
-
-}
+HitboxComponent::~HitboxComponent() = default;
 //GETTER
-const sf::FloatRect &HitboxComponent::getNextPosition(const sf::Vector2f &velocity) {
-    this->nextPosition.left=this->hitbox.getPosition().x+velocity.x;
-    this->nextPosition.top=this->hitbox.getPosition().y+velocity.y;
+const sf::FloatRect &HitboxComponent::getNextPosition(const sf::Vector2f &velocity,const float& dt) {
+    nextPosition.left=hitbox.getPosition().x+velocity.x*0,01573;
+    nextPosition.top=hitbox.getPosition().y+velocity.y*0,01573;
     return this->nextPosition;
 }
 
 const sf::Vector2f &HitboxComponent::getPosition() {
-    return this->hitbox.getPosition();
+    return hitbox.getPosition();
 }
 sf::FloatRect HitboxComponent::getGlobalBounds() const {
-    return this->hitbox.getGlobalBounds();
+    return hitbox.getGlobalBounds();
 }
 //SETTER
 void HitboxComponent::setPosition(const sf::Vector2f& position) {
-    this->hitbox.setPosition(position);
-    this->sprite.setPosition(position.x-offsetX,position.y-offsetY);
+    hitbox.setPosition(position);
+    sprite.setPosition(position.x-offsetX,position.y-offsetY);
 }
 void HitboxComponent::setPosition(float x, float y) {
-    this->hitbox.setPosition(x,y);
-    this->sprite.setPosition(x-offsetX,y-offsetY);
+    hitbox.setPosition(x,y);
+    sprite.setPosition(x-offsetX,y-offsetY);
 }
 //FUNCTIONS
 //keeps hitbox on player sprite
 void HitboxComponent::update() {
-    this->hitbox.setPosition(sprite.getPosition().x+offsetX,sprite.getPosition().y+offsetY);
+    hitbox.setPosition(sprite.getPosition().x+offsetX,sprite.getPosition().y+offsetY);
 }
 //renders hitbox rect
 void HitboxComponent::render(sf::RenderTarget &target) {

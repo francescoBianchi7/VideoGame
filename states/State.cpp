@@ -1,6 +1,3 @@
-//
-// Created by bianc on 30/11/2021.
-//
 #include "PreCompHeaders.h"
 #include "State.h"
 State::State(StateData& stateData):stateData(stateData) {

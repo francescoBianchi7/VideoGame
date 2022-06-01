@@ -1,7 +1,3 @@
-//
-// Created by bianc on 07/12/2021.
-//
-#include "PreCompHeaders.h"
 #include "MainMenuState.h"
 
 //INIT FUNCTIONS
