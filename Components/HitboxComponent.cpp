@@ -18,8 +18,8 @@ HitboxComponent::HitboxComponent(float offset_x, float offset_y, sf::Sprite &spr
 HitboxComponent::~HitboxComponent() = default;
 //GETTER
 const sf::FloatRect &HitboxComponent::getNextPosition(const sf::Vector2f &velocity,const float& dt) {
-    nextPosition.left=hitbox.getPosition().x+velocity.x*0,01573;
-    nextPosition.top=hitbox.getPosition().y+velocity.y*0,01573;
+    nextPosition.left=hitbox.getPosition().x+velocity.x*dt,01573;
+    nextPosition.top=hitbox.getPosition().y+velocity.y*dt,01573;
     return this->nextPosition;
 }
 

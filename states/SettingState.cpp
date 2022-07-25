@@ -129,9 +129,9 @@ void SettingState::updateGUI(const float &dt) {
 }
 
 void SettingState::update(const float& dt) {
-    this->updateInput(dt);
-    this->updateMousePosition();
-    this->updateGUI(dt);
+    updateInput(dt);
+    updateMousePosition();
+    updateGUI(dt);
 }
 
 

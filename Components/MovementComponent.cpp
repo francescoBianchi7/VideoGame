@@ -44,10 +44,10 @@ void MovementComponent::stopVelocityY() {
 }
 //updating
 void MovementComponent::update(const float &dt) {
-    this->sprite.move(this->velocity * dt); //Uses velocity
+    sprite.move(velocity * dt); //Uses velocity
 }
 //accelerates
 void MovementComponent::move(const float& dt,float dir_x, float dir_y) {
-    this->velocity.x= this->speed * dir_x;
-    this->velocity.y= this->speed * dir_y;
+    velocity.x= speed * dir_x;
+    velocity.y= speed * dir_y;
 }

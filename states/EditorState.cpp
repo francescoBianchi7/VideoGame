@@ -61,7 +61,9 @@ void EditorState::initPauseMenu() {
     this->pmenu->addButton("LOAD",500.f,"Load");
 }
 void EditorState::initTileSheet() {
-    this->tileMap=new TileMap(stateData.tileSize, 100, 100, "assets/tiles/tilesheet1.png");
+    //this->tileMap=new TileMap(stateData.tileSize, 100, 100, "./assets/tiles/tilesheet1.png"); //normal game map
+    //this->tileMap=new TileMap(stateData.tileSize, 4, 4, "Google_tests/gtest_assets/GrassTestTile.png"); /*test tile sheet and size for world-bounds test*/
+    this->tileMap=new TileMap(stateData.tileSize, 6, 6, "Google_tests/gtest_assets/GrassTestTile.png"); /*test tile sheet and size for tile collision test*/
 }
 void EditorState::initGui() {
     selectorRect.setSize(sf::Vector2f(stateData.tileSize,stateData.tileSize));
@@ -106,11 +108,15 @@ void EditorState::renderGui(sf::RenderTarget &target){
 //update functions
 void EditorState::updatePMenuButtons() {//for pause state
     if(this->pmenu->isButtonPressed("QUIT"))
-        this->endState();
+        endState();
     if(this->pmenu->isButtonPressed("SAVE"))
-        this->tileMap->saveToFile("assets/maps/map1.txt");
+        tileMap->saveToFile("assets/maps/map1.txt"); //normal map
+        //tileMap->saveToFile("Google_tests/gtest_assets/worldboundTestMap.txt");
+        //tileMap->saveToFile("Google_tests/gtest_assets/tileCollisionTestMap.txt");
     if(this->pmenu->isButtonPressed("LOAD"))
-        this->tileMap->loadFromFile("assets/maps/map1.txt");
+        //tileMap->loadFromFile("assets/maps/map1.txt");
+        //tileMap->loadFromFile("Google_tests/gtest_assets/worldboundTestMap.txt");
+        tileMap->loadFromFile("Google_tests/gtest_assets/tileCollisionTestMap.txt");
 }
 void EditorState::updateButtons() {//making them clickable
     for(auto &it: this->buttons){

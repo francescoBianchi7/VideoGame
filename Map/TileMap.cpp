@@ -54,6 +54,7 @@ TileMap::~TileMap() {
         }
     }
 }
+
 //getter
 const sf::Texture *TileMap::getTileSheet() {
     return &this->tileTextureSheet;
@@ -126,8 +127,7 @@ void TileMap::updateCollision(Entity *entity, const float &dt) {
                     std::cout<<" "<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
                 }
                 //Left collision
-                if (entity->getVelocity().x<0)
-                    {
+                if (entity->getVelocity().x<0){
                         std::cout<<"left collision"<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
                         entity->setPosition(wallBounds.left + wallBounds.width, entityBounds.top);
                         std::cout<<" "<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
@@ -182,7 +182,7 @@ void TileMap::saveToFile(const std::string &file_name) {
             for(size_t y=0;y<mapSizeGrid.y; y++){
                 for(size_t z=0;z<layers;z++){
                     if(this->map[x][y][z])
-                        out_file<<x<<" "<<y<<" "<<z<<" "<<map[x][y][z]->getAsString()<<" ";//MAKE sure last space isn't saved
+                        out_file<<x<<" "<<y<<" "<<z<<" "<<map[x][y][z]->getAsString()<<"\n";//MAKE sure last space isn't saved
                 }
             }
             std::cout<<"saved";
@@ -226,14 +226,21 @@ void TileMap::loadFromFile(const std::string& file_name) {
         if(!tileTextureSheet.loadFromFile(texture_file))
             std::cout<<"Error";
         //load all tiles
-        while(in_file>> x>> y>> z>> trX>> trY>>collision>>type){
-            sf::IntRect textureRect=sf::IntRect(static_cast<int>(trX), static_cast<int>(trY),
-                                                static_cast<int>(tileSizeI), static_cast<int>(tileSizeI));
-            this->map[x][y][z]=new Tile(x,y,this->tileSizeF,tileTextureSheet,
-                                        textureRect,collision,type);
+        for(int i=0;i<mapSizeGrid.x;i++){
+            for(int j=0;j<mapSizeGrid.y;j++){
+                in_file>> x>> y>> z>> trX>> trY>>collision>>type;
+                sf::IntRect textureRect=sf::IntRect(static_cast<int>(trX), static_cast<int>(trY),
+                                                    static_cast<int>(tileSizeI), static_cast<int>(tileSizeI));
+                this->map[x][y][z]=new Tile(x,y,tileSizeF,tileTextureSheet,
+                                            textureRect,collision,type);
             }
+        }
     }else{
         std::cout<<"ERROR::COULD NOT LOAD FROM FILE,"<<file_name;
     }
     in_file.close();
+}
+
+Tile& TileMap::getTileFromMap(int x,int y) {
+    return reinterpret_cast<Tile &>(map[x][y][1]);
 }

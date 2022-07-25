@@ -47,15 +47,19 @@ void GameState::initTextures() {
         throw "ERROR::GAME_STATE::COULDNOTLOADIDLETEXTURE";
 }
 void GameState::initPlayer() {
-    this->player= new GameCharacter(500, 500, this->textures["PLAYER_SHEET"]);
+    player= new GameCharacter(1, 1, this->textures["PLAYER_SHEET"]);
 }
 void GameState::initPauseMenu() {
-    this->pmenu=new PauseMenu(*window,this->font);
-    this->pmenu->addButton("QUIT",800.f,"Quit");
+    pmenu=new PauseMenu(*window,this->font);
+    pmenu->addButton("QUIT",800.f,"Quit");
 }
 void GameState::initTileMap() {
-    this->tileMap=new TileMap(stateData.tileSize, 100, 100, "./assets/tiles/tilesheet1.png");
-    this->tileMap->loadFromFile("./assets/maps/map1.txt");
+    tileMap=new TileMap(stateData.tileSize, 100, 100, "./assets/tiles/tilesheet1.png"); /*normal tileshhet*/
+    //tileMap= new TileMap(stateData.tileSize, 6, 6, "Google_tests/gtest_assets/GrassTestTile.png"); /*test tile sheet and size for tile collision test*/
+    //tileMap= new TileMap(stateData.tileSize, 4, 4, "Google_tests/gtest_assets/GrassTestTile.png"); /*test tile sheet and size for world bounds test*/
+    tileMap->loadFromFile("./assets/maps/map1.txt"); /*normal map*/
+    //tileMap->loadFromFile("Google_tests/gtest_assets/tileCollisionTestMap.txt"); /*tile collision test*/
+    //tileMap->loadFromFile("Google_tests/gtest_assets/worldboundTestMap.txt"); /* world bounds test*/
 }
 //CON & DES
 GameState::GameState(StateData &stateData)
@@ -98,7 +102,7 @@ void GameState::render(sf::RenderTarget* target) {
 //
 //UPDATE FUNCTIONS
 void GameState::updatePlayerInput(const float &dt) {
-    this->player->update(dt);
+    player->update(dt);
 }
 void GameState::updateView(const float &dt) {
     this->view.setCenter(std::floor(player->getPosition().x),std::floor(player->getPosition().y));

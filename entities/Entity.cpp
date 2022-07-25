@@ -64,6 +64,12 @@ sf::FloatRect Entity::getGlobalBounds() {
     else
         return sprite.getGlobalBounds();
 }
+MovementComponent* Entity::getMovementComponent() {
+    return movementComponent;
+}
+HitboxComponent* Entity::getHitboxComponent() {
+    return hitboxComponent;
+}
 //SETTER
 void Entity::setPosition(const float x,const float y) {
     if(this->hitboxComponent)
@@ -89,8 +95,8 @@ void Entity::stopVelocity() {
 //FUNCTIONS
 
 void Entity::update(const float& dt ) {
-    if(this->movementComponent)
-        this->movementComponent->update(dt);
+    if(movementComponent)
+        movementComponent->update(dt);
 }
 void Entity::move(const float&dt,float dir_x, float dir_y) {
     if(this->movementComponent){
@@ -106,6 +112,7 @@ void Entity::render(sf::RenderTarget& target) {
 const sf::Vector2f &Entity::getVelocity() {
     return movementComponent->getVelocity();
 }
+
 
 
 

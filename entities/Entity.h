@@ -34,6 +34,8 @@ public:
     virtual const sf::Vector2f& getVelocity();
     virtual const float& getPositionX();
     virtual const float& getPositionY();
+    virtual MovementComponent* getMovementComponent();
+    virtual HitboxComponent* getHitboxComponent();
     //SETTER
     virtual void setPosition(float x,float y);
     virtual void stopVelocity();

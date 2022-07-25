@@ -22,16 +22,14 @@ private:
         //so they can be changed
         std::map<std::string,int> supportedKeys;//basic set of keys,read from file
 
-
-        //init functions
-        void initVariables();
-        void createWindow();
-        void initKeys();
-        void initGSettings();
-        void initStateData();
-        void initStates();
-
 public:
+    //init functions
+    void initVariables();
+    void createWindow();
+    void initKeys();
+    void initGSettings();
+    void initStateData();
+    void initStates();
 
     //Constructors&Destructors
     GameEngine();

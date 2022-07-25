@@ -23,6 +23,7 @@ public:
     virtual ~TileMap();
     //getter
     const sf::Texture* getTileSheet();
+    Tile& getTileFromMap(int x,int y);
     //functions
     void update();
     void render(sf::RenderTarget & target, Entity* entity=nullptr);

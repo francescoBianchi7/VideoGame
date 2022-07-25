@@ -10,11 +10,11 @@ GameCharacter::GameCharacter() {
     this->setPosition(0,0);
 }
 GameCharacter::GameCharacter( float x, float y, sf::Texture &textureSheet){
-    this->initVariables();
-    this->createMovementComponent(speed);
-    this->createAnimationComponent(textureSheet);
-    this->createHitboxComponent(20.f,20.f,35.f,85.f);
-    this->setPosition(x,y);
+    initVariables();
+    createMovementComponent(speed);
+    createAnimationComponent(textureSheet);
+    createHitboxComponent(20.f,20.f,35.f,85.f);
+    setPosition(x,y);
     this->animationComponent->addAnimation("IDLE_DOWN",10.f,0,0,0,0,72,109);
     this->animationComponent->addAnimation("WALK_DOWN",10.f,0,0,3,0,72,109);
     this->animationComponent->addAnimation("WALK_UP",10.f,0,3,3,3,72,109);
@@ -33,36 +33,59 @@ void GameCharacter::initComponents(){}
 
 void GameCharacter::update(const float &dt) {
     updateInput(dt);//updates which animation is playing and components
-    this->movementComponent->update(dt);
+    movementComponent->update(dt);
     if(!movementComponent->isMoving())
-        this->animationComponent->play("IDLE_DOWN",dt);
+        animationComponent->play("IDLE_DOWN",dt);
     else if(movementComponent->getVelocityX()>0.f)
-        this->animationComponent->play("WALK_RIGHT",dt);
+        animationComponent->play("WALK_RIGHT",dt);
     else if(movementComponent->getVelocityX()<0.f)
-        this->animationComponent->play("WALK_LEFT",dt);
+        animationComponent->play("WALK_LEFT",dt);
     else if(movementComponent->getVelocityY()<0.f)
-        this->animationComponent->play("WALK_UP",dt);
+        animationComponent->play("WALK_UP",dt);
     else if(movementComponent->getVelocityY()>0.f)
-        this->animationComponent->play("WALK_DOWN",dt);
+        animationComponent->play("WALK_DOWN",dt);
     this->hitboxComponent->update();
 }
 
 void GameCharacter::updateInput(const float &dt) {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-        this->movementComponent->move(dt,0.f,-1.f);
+        movementComponent->move(dt,0.f,-1.f);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-        this->movementComponent->move(dt,0.f,1.f);
+        movementComponent->move(dt,0.f,1.f);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-        this->movementComponent->move(dt,1.f,0.f);
+        movementComponent->move(dt,1.f,0.f);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        this->movementComponent->move(dt,-1.f,0.f);
+        movementComponent->move(dt,-1.f,0.f);
     }
     if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) & !sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
     &!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) &!sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         stopVelocity();
     }
+}
+
+//this function are used for testing purposes
+//during the testing, the updateInput function is unusable
+//because Keyboard cannot be pressed.
+void GameCharacter::moveLeft(const float &dt) {
+    movementComponent->move(dt,-1.f,0.f);
+    movementComponent->update(dt);
+}
+
+void GameCharacter::moveRight(const float &dt) {
+    movementComponent->move(dt,1.f,0.f);
+    movementComponent->update(dt);
+}
+
+void GameCharacter::moveUp(const float &dt) {
+    movementComponent->move(dt,0.f,-1.f);
+    movementComponent->update(dt);
+}
+
+void GameCharacter::moveDown(const float &dt) {
+    movementComponent->move(dt,0.f,1.f);
+    movementComponent->update(dt);
 }
 
