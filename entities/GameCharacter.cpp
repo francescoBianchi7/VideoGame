@@ -28,11 +28,12 @@ GameCharacter::~GameCharacter()= default;
 void GameCharacter::initVariables() {
     speed=300.f;
 }
-
+Rifle GameCharacter::getWeapon() {
+    return rifle;
+}
 void GameCharacter::initComponents(){}
-
-void GameCharacter::update(const float &dt) {
-    updateInput(dt);//updates which animation is playing and components
+void GameCharacter::update(const float &dt,sf::Vector2f mouseposView) {
+   //updates which animation is playing and components
     movementComponent->update(dt);
     if(!movementComponent->isMoving())
         animationComponent->play("IDLE_DOWN",dt);
@@ -44,11 +45,17 @@ void GameCharacter::update(const float &dt) {
         animationComponent->play("WALK_UP",dt);
     else if(movementComponent->getVelocityY()>0.f)
         animationComponent->play("WALK_DOWN",dt);
-    this->hitboxComponent->update();
+    hitboxComponent->update();
+    rifle.update(mouseposView,getCenter());
 }
-
-void GameCharacter::updateInput(const float &dt) {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+void GameCharacter::render(sf::RenderTarget &target, const bool show_hitbox) {
+    target.draw(sprite);
+    rifle.render(target);
+    if(show_hitbox)
+        hitboxComponent->render(target);
+}
+/*void GameCharacter::updateInput(const float &dt) {
+    if(sf::Keyboard::isKeyPressed((sf::Keyboard::Key(keybinds.at("M))){
         movementComponent->move(dt,0.f,-1.f);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
@@ -64,7 +71,7 @@ void GameCharacter::updateInput(const float &dt) {
     &!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) &!sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         stopVelocity();
     }
-}
+}*/
 
 //this function are used for testing purposes
 //during the testing, the updateInput function is unusable
@@ -73,19 +80,15 @@ void GameCharacter::moveLeft(const float &dt) {
     movementComponent->move(dt,-1.f,0.f);
     movementComponent->update(dt);
 }
-
 void GameCharacter::moveRight(const float &dt) {
     movementComponent->move(dt,1.f,0.f);
     movementComponent->update(dt);
 }
-
 void GameCharacter::moveUp(const float &dt) {
     movementComponent->move(dt,0.f,-1.f);
     movementComponent->update(dt);
 }
-
 void GameCharacter::moveDown(const float &dt) {
     movementComponent->move(dt,0.f,1.f);
     movementComponent->update(dt);
 }
-

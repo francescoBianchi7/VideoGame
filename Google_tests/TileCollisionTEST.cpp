@@ -12,10 +12,9 @@ protected:
     virtual void SetUp(){
         gc1->createMovementComponent(300.f);
         gc1->createHitboxComponent(20.f,20.f,35.f,85.f);
-        gc.createHitboxComponent(20.f,20.f,35.f,85.f);
-        movementComponent=gc.getMovementComponent();
-        hitboxComponent=gc.getHitboxComponent();
-        gc.setPosition(0,0);
+        movementComponent=gc1->getMovementComponent();
+        hitboxComponent=gc1->getHitboxComponent();
+        gc1->setPosition(0,0);
         tileMap->loadFromFile("Google_tests/gtest_assets/tileCollisionTestMap.txt");
         this->dt=this->dtClock.restart().asSeconds();
         mapSizeF.x=50.f*4;
@@ -26,7 +25,6 @@ protected:
         rect.height=1.f;
     }
     sf::Vector2f mapSizeF;
-    Entity gc;
     //GameEngine game;
     StateData stateData;
     sf::Sprite sprite;
@@ -61,7 +59,7 @@ TEST_F(TileCollisionFixture,RightCollision){
      ASSERT_TRUE(gc1->getMovementComponent()->getVelocityX()>0.f);
      gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                       gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
-     //std::cout<<"pre update"<<gc1->getPositionX()<<","<<gc1->getPositionY()<<"\n";
+     std::cout<<"pre update"<<gc1->getPositionX()<<"\n";
      tileMap->updateCollision(gc1,dt);
      std::cout<<"post update"<<gc1->getPositionY()<<","<<gc1->getPositionX()<<"\n";
      ASSERT_EQ(100-gc1->getGlobalBounds().width,gc1->getPositionX());
@@ -72,10 +70,10 @@ TEST_F(TileCollisionFixture,RightCollision){
      ASSERT_TRUE(gc1->getMovementComponent()->getVelocityX()>0.f);
      gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                       gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
-     //std::cout<<"pre update"<<gc1->getPositionX()<<","<<gc1->getPositionY()<<"\n";
+     std::cout<<"pre update"<<gc1->getPositionX()<<"\n";
      tileMap->updateCollision(gc1,dt);
-     std::cout<<"post update"<<gc1->getPositionY()<<","<<gc1->getPositionX()<<"\n";
-     ASSERT_EQ(100-gc.getGlobalBounds().width,gc1->getPositionX());
+     std::cout<<"post update"<<gc1->getPositionY()<<"\n";
+     ASSERT_EQ(100-gc1->getGlobalBounds().width,gc1->getPositionX());
 }
 
 TEST_F(TileCollisionFixture,LeftCollision){

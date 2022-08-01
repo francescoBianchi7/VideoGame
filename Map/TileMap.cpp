@@ -59,18 +59,26 @@ TileMap::~TileMap() {
 const sf::Texture *TileMap::getTileSheet() {
     return &this->tileTextureSheet;
 }
+sf::Vector2i TileMap::getMapSizeI() const {
+    return mapSizeGrid;
+}
+sf::Vector2f TileMap::getMapSizeF() const {
+    return MapSizeF;
+}
 
 void TileMap::update() {}
 
-void TileMap::render(sf::RenderTarget & target, Entity* entity) {
+void TileMap::render(sf::RenderTarget & target,const bool showCollision, Entity* entity) {
     for(auto &x: this->map ){
         for(auto &y:x){
             for(auto *z:y){
                 if(z){//if this is not null I render, helps with memory
                     z->render(target);
-                    if(z->getCollision()){
-                        this->collisionBox.setPosition(z->getPosition());
-                        target.draw(this->collisionBox);
+                    if(showCollision){
+                        if(z->getCollision()){
+                            collisionBox.setPosition(z->getPosition());
+                            target.draw(this->collisionBox);
+                        }
                     }
                 }
             }
@@ -239,8 +247,4 @@ void TileMap::loadFromFile(const std::string& file_name) {
         std::cout<<"ERROR::COULD NOT LOAD FROM FILE,"<<file_name;
     }
     in_file.close();
-}
-
-Tile& TileMap::getTileFromMap(int x,int y) {
-    return reinterpret_cast<Tile &>(map[x][y][1]);
 }

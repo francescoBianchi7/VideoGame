@@ -61,9 +61,9 @@ void EditorState::initPauseMenu() {
     this->pmenu->addButton("LOAD",500.f,"Load");
 }
 void EditorState::initTileSheet() {
-    //this->tileMap=new TileMap(stateData.tileSize, 100, 100, "./assets/tiles/tilesheet1.png"); //normal game map
-    //this->tileMap=new TileMap(stateData.tileSize, 4, 4, "Google_tests/gtest_assets/GrassTestTile.png"); /*test tile sheet and size for world-bounds test*/
-    this->tileMap=new TileMap(stateData.tileSize, 6, 6, "Google_tests/gtest_assets/GrassTestTile.png"); /*test tile sheet and size for tile collision test*/
+    tileMap=new TileMap(stateData.tileSize, 100, 100, "./assets/tiles/tilesheet1.png"); //normal game map
+    //tileMap=new TileMap(stateData.tileSize, 4, 4, "Google_tests/gtest_assets/GrassTestTile.png"); /*test tile sheet and size for world-bounds test*/
+    //tileMap=new TileMap(stateData.tileSize, 6, 6, "Google_tests/gtest_assets/GrassTestTile.png"); /*test tile sheet and size for tile collision test*/
 }
 void EditorState::initGui() {
     selectorRect.setSize(sf::Vector2f(stateData.tileSize,stateData.tileSize));
@@ -74,24 +74,24 @@ void EditorState::initGui() {
     selectorRect.setTextureRect(textureRect);
 }
 void EditorState::initView() {
-    this->view.setSize(sf::Vector2f(static_cast<float>(stateData.gxSettings->resolution.width),
+    view.setSize(sf::Vector2f(static_cast<float>(stateData.gxSettings->resolution.width),
                                     static_cast<float>(stateData.gxSettings->resolution.height)));
-    this->view.setCenter(static_cast<float>(stateData.gxSettings->resolution.width)/2.f,
+    view.setCenter(static_cast<float>(stateData.gxSettings->resolution.width)/2.f,
                          static_cast<float>(stateData.gxSettings->resolution.height)/2.f);
 }
 //rendering functions
 void EditorState::render(sf::RenderTarget *target) {
     if(!target)
-        target=this->window;
+        target=window;
     target->setView(view);
-    tileMap->render(*target);
+    tileMap->render(*target,true);
 
-    target->setView(this->window->getDefaultView());
+    target->setView(window->getDefaultView());
     renderButtons(*target);
     renderGui(*target);
     if(paused){
-        target->setView(this->window->getDefaultView());
-        this->pmenu->render(*target);
+        target->setView(window->getDefaultView());
+        pmenu->render(*target);
     }
 }
 void EditorState::renderButtons(sf::RenderTarget &target) {
@@ -99,24 +99,25 @@ void EditorState::renderButtons(sf::RenderTarget &target) {
         it.second->render(target);
     }
 }
+
 void EditorState::renderGui(sf::RenderTarget &target){
-    target.setView(this->view);
-    target.draw(this->selectorRect);
-    target.setView(this->view);
+    target.setView(view);
+    target.draw(selectorRect);
+    target.setView(view);
     target.draw(cursorText);
 }
 //update functions
 void EditorState::updatePMenuButtons() {//for pause state
-    if(this->pmenu->isButtonPressed("QUIT"))
+    if(pmenu->isButtonPressed("QUIT"))
         endState();
-    if(this->pmenu->isButtonPressed("SAVE"))
+    if(pmenu->isButtonPressed("SAVE"))
         tileMap->saveToFile("assets/maps/map1.txt"); //normal map
         //tileMap->saveToFile("Google_tests/gtest_assets/worldboundTestMap.txt");
         //tileMap->saveToFile("Google_tests/gtest_assets/tileCollisionTestMap.txt");
-    if(this->pmenu->isButtonPressed("LOAD"))
-        //tileMap->loadFromFile("assets/maps/map1.txt");
+    if(pmenu->isButtonPressed("LOAD"))
+        tileMap->loadFromFile("assets/maps/map1.txt");
         //tileMap->loadFromFile("Google_tests/gtest_assets/worldboundTestMap.txt");
-        tileMap->loadFromFile("Google_tests/gtest_assets/tileCollisionTestMap.txt");
+        //tileMap->loadFromFile("Google_tests/gtest_assets/tileCollisionTestMap.txt");
 }
 void EditorState::updateButtons() {//making them clickable
     for(auto &it: this->buttons){
@@ -167,14 +168,14 @@ void EditorState::updateEditorInput(const float &dt) {
             textureRect.top-=100;
         }
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("TOGGLE_COLLISION")))&& this->getKeyTime()){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("TOGGLE_COLLISION")))&& getKeyTime()){
         if(this->collision)
             this->collision=false;
         else
             this->collision=true;
-    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("INCREASE_TYPE")))&& this->getKeyTime()){
+    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("INCREASE_TYPE")))&& getKeyTime()){
         this->type++;
-    }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("DECREASE_TYPE")))&& this->getKeyTime()){
+    }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("DECREASE_TYPE")))&& getKeyTime()){
         if(this->type>0)
             this->type--;
     }
@@ -196,16 +197,16 @@ void EditorState::updateGui(){
     cursorText.setString(ss.str());
 }
 void EditorState::update(const float &dt) {
-    this->updateMousePosition(&view);
-    this->updateKeyTime(dt);
-    this->updateInput(dt);
-    if(!this->paused){//unpaused
+    updateMousePosition(&view);
+    updateKeyTime(dt);
+    updateInput(dt);
+    if(!paused){//unpaused
         updateButtons();
         updateGui();
         updateEditorInput(dt);
     }else{//paused state
-        this->pmenu->update(this->mouseposWindow);
-        this->updatePMenuButtons();
+        pmenu->update(this->mouseposWindow);
+        updatePMenuButtons();
     }
 }
 //other functions

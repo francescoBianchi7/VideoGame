@@ -11,8 +11,8 @@ private:
     float tileSizeF;
     int tileSizeI;
     int layers;
-    sf::Vector2u mapSizeGrid;//grid
-    sf::Vector2f MapSizeF;//to get limits for collisions
+    sf::Vector2i mapSizeGrid;//grid
+    sf::Vector2f MapSizeF;//to get limits for World bound collisions
     sf::Texture tileTextureSheet;
     std::string textureFile;
     sf::RectangleShape collisionBox;
@@ -23,10 +23,11 @@ public:
     virtual ~TileMap();
     //getter
     const sf::Texture* getTileSheet();
-    Tile& getTileFromMap(int x,int y);
+    sf::Vector2i getMapSizeI() const;
+    sf::Vector2f getMapSizeF() const;
     //functions
     void update();
-    void render(sf::RenderTarget & target, Entity* entity=nullptr);
+    void render(sf::RenderTarget & target,const bool showCollision=false, Entity* entity=nullptr);
     void addTile(unsigned x,unsigned y,unsigned z,sf::IntRect& textureRect,bool& collision,short& type);
     void removeTile(unsigned x,unsigned y,unsigned z);
     void updateCollision(Entity* entity,const float &dt);

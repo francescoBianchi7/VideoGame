@@ -28,6 +28,7 @@ public:
     void createAnimationComponent(sf::Texture &textureSheet);
     //Getter
     virtual const sf::Vector2f& getPosition() const;
+    virtual sf::Vector2f getCenter() const;
     virtual sf::Vector2i getGridPosition(const int tileSizeI);
     virtual sf::FloatRect getGlobalBounds();
     virtual sf::FloatRect getNextPositionBounds(const float &dt) const;
@@ -43,8 +44,8 @@ public:
     virtual void stopVelocityY();
     //FUNCTIONS
     virtual void move(const float&dt,float x,float y);
-    virtual void update(const float& dt);
-    virtual void render(sf::RenderTarget& target);
+    virtual void update(const float& dt, sf::Vector2f mouseposView)=0;
+    virtual void render(sf::RenderTarget& target,const bool showHitbox=false)=0;
 
 };
 

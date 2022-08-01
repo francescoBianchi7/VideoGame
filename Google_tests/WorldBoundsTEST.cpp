@@ -11,7 +11,7 @@ class WorldBoundsFixture : public ::testing::Test {
 
 protected:
     virtual void SetUp(){
-        gc.setPosition(0,0);
+        //gc.setPosition(0,0);
         tileMap->loadFromFile("Google_tests/gtest_assets/worldboundTestMap.txt");
         this->dt=this->dtClock.restart().asSeconds();
         mapSizeF.x=50.f*4;
@@ -20,7 +20,7 @@ protected:
     }
     //GameCharacter gc;
     sf::Vector2f mapSizeF;
-    Entity gc;
+    //Entity gc;
     sf::Sprite sprite;
     sf::Texture texture;
     float dt;
@@ -30,7 +30,7 @@ protected:
 };
 
 TEST_F(WorldBoundsFixture, WorldBoundsTest) {
-   Entity gc;
+   //Entity gc;
    //dt=this->dtClock.restart().asSeconds();
    gc1->setPosition(-1,-1);
    ASSERT_EQ(-1,gc1->getPositionX());

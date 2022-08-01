@@ -70,6 +70,16 @@ MovementComponent* Entity::getMovementComponent() {
 HitboxComponent* Entity::getHitboxComponent() {
     return hitboxComponent;
 }
+sf::Vector2f Entity::getCenter() const
+{
+    if (this->hitboxComponent)
+        return hitboxComponent->getPosition() +sf::Vector2f(hitboxComponent->getGlobalBounds().width / 2.f,
+                                            hitboxComponent->getGlobalBounds().height / 2.f);
+
+    return sprite.getPosition() + sf::Vector2f(sprite.getGlobalBounds().width / 2.f,
+                                sprite.getGlobalBounds().height / 2.f);
+}
+
 //SETTER
 void Entity::setPosition(const float x,const float y) {
     if(this->hitboxComponent)
@@ -94,19 +104,20 @@ void Entity::stopVelocity() {
 }
 //FUNCTIONS
 
-void Entity::update(const float& dt ) {
+void Entity::update(const float& dt,sf::Vector2f mouseposView ) {
     if(movementComponent)
         movementComponent->update(dt);
 }
+
 void Entity::move(const float&dt,float dir_x, float dir_y) {
-    if(this->movementComponent){
-        this->movementComponent->move(dt,dir_x,dir_y);//sets velocity
+    if(movementComponent){
+        movementComponent->move(dt,dir_x,dir_y);//sets velocity
     }
 }
-void Entity::render(sf::RenderTarget& target) {
+void Entity::render(sf::RenderTarget& target,const bool showHitbox) {
     target.draw(sprite);
-    if(this->hitboxComponent)
-        this->hitboxComponent->render(target);
+    if(hitboxComponent && showHitbox)
+        hitboxComponent->render(target);
 }
 
 const sf::Vector2f &Entity::getVelocity() {

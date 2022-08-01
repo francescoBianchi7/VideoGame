@@ -10,6 +10,7 @@ class StateData{//class used to make it simplier to pass data between various st
 public:
     StateData(){}
     //Vars
+
     GSettings* gxSettings;
     float tileSize;
     sf::RenderWindow* window;

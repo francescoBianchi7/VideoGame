@@ -1,9 +1,7 @@
-//
-// Created by bianc on 05/12/2021.
-//
 #include "PreCompHeaders.h"
 #include "GameState.h"
-
+//
+//INIT FUNCTIONS
 void GameState::initDelayedRender() {
     renderTexture.create(stateData.gxSettings->resolution.width,
                          stateData.gxSettings->resolution.height);//empty texture size of window
@@ -29,13 +27,11 @@ void GameState::initKeybinds() {
         std::string key=" ";
         std::string key2=" ";
         while(ifs >> key >> key2){
-            keybinds[key]=this->supportedKeys->at(key2);
+            this->keybinds[key]=this->supportedKeys->at(key2);
         }
     }
     ifs.close();
 }
-//
-//INIT FUNCTIONS
 void GameState::initFonts() {
     if(!this->font.loadFromFile("assets/fonts/Amarante.ttf"))
     {
@@ -75,24 +71,25 @@ GameState::GameState(StateData &stateData)
 }
 
 GameState::~GameState() {
-    delete this->player;
+    delete player;
     delete this->pmenu;
     delete tileMap;
+
 }
 //
 //RENDER FUNCTIONS
 void GameState::render(sf::RenderTarget* target) {
     if(!target)
-        target= this->window;
+        target= window;
 
-    this->renderTexture.clear();
-    this->renderTexture.setView(this->view);
-    tileMap->render(renderTexture, this->player);
-    player->render(renderTexture);
+    renderTexture.clear();
+    renderTexture.setView(view);
+    tileMap->render(renderTexture,false, player);
+    player->render(renderTexture,false);
     if(paused)
     {
         renderTexture.setView(renderTexture.getDefaultView());
-        this->pmenu->render(renderTexture);
+        pmenu->render(renderTexture);
     }
     //FINAL RENDER
     this->renderTexture.display();
@@ -102,10 +99,51 @@ void GameState::render(sf::RenderTarget* target) {
 //
 //UPDATE FUNCTIONS
 void GameState::updatePlayerInput(const float &dt) {
-    player->update(dt);
+    //Update player input
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_LEFT"))))
+        player->move(dt,-1.f, 0.f);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_RIGHT"))))
+        player->move(dt,1.f, 0.f);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_UP"))))
+        player->move(dt,0.f, -1.f);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_DOWN"))))
+        player->move(dt,0.f, 1.f);
+    if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_LEFT"))) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_RIGHT")))
+    && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_UP"))) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_DOWN")))) {
+        player->stopVelocity();
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        player->getWeapon().shoot(mouseposView,dt);
+        //bullets.emplace_back(4.f,500.f,player->getWeapon().getMuzzlePosition());
+    }
+}
+void GameState::updatePlayer(const float & dt) {
+    player->update(dt,mouseposView);
+}
+void GameState::updateInput(const float &dt) {
+    //pause& unpause
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getKeyTime()){
+        if(!paused)
+            pauseState();
+        else
+            unpauseState();
+    }
 }
 void GameState::updateView(const float &dt) {
-    this->view.setCenter(std::floor(player->getPosition().x),std::floor(player->getPosition().y));
+    view.setCenter(std::floor(player->getPosition().x+(static_cast<float>(this->mouseposWindow.x)-static_cast<float>(stateData.gxSettings->resolution.width/2))/5.f),
+                         std::floor(player->getPosition().y+(static_cast<float>(this->mouseposWindow.y)-static_cast<float>(stateData.gxSettings->resolution.height/2))/5.f));
+
+    if(view.getCenter().x - view.getSize().x/2.f<0.f)
+        view.setCenter(0.f + view.getSize().x/2.f,view.getCenter().y);
+    else if(view.getCenter().x - view.getSize().x/2.f>tileMap->getMapSizeF().x)
+        view.setCenter(tileMap->getMapSizeF().x- view.getSize().x/2.f,view.getCenter().y);
+    if(view.getCenter().y - view.getSize().y/2.f<0.f)
+        view.setCenter(view.getCenter().x,0.f + view.getSize().y/2.f);
+    else if(view.getCenter().y - view.getSize().y/2.f>tileMap->getMapSizeF().y)
+        view.setCenter(view.getCenter().x,0.f +tileMap->getMapSizeF().y- view.getSize().x);
+
+    viewGridPos.x=static_cast<int>(view.getCenter().x/stateData.tileSize);
+    viewGridPos.y=static_cast<int>(view.getCenter().y/stateData.tileSize);
 }
 void GameState::updateTileMap(const float &dt) {
     tileMap->update();
@@ -115,35 +153,27 @@ void GameState::update(const float& dt) {
     updateMousePosition(&view);
     updateKeyTime(dt);
     updateInput(dt);
-    if(!this->paused){
-        this->updateView(dt);
-        this->updatePlayerInput(dt);
-        player->update(dt);
-        this->updateTileMap(dt);
+    if(!paused){
+        updatePlayerInput(dt);
+        updatePlayer(dt);
+        updateTileMap(dt);
+        updateView(dt);
     }else{//paused state
-        pmenu->update(this->mouseposWindow);
-        this->updatePMenuButtons();
-    }
-}
-void GameState::updateInput(const float &dt) {
-    //pause& unpause
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getKeyTime()){
-        if(!paused)
-            this->pauseState();
-        else
-            this->unpauseState();
+        pmenu->update(mouseposWindow);
+        updatePMenuButtons();
     }
 }
 void GameState::updatePMenuButtons() {
     //quit from state
     if(this->pmenu->isButtonPressed("QUIT"))
-        this->endState();
+        endState();
 }
 
 void GameState::endState() {
-    this->quit=true;
+    quit=true;
     std::cout<<"ending gamestate"<<"\n";
 }
+
 
 
 
