@@ -10,14 +10,26 @@
 #include "Bullet.h"
 
 class Rifle: public Gun {
+private:
+    sf::Clock timeSinceLastShot;
+    float burstTime;
+    int shotcounter;
+    bool burst;
+    bool hasShot;
+    sf::Time shotIntermission=sf::seconds(0.3f);
 public:
     //CON & DES
     Rifle();
     //GETTER & SETTER
-    const sf::Vector2f& getMuzzlePosition() const;
+    void setAimDirection(sf::Vector2f& mousePosView);
+    sf::Vector2f getMuzzlePos();
+    sf::Vector2f& getAimDirectionNorm();
     //FUNCTION
-    void shoot(sf::Vector2f&mousePosView,const float& dt);
+    bool canShoot() const;
+    void shoot();
     void update(sf::Vector2f& mousePosView,sf::Vector2f center) override;
+    void updateBurst();
+    void updateShotCounter();
     void render(sf::RenderTarget& target);
 };
 

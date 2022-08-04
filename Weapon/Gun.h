@@ -12,12 +12,14 @@ protected:
     sf::IntRect wpnRect;
     sf::Sprite wpnSprite;
     sf::Vector2f muzzle;
+    sf::Vector2f aimDir;
+    sf::Vector2f aimDirNorm;
     int damageMin;
     int damageMax;
 public:
     Gun();
     virtual ~Gun();
-    virtual void shoot(sf::Vector2f& mousePosView, const float& dt)=0;
+    virtual void shoot()=0;
     virtual void update(sf::Vector2f& mousePosView, sf::Vector2f center)=0;
     virtual void render(sf::RenderTarget& target)=0;
 

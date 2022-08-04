@@ -21,6 +21,10 @@ private:
     sf::RenderTexture renderTexture; //renders all tiles in a canvas
     sf::Sprite renderSprite; // paste the canvas on window
 
+    //BULLET
+    Bullet b1;
+    std::vector<Bullet> bullets;
+
     PauseMenu *pmenu;
     sf::Font font;
 
@@ -31,6 +35,7 @@ private:
     //Initialization Functions
     void initDelayedRender();//to render faster
     void initView();
+    void initBullets();
     void initKeybinds() override;
     void initTextures();
     void initFonts();

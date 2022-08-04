@@ -7,22 +7,24 @@
 
 #include "PreCompHeaders.h"
 class Bullet {
+private:
 
-    sf::CircleShape bulletShape;
-    sf::Vector2f direction;
-    sf::Vector2f startingPos;
     float range;
     float speed;
 
 public:
+    sf::CircleShape bulletShape;
+    sf::Vector2f direction;
+    sf::Vector2f startingPos;
     //CON & DES
-    Bullet(float radius,float speed,sf::Vector2f startingPos);
+    Bullet(float radius=5.f,float speed=15.f);
     virtual ~Bullet();
     //SETTER
     void setDirection(sf::Vector2f& mousePosView);
-    void setStartingPosition(sf::Vector2f position);
+    void setStartingPosition(float x,float y);
     //GETTER
     float getDistanceTravelled() const;
+    float getRange();
     //FUNCTIONS
     void update(const float& dt);
     void render(sf::RenderTarget& target);

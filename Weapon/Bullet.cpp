@@ -6,12 +6,12 @@
 
 #include <cmath>
 
-Bullet::Bullet(float radius,float speed,sf::Vector2f startingPos) {
+Bullet::Bullet(float radius,float speed) {
     this->speed=speed;
-    range=100.f;
+    range=1000.f;
     bulletShape.setRadius(radius);
     bulletShape.setFillColor(sf::Color::Yellow);
-    bulletShape.setPosition(startingPos);
+    //bulletShape.setPosition(startingPos);
 }
 
 Bullet::~Bullet() {
@@ -21,9 +21,9 @@ Bullet::~Bullet() {
 void Bullet::setDirection(sf::Vector2f &mousePosView) {
     direction=mousePosView/static_cast<float>(std::sqrt((mousePosView.x*mousePosView.x)+(mousePosView.y*mousePosView.y)));
 }
-void Bullet::setStartingPosition(sf::Vector2f position) {
-    bulletShape.setPosition(position);
-    this->startingPos=position;
+void Bullet::setStartingPosition(float x,float y) {
+    bulletShape.setPosition(x,y);
+    this->startingPos=sf::Vector2f(x,y);
 }
 //GETTER
 float Bullet::getDistanceTravelled() const {
@@ -32,13 +32,17 @@ float Bullet::getDistanceTravelled() const {
 }
 //FUNCTIONS
 void Bullet::update(const float &dt) {
-    if(this->getDistanceTravelled()>range)
-        delete this;
-    else
+    //if(this->getDistanceTravelled()>range)
+        //delete this;
+    //else
         bulletShape.move(direction*speed);
 }
 
 void Bullet::render(sf::RenderTarget &target) {
     target.draw(bulletShape);
+}
+
+float Bullet::getRange() {
+    return range;
 }
 

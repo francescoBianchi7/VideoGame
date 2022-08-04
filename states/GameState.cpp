@@ -17,6 +17,11 @@ void GameState::initView() {
                                       static_cast<float>(stateData.gxSettings->resolution.height)/2.f));
 
 }
+
+void GameState::initBullets() {
+    bullets.push_back(b1);
+}
+
 void GameState::initKeybinds() {
     /*this function permits to assign the keybinds for a state based on
      * the available supportedkeys,by reading them from a file
@@ -68,13 +73,15 @@ GameState::GameState(StateData &stateData)
     initPauseMenu();
     initTileMap();
     initPlayer();
+    //initBullets();
 }
 
 GameState::~GameState() {
     delete player;
     delete this->pmenu;
     delete tileMap;
-
+    for(auto bullet:bullets)
+        delete &bullet;
 }
 //
 //RENDER FUNCTIONS
@@ -86,6 +93,8 @@ void GameState::render(sf::RenderTarget* target) {
     renderTexture.setView(view);
     tileMap->render(renderTexture,false, player);
     player->render(renderTexture,false);
+    for(auto & bullet : bullets)
+        bullet.render(renderTexture);
     if(paused)
     {
         renderTexture.setView(renderTexture.getDefaultView());
@@ -113,7 +122,17 @@ void GameState::updatePlayerInput(const float &dt) {
         player->stopVelocity();
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-        player->getWeapon().shoot(mouseposView,dt);
+        if(bullets.size()<100){
+            if(player->getWeapon().canShoot()){
+                player->getWeapon().shoot();
+                b1.setStartingPosition(player->getWeapon().getMuzzlePos().x,player->getWeapon().getMuzzlePos().y);
+                b1.setDirection(player->getWeapon().getAimDirectionNorm());
+                bullets.emplace_back(b1);
+            }
+        }
+        else{
+            bullets.clear();
+        }
         //bullets.emplace_back(4.f,500.f,player->getWeapon().getMuzzlePosition());
     }
 }
@@ -153,6 +172,17 @@ void GameState::update(const float& dt) {
     updateMousePosition(&view);
     updateKeyTime(dt);
     updateInput(dt);
+    for(size_t i=0;i<bullets.size();i++){
+        if(bullets[i].getDistanceTravelled()>bullets[i].getRange()||
+                    bullets[i].bulletShape.getPosition().x<0.f ||
+                    bullets[i].bulletShape.getPosition().x>tileMap->getMapSizeF().x ||
+                    bullets[i].bulletShape.getPosition().y<0.f ||
+                    bullets[i].bulletShape.getPosition().y>tileMap->getMapSizeF().y){
+            bullets.erase(bullets.begin()+i);
+        }
+        bullets[i].update(dt);
+    }
+    std::cout<<bullets.size()<<"\n";
     if(!paused){
         updatePlayerInput(dt);
         updatePlayer(dt);
@@ -173,7 +203,6 @@ void GameState::endState() {
     quit=true;
     std::cout<<"ending gamestate"<<"\n";
 }
-
 
 
 
