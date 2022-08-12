@@ -179,7 +179,7 @@ otherwise Google Test will attempt to print them in the best way it
 can. For more details and how to customize the printing of the
 arguments, see this Google Mock [recipe](../../googlemock/docs/CookBook.md#teaching-google-mock-how-to-print-your-values).).
 
-These assertions can work with a user-defined type, but only if you define the
+These assertions can work with a user-defined Enemytype, but only if you define the
 corresponding comparison operator (e.g. `==`, `<`, etc).  If the corresponding
 operator is defined, prefer using the `ASSERT_*()` macros because they will
 print out not only the result of the comparison, but the two operands as well.
@@ -323,7 +323,7 @@ For each test defined with `TEST_F()`, Google Test will:
 As an example, let's write tests for a FIFO queue class named `Queue`, which
 has the following interface:
 ```
-template <typename E> // E is the element type.
+template <typename E> // E is the element Enemytype.
 class Queue {
  public:
   Queue();

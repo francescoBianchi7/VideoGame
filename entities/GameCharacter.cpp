@@ -9,17 +9,15 @@ GameCharacter::GameCharacter() {
     this->createMovementComponent(speed);
     this->setPosition(0,0);
 }
+
 GameCharacter::GameCharacter( float x, float y, sf::Texture &textureSheet){
     initVariables();
     createMovementComponent(speed);
     createAnimationComponent(textureSheet);
-    createHitboxComponent(20.f,20.f,35.f,85.f);
+    initAnimations();
+    sprite.setScale(1/1.3,1/1.5);
+    createHitboxComponent(10.f,10.f,sprite.getGlobalBounds().width-15.f,sprite.getGlobalBounds().height-12.f);
     setPosition(x,y);
-    this->animationComponent->addAnimation("IDLE_DOWN",10.f,0,0,0,0,72,109);
-    this->animationComponent->addAnimation("WALK_DOWN",10.f,0,0,3,0,72,109);
-    this->animationComponent->addAnimation("WALK_UP",10.f,0,3,3,3,72,109);
-    this->animationComponent->addAnimation("WALK_LEFT",10.f,0,1,3,1,72,109);
-    this->animationComponent->addAnimation("WALK_RIGHT",10.f,0,2,3,2,72,109);
 }
 
 GameCharacter::~GameCharacter()= default;
@@ -28,10 +26,19 @@ GameCharacter::~GameCharacter()= default;
 void GameCharacter::initVariables() {
     speed=300.f;
 }
+void GameCharacter::initAnimations() {
+    this->animationComponent->addAnimation("IDLE_DOWN",10.f,0,0,0,0,72,109);
+    this->animationComponent->addAnimation("WALK_DOWN",10.f,0,0,3,0,72,109);
+    this->animationComponent->addAnimation("WALK_UP",10.f,0,3,3,3,72,109);
+    this->animationComponent->addAnimation("WALK_LEFT",10.f,0,1,3,1,72,109);
+    this->animationComponent->addAnimation("WALK_RIGHT",10.f,0,2,3,2,72,109);
+}
+
 Rifle GameCharacter::getWeapon() {
     return rifle;
 }
 void GameCharacter::initComponents(){}
+
 void GameCharacter::update(const float &dt,sf::Vector2f mouseposView) {
    //updates which animation is playing and components
     movementComponent->update(dt);

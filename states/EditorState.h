@@ -20,6 +20,8 @@ private:
     std::map<std::string, GUI::Button*> buttons;
     sf::RectangleShape selectorRect;//shows which tile you are about to place
     sf::IntRect textureRect; //tileTexture
+    sf::IntRect resizedTextureRect;
+    int layer;
 
     bool collision=false;
     short type;
@@ -38,6 +40,7 @@ private:
 public:
     explicit EditorState(StateData &stateData);
     ~EditorState() override;
+
     //render functions
     void render(sf::RenderTarget* target) override;
     void renderButtons(sf::RenderTarget& target);

@@ -222,7 +222,7 @@ TEST(IteratorTraitsTest, WorksForPointerToConst) {
 }
 
 // Tests that the element_type typedef is available in scoped_ptr and refers
-// to the parameter type.
+// to the parameter Enemytype.
 TEST(ScopedPtrTest, DefinesElementType) {
   StaticAssertTypeEq<int, ::testing::internal::scoped_ptr<int>::element_type>();
 }

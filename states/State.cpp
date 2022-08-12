@@ -41,8 +41,8 @@ void State::updateMousePosition(sf::View* view) {//continuosly checks mouse pos
     if(view)
         this->window->setView(*view);
     this->mouseposView=this->window->mapPixelToCoords(sf::Mouse::getPosition(*window));
-    mousePosGrid=sf::Vector2u(static_cast<unsigned>(mouseposView.x)/static_cast<unsigned>(tileSize),
-                              static_cast<unsigned>(mouseposView.y)/static_cast<unsigned>(tileSize));
+    mousePosGrid=sf::Vector2i(static_cast<int>(mouseposView.x)/static_cast<int>(tileSize/2.f),
+                              static_cast<int>(mouseposView.y)/static_cast<int>(tileSize/2.f));
     this->window->setView(this->window->getDefaultView());
 }
 void State::updateKeyTime(const float &dt) {

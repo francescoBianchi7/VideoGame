@@ -49,6 +49,7 @@ void GameState::initTextures() {
 }
 void GameState::initPlayer() {
     player= new GameCharacter(1, 1, this->textures["PLAYER_SHEET"]);
+
 }
 void GameState::initPauseMenu() {
     pmenu=new PauseMenu(*window,this->font);
@@ -74,10 +75,13 @@ GameState::GameState(StateData &stateData)
     initTileMap();
     initPlayer();
     //initBullets();
+    //temporary
+    //enemy=new Enemy(200.f,200.f,textures["PLAYER_SHEET"]);
 }
 
 GameState::~GameState() {
     delete player;
+    //delete enemy;
     delete this->pmenu;
     delete tileMap;
     for(auto bullet:bullets)
@@ -91,8 +95,9 @@ void GameState::render(sf::RenderTarget* target) {
 
     renderTexture.clear();
     renderTexture.setView(view);
-    tileMap->render(renderTexture,false, player);
-    player->render(renderTexture,false);
+    tileMap->render(renderTexture,player->getGridPosition(static_cast<int>(stateData.tileSize)),false);
+    player->render(renderTexture,true);
+    //enemy->render(renderTexture,false);
     for(auto & bullet : bullets)
         bullet.render(renderTexture);
     if(paused)
@@ -165,9 +170,10 @@ void GameState::updateView(const float &dt) {
     viewGridPos.y=static_cast<int>(view.getCenter().y/stateData.tileSize);
 }
 void GameState::updateTileMap(const float &dt) {
-    tileMap->update();
-    tileMap->updateCollision(player,dt);
+    tileMap->update(player, dt);
+    //tileMap->update(enemy,dt);
 }
+
 void GameState::update(const float& dt) {
     updateMousePosition(&view);
     updateKeyTime(dt);
@@ -188,6 +194,8 @@ void GameState::update(const float& dt) {
         updatePlayer(dt);
         updateTileMap(dt);
         updateView(dt);
+        //enemy->update(dt,mouseposView);
+        //enemy->move(dt,1.f,0.f);
     }else{//paused state
         pmenu->update(mouseposWindow);
         updatePMenuButtons();

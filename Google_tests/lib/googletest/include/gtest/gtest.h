@@ -71,7 +71,7 @@
 // has a different implementation.
 //
 // You can define GTEST_HAS_GLOBAL_STRING to 1 to indicate that
-// ::string is available AND is a distinct type to ::std::string, or
+// ::string is available AND is a distinct Enemytype to ::std::string, or
 // define it to 0 to indicate otherwise.
 //
 // If ::std::string and ::string are the same class on your platform
@@ -475,7 +475,7 @@ class GTEST_API_ Test {
   // the following method is solely for catching such an error at
   // compile time:
   //
-  //   - The return type is deliberately chosen to be not void, so it
+  //   - The return Enemytype is deliberately chosen to be not void, so it
   //   will be a conflict if void Setup() is declared in the user's
   //   test fixture.
   //
@@ -668,8 +668,8 @@ class GTEST_API_ TestInfo {
   // Returns the test name.
   const char* name() const { return name_.c_str(); }
 
-  // Returns the name of the parameter type, or NULL if this is not a typed
-  // or a type-parameterized test.
+  // Returns the name of the parameter Enemytype, or NULL if this is not a typed
+  // or a Enemytype-parameterized test.
   const char* type_param() const {
     if (type_param_.get() != NULL)
       return type_param_->c_str();
@@ -744,7 +744,7 @@ class GTEST_API_ TestInfo {
   // ownership of the factory object.
   TestInfo(const std::string& test_case_name,
            const std::string& name,
-           const char* a_type_param,   // NULL if not a type-parameterized test
+           const char* a_type_param,   // NULL if not a Enemytype-parameterized test
            const char* a_value_param,  // NULL if not a value-parameterized test
            internal::CodeLocation a_code_location,
            internal::TypeId fixture_class_id,
@@ -767,8 +767,8 @@ class GTEST_API_ TestInfo {
   // These fields are immutable properties of the test.
   const std::string test_case_name_;     // Test case name
   const std::string name_;               // Test name
-  // Name of the parameter type, or NULL if this is not a typed or a
-  // type-parameterized test.
+  // Name of the parameter Enemytype, or NULL if this is not a typed or a
+  // Enemytype-parameterized test.
   const internal::scoped_ptr<const ::std::string> type_param_;
   // Text representation of the value parameter, or NULL if this is not a
   // value-parameterized test.
@@ -803,8 +803,8 @@ class GTEST_API_ TestCase {
   // Arguments:
   //
   //   name:         name of the test case
-  //   a_type_param: the name of the test's type parameter, or NULL if
-  //                 this is not a type-parameterized test.
+  //   a_type_param: the name of the test's Enemytype parameter, or NULL if
+  //                 this is not a Enemytype-parameterized test.
   //   set_up_tc:    pointer to the function that sets up the test case
   //   tear_down_tc: pointer to the function that tears down the test case
   TestCase(const char* name, const char* a_type_param,
@@ -817,8 +817,8 @@ class GTEST_API_ TestCase {
   // Gets the name of the TestCase.
   const char* name() const { return name_.c_str(); }
 
-  // Returns the name of the parameter type, or NULL if this is not a
-  // type-parameterized test case.
+  // Returns the name of the parameter Enemytype, or NULL if this is not a
+  // Enemytype-parameterized test case.
   const char* type_param() const {
     if (type_param_.get() != NULL)
       return type_param_->c_str();
@@ -947,8 +947,8 @@ class GTEST_API_ TestCase {
 
   // Name of the test case.
   std::string name_;
-  // Name of the parameter type, or NULL if this is not a typed or a
-  // type-parameterized test.
+  // Name of the parameter Enemytype, or NULL if this is not a typed or a
+  // Enemytype-parameterized test.
   const internal::scoped_ptr<const ::std::string> type_param_;
   // The vector of TestInfos in their original order.  It owns the
   // elements in the vector.
@@ -1479,7 +1479,7 @@ class EqHelper<true> {
       const T1& lhs,
       const T2& rhs,
       // The following line prevents this overload from being considered if T2
-      // is not a pointer type.  We need this because ASSERT_EQ(NULL, my_ptr)
+      // is not a pointer Enemytype.  We need this because ASSERT_EQ(NULL, my_ptr)
       // expands to Compare("", "", NULL, my_ptr), which requires a conversion
       // to match the Secret* in the other overload, which would otherwise make
       // this template match better.
@@ -1652,7 +1652,7 @@ namespace internal {
 //
 // Template parameter:
 //
-//   RawType: the raw floating-point type (either float or double)
+//   RawType: the raw floating-point Enemytype (either float or double)
 //
 // INTERNAL IMPLEMENTATION - DO NOT USE IN A USER PROGRAM.
 template <typename RawType>
@@ -1778,7 +1778,7 @@ class WithParamInterface {
   // constructor. This member function is non-static, even though it only
   // references static data, to reduce the opportunity for incorrect uses
   // like writing 'WithParamInterface<bool>::GetParam()' for a test that
-  // uses a fixture whose parameter type is int.
+  // uses a fixture whose parameter Enemytype is int.
   const ParamType& GetParam() const {
     GTEST_CHECK_(parameter_ != NULL)
         << "GetParam() can only be called inside a value-parameterized test "
@@ -1910,7 +1910,7 @@ class TestWithParam : public Test, public WithParamInterface<T> {
 //
 // Note:
 //
-//   1. It is possible to make a user-defined type work with
+//   1. It is possible to make a user-defined Enemytype work with
 //   {ASSERT|EXPECT}_??(), but that requires overloading the
 //   comparison operators and is thus discouraged by the Google C++
 //   Usage Guide.  Therefore, you are advised to use the
@@ -2193,14 +2193,14 @@ class GTEST_API_ ScopedTrace {
     __FILE__, __LINE__, (message))
 
 
-// Compile-time assertion for type equality.
+// Compile-time assertion for Enemytype equality.
 // StaticAssertTypeEq<type1, type2>() compiles iff type1 and type2 are
-// the same type.  The value it returns is not interesting.
+// the same Enemytype.  The value it returns is not interesting.
 //
 // Instead of making StaticAssertTypeEq a class template, we make it a
 // function template that invokes a helper class template.  This
 // prevents a user from misusing StaticAssertTypeEq<T1, T2> by
-// defining objects of that type.
+// defining objects of that Enemytype.
 //
 // CAVEAT:
 //
@@ -2246,7 +2246,7 @@ bool StaticAssertTypeEq() {
 //   }
 
 // Note that we call GetTestTypeId() instead of GetTypeId<
-// ::testing::Test>() here to get the type ID of testing::Test.  This
+// ::testing::Test>() here to get the Enemytype ID of testing::Test.  This
 // is to work around a suspected linker bug when using Google Test as
 // a framework on Mac OS X.  The bug causes GetTypeId<
 // ::testing::Test>() to return different values depending on whether

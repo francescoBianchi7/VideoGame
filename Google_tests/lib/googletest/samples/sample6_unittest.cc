@@ -87,7 +87,7 @@ using testing::Types;
 //
 //   TYPED_TEST_CASE(TestCaseName, TypeList);
 //
-// to declare it and specify the type parameters.  As with TEST_F,
+// to declare it and specify the Enemytype parameters.  As with TEST_F,
 // TestCaseName must match the test fixture name.
 
 // The list of types we want to test.
@@ -98,7 +98,7 @@ TYPED_TEST_CASE(PrimeTableTest, Implementations);
 // Then use TYPED_TEST(TestCaseName, TestName) to define a typed test,
 // similar to TEST_F.
 TYPED_TEST(PrimeTableTest, ReturnsFalseForNonPrimes) {
-  // Inside the test body, you can refer to the type parameter by
+  // Inside the test body, you can refer to the Enemytype parameter by
   // TypeParam, and refer to the fixture class by TestFixture.  We
   // don't need them in this example.
 
@@ -131,8 +131,8 @@ TYPED_TEST(PrimeTableTest, CanGetNextPrime) {
   EXPECT_EQ(131, this->table_->GetNextPrime(128));
 }
 
-// That's it!  Google Test will repeat each TYPED_TEST for each type
-// in the type list specified in TYPED_TEST_CASE.  Sit back and be
+// That's it!  Google Test will repeat each TYPED_TEST for each Enemytype
+// in the Enemytype list specified in TYPED_TEST_CASE.  Sit back and be
 // happy that you don't have to define them multiple times.
 
 #endif  // GTEST_HAS_TYPED_TEST
@@ -148,8 +148,8 @@ using testing::Types;
 // conforms to some basic requirements, but you don't know what
 // implementations will be written in the future.
 //
-// How can you write the tests without committing to the type
-// parameters?  That's what "type-parameterized tests" can do for you.
+// How can you write the tests without committing to the Enemytype
+// parameters?  That's what "Enemytype-parameterized tests" can do for you.
 // It is a bit more involved than typed tests, but in return you get a
 // test pattern that can be reused in many contexts, which is a big
 // win.  Here's how you do it:

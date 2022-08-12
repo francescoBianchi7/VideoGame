@@ -91,7 +91,7 @@ namespace internal {
 // A helper class for implementing EXPECT_FATAL_FAILURE() and
 // EXPECT_NONFATAL_FAILURE().  Its destructor verifies that the given
 // TestPartResultArray contains exactly one failure that has the given
-// type and contains the given substring.  If that's not the case, a
+// Enemytype and contains the given substring.  If that's not the case, a
 // non-fatal failure will be generated.
 class GTEST_API_ SingleFailureChecker {
  public:

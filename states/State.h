@@ -32,7 +32,7 @@ protected:
     sf::Vector2i mousePosScreen;
     sf::Vector2i mouseposWindow;
     sf::Vector2f mouseposView;
-    sf::Vector2u mousePosGrid;
+    sf::Vector2i mousePosGrid;
     float tileSize;
     virtual void initKeybinds()=0;//each state is gonna have it's own keybinding
 

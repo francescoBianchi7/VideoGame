@@ -50,7 +50,7 @@ TEST_F(TileCollisionFixture,RightCollision){
                       gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
      float preUpdate;
      preUpdate=gc1->getPositionX();
-     tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
     ASSERT_EQ(preUpdate,gc1->getPositionX());
 
      //bot side of character collides with collision tile
@@ -60,7 +60,7 @@ TEST_F(TileCollisionFixture,RightCollision){
      gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                       gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
      std::cout<<"pre update"<<gc1->getPositionX()<<"\n";
-     tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
      std::cout<<"post update"<<gc1->getPositionY()<<","<<gc1->getPositionX()<<"\n";
      ASSERT_EQ(100-gc1->getGlobalBounds().width,gc1->getPositionX());
 
@@ -71,7 +71,7 @@ TEST_F(TileCollisionFixture,RightCollision){
      gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                       gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
      std::cout<<"pre update"<<gc1->getPositionX()<<"\n";
-     tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
      std::cout<<"post update"<<gc1->getPositionY()<<"\n";
      ASSERT_EQ(100-gc1->getGlobalBounds().width,gc1->getPositionX());
 }
@@ -87,7 +87,7 @@ TEST_F(TileCollisionFixture,LeftCollision){
     float preUpdate;
     preUpdate=gc1->getPositionX();
 
-    tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
     std::cout<<"pre"<<preUpdate<<" and post"<<gc1->getPositionX()<<"\n";
     ASSERT_EQ(preUpdate,gc1->getPositionX());
 
@@ -98,7 +98,7 @@ TEST_F(TileCollisionFixture,LeftCollision){
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
     //std::cout<<"pre update"<<gc1->getPositionX()<<","<<gc1->getPositionY()<<"\n";
-    tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
     std::cout<<"post update"<<gc1->getPositionY()<<","<<gc1->getPositionX()<<"\n";
     ASSERT_EQ(200.f,gc1->getPositionX());
 
@@ -109,7 +109,7 @@ TEST_F(TileCollisionFixture,LeftCollision){
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
     //std::cout<<"pre update"<<gc1->getPositionX()<<","<<gc1->getPositionY()<<"\n";
-    tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
     std::cout<<"post update"<<gc1->getPositionY()<<","<<gc1->getPositionX()<<"\n";
     ASSERT_EQ(200.f,gc1->getPositionX());
 }
@@ -123,7 +123,7 @@ TEST_F(TileCollisionFixture,DownCollision){
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
     float preUpdate;
     preUpdate=gc1->getPositionY();
-    tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
     std::cout<<"pre"<<preUpdate<<" and post"<<gc1->getPositionY()<<"\n";
     ASSERT_EQ(preUpdate,gc1->getPositionY());
 
@@ -133,7 +133,7 @@ TEST_F(TileCollisionFixture,DownCollision){
     ASSERT_TRUE(gc1->getMovementComponent()->getVelocityY()>0.f);
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
-    tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
     std::cout<<"post update"<<gc1->getPositionY()<<","<<gc1->getPositionX()<<"\n";
     ASSERT_EQ(15.f,gc1->getPositionY());
 }
@@ -147,7 +147,7 @@ TEST_F(TileCollisionFixture,UpCollision){
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
     float preUpdate;
     preUpdate=gc1->getPositionY();
-    tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
     std::cout<<"pre"<<preUpdate<<" and post"<<gc1->getPositionY()<<"\n";
     ASSERT_EQ(preUpdate,gc1->getPositionY());
 
@@ -157,7 +157,7 @@ TEST_F(TileCollisionFixture,UpCollision){
     ASSERT_TRUE(gc1->getMovementComponent()->getVelocityY()<0.f);
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
-    tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
     std::cout<<"post update"<<gc1->getPositionY()<<","<<gc1->getPositionX()<<"\n";
     ASSERT_EQ(200.f,gc1->getPositionY());
 }

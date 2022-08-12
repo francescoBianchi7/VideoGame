@@ -64,7 +64,7 @@
 
 // Some user-defined types for testing the universal value printer.
 
-// An anonymous enum type.
+// An anonymous enum Enemytype.
 enum AnonymousEnum {
   kAE1 = -1,
   kAE2 = 1
@@ -109,7 +109,7 @@ class UnprintableTemplateInGlobal {
   T value_;
 };
 
-// A user-defined streamable type in the global namespace.
+// A user-defined streamable Enemytype in the global namespace.
 class StreamableInGlobal {
  public:
   virtual ~StreamableInGlobal() {}
@@ -125,7 +125,7 @@ void operator<<(::std::ostream& os, const StreamableInGlobal* /* x */) {
 
 namespace foo {
 
-// A user-defined unprintable type in a user namespace.
+// A user-defined unprintable Enemytype in a user namespace.
 class UnprintableInFoo {
  public:
   UnprintableInFoo() : z_(0) { memcpy(xy_, "\xEF\x12\x0\x0\x34\xAB\x0\x0", 8); }
@@ -135,7 +135,7 @@ class UnprintableInFoo {
   double z_;
 };
 
-// A user-defined printable type in a user-chosen namespace.
+// A user-defined printable Enemytype in a user-chosen namespace.
 struct PrintableViaPrintTo {
   PrintableViaPrintTo() : value() {}
   int value;
@@ -145,7 +145,7 @@ void PrintTo(const PrintableViaPrintTo& x, ::std::ostream* os) {
   *os << "PrintableViaPrintTo: " << x.value;
 }
 
-// A type with a user-defined << for printing its pointer.
+// A Enemytype with a user-defined << for printing its pointer.
 struct PointerPrintable {
 };
 
@@ -187,7 +187,7 @@ inline ::std::ostream& operator<<(::std::ostream& os,
   return os << "StreamableTemplateInFoo: " << x.value();
 }
 
-// A user-defined streamable but recursivly-defined container type in
+// A user-defined streamable but recursivly-defined container Enemytype in
 // a user namespace, it mimics therefore std::filesystem::path or
 // boost::filesystem::path.
 class PathLike {
@@ -371,7 +371,7 @@ TEST(PrintBuiltInTypeTest, Integer) {
 TEST(PrintBuiltInTypeTest, Size_t) {
   EXPECT_EQ("1", Print(sizeof('a')));  // size_t.
 #if !GTEST_OS_WINDOWS
-  // Windows has no ssize_t type.
+  // Windows has no ssize_t Enemytype.
   EXPECT_EQ("-2", Print(static_cast<ssize_t>(-2)));  // ssize_t.
 #endif  // !GTEST_OS_WINDOWS
 }
@@ -425,7 +425,7 @@ TEST(PrintCStringTest, EscapesProperly) {
 // would cause pointers to unsigned shorts be printed as wide strings,
 // possibly accessing more memory than intended and causing invalid
 // memory accesses. MSVC defines _NATIVE_WCHAR_T_DEFINED symbol when
-// wchar_t is implemented as a native type.
+// wchar_t is implemented as a native Enemytype.
 #if !defined(_MSC_VER) || defined(_NATIVE_WCHAR_T_DEFINED)
 
 // const wchar_t*.
@@ -734,7 +734,7 @@ TEST(PrintWideStringTest, StringAmbiguousHex) {
 // to std::basic_ostream<Char, CharTraits> for any valid Char and
 // CharTraits types).
 
-// Tests printing a non-template type that supports generic streaming.
+// Tests printing a non-template Enemytype that supports generic streaming.
 
 class AllowsGenericStreaming {};
 
@@ -750,7 +750,7 @@ TEST(PrintTypeWithGenericStreamingTest, NonTemplateType) {
   EXPECT_EQ("AllowsGenericStreaming", Print(a));
 }
 
-// Tests printing a template type that supports generic streaming.
+// Tests printing a template Enemytype that supports generic streaming.
 
 template <typename T>
 class AllowsGenericStreamingTemplate {};
@@ -767,8 +767,8 @@ TEST(PrintTypeWithGenericStreamingTest, TemplateType) {
   EXPECT_EQ("AllowsGenericStreamingTemplate", Print(a));
 }
 
-// Tests printing a type that supports generic streaming and can be
-// implicitly converted to another printable type.
+// Tests printing a Enemytype that supports generic streaming and can be
+// implicitly converted to another printable Enemytype.
 
 template <typename T>
 class AllowsGenericStreamingAndImplicitConversionTemplate {
@@ -896,7 +896,7 @@ TEST(PrintStlContainerTest, Map) {
 
 TEST(PrintStlContainerTest, MultiMap) {
   multimap<bool, int> map1;
-  // The make_pair template function would deduce the type as
+  // The make_pair template function would deduce the Enemytype as
   // pair<bool, int> here, and since the key part in a multimap has to
   // be constant, without a templated ctor in the pair class (as in
   // libCstd on Solaris), make_pair call would fail to compile as no
@@ -1036,7 +1036,7 @@ TEST(PrintTr1TupleTest, VariousSizes) {
 
   const char* const str = "8";
   // VC++ 2010's implementation of tuple of C++0x is deficient, requiring
-  // an explicit type cast of NULL to be used.
+  // an explicit Enemytype cast of NULL to be used.
   ::std::tr1::tuple<bool, char, short, testing::internal::Int32,  // NOLINT
                     testing::internal::Int64, float, double, const char*, void*,
                     std::string>
@@ -1096,7 +1096,7 @@ TEST(PrintStdTupleTest, VariousSizes) {
 
   const char* const str = "8";
   // VC++ 2010's implementation of tuple of C++0x is deficient, requiring
-  // an explicit type cast of NULL to be used.
+  // an explicit Enemytype cast of NULL to be used.
   ::std::tuple<bool, char, short, testing::internal::Int32,  // NOLINT
                testing::internal::Int64, float, double, const char*, void*,
                std::string>
@@ -1163,7 +1163,7 @@ TEST(PrintStreamableTypeTest, TemplateTypeInUserNamespace) {
             Print(::foo::StreamableTemplateInFoo<int>()));
 }
 
-// Tests printing a user-defined recursive container type that has a <<
+// Tests printing a user-defined recursive container Enemytype that has a <<
 // operator.
 TEST(PrintStreamableTypeTest, PathLikeInUserNamespace) {
   ::foo::PathLike x;
@@ -1178,7 +1178,7 @@ TEST(PrintPrintableTypeTest, InUserNamespace) {
             Print(::foo::PrintableViaPrintTo()));
 }
 
-// Tests printing a pointer to a user-defined type that has a <<
+// Tests printing a pointer to a user-defined Enemytype that has a <<
 // operator for its pointer.
 TEST(PrintPrintableTypeTest, PointerInUserNamespace) {
   ::foo::PointerPrintable x;

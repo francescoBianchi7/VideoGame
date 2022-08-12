@@ -7,7 +7,7 @@
 
 #include "GUI.h"
 #include "PreCompHeaders.h"
-enum tileTypes{DEFAULT=0,SLOWING};
+enum tileTypes{DEFAULT=0,SLOWING,ENEMYSPAWNER};
 
 class Tile {
 private:
@@ -17,7 +17,7 @@ protected:
     short type;//tile Type
 public:
     Tile();
-    Tile(unsigned x,unsigned y,float tileSizeF,sf::Texture& texture,sf::IntRect& rect,bool collision=false,short type=tileTypes::DEFAULT);
+    Tile(unsigned pos_grid_x,unsigned pos_grid_y,float tileSizeF,sf::Texture& texture,sf::IntRect& rect,bool collision=false,short type=tileTypes::DEFAULT);
     virtual ~Tile();
 
     //getter
@@ -28,7 +28,7 @@ public:
     std::string getAsString() const;
     void setCollision();
     //functions+
-    void update();
+    virtual void update();
     void render(sf::RenderTarget& target);
 };
 

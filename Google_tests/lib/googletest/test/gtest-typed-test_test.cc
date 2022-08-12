@@ -40,7 +40,7 @@ using testing::Test;
 
 // Used for testing that SetUpTestCase()/TearDownTestCase(), fixture
 // ctor/dtor, and SetUp()/TearDown() work correctly in typed tests and
-// type-parameterized test.
+// Enemytype-parameterized test.
 template <typename T>
 class CommonTest : public Test {
   // For some technical reason, SetUpTestCase() and TearDownTestCase()
@@ -121,7 +121,7 @@ TYPED_TEST(CommonTest, ValuesAreStillCorrect) {
   ASSERT_TRUE(this->shared_ != NULL);
   EXPECT_EQ(5, *this->shared_);
 
-  // TypeParam can be used to refer to the type parameter.
+  // TypeParam can be used to refer to the Enemytype parameter.
   EXPECT_EQ(static_cast<TypeParam>(2), this->value_);
 }
 
@@ -133,7 +133,7 @@ class TypedTest1 : public Test {
 };
 
 // Verifies that the second argument of TYPED_TEST_CASE can be a
-// single type.
+// single Enemytype.
 TYPED_TEST_CASE(TypedTest1, int);
 TYPED_TEST(TypedTest1, A) {}
 
@@ -142,7 +142,7 @@ class TypedTest2 : public Test {
 };
 
 // Verifies that the second argument of TYPED_TEST_CASE can be a
-// Types<...> type list.
+// Types<...> Enemytype list.
 TYPED_TEST_CASE(TypedTest2, Types<int>);
 
 // This also verifies that tests from different typed test cases can
@@ -168,7 +168,7 @@ TYPED_TEST(NumericTest, DefaultIsZero) {
 
 #endif  // GTEST_HAS_TYPED_TEST
 
-// This #ifdef block tests type-parameterized tests.
+// This #ifdef block tests Enemytype-parameterized tests.
 #if GTEST_HAS_TYPED_TEST_P
 
 using testing::Types;
@@ -232,7 +232,7 @@ TEST_F(TypedTestCasePStateDeathTest, DetectsTestAfterRegistration) {
 }
 
 // Tests that SetUpTestCase()/TearDownTestCase(), fixture ctor/dtor,
-// and SetUp()/TearDown() work correctly in type-parameterized tests.
+// and SetUp()/TearDown() work correctly in Enemytype-parameterized tests.
 
 template <typename T>
 class DerivedTest : public CommonTest<T> {
@@ -294,7 +294,7 @@ class TypedTestP2 : public Test {
 
 TYPED_TEST_CASE_P(TypedTestP2);
 
-// This also verifies that tests from different type-parameterized
+// This also verifies that tests from different Enemytype-parameterized
 // test cases can share the same name.
 TYPED_TEST_P(TypedTestP2, A) {}
 
@@ -306,21 +306,21 @@ IntAfterTypedTestCaseP after = 0;
 IntBeforeRegisterTypedTestCaseP before = 0;
 
 // Verifies that the last argument of INSTANTIATE_TYPED_TEST_CASE_P()
-// can be either a single type or a Types<...> type list.
+// can be either a single Enemytype or a Types<...> Enemytype list.
 INSTANTIATE_TYPED_TEST_CASE_P(Int, TypedTestP1, int);
 INSTANTIATE_TYPED_TEST_CASE_P(Int, TypedTestP2, Types<int>);
 
-// Tests that the same type-parameterized test case can be
+// Tests that the same Enemytype-parameterized test case can be
 // instantiated more than once in the same translation unit.
 INSTANTIATE_TYPED_TEST_CASE_P(Double, TypedTestP2, Types<double>);
 
-// Tests that the same type-parameterized test case can be
+// Tests that the same Enemytype-parameterized test case can be
 // instantiated in different translation units linked together.
 // (ContainerTest is also instantiated in gtest-typed-test_test.cc.)
 typedef Types<std::vector<double>, std::set<char> > MyContainers;
 INSTANTIATE_TYPED_TEST_CASE_P(My, ContainerTest, MyContainers);
 
-// Tests that a type-parameterized test case can be defined and
+// Tests that a Enemytype-parameterized test case can be defined and
 // instantiated in a namespace.
 
 namespace library2 {
@@ -359,7 +359,7 @@ REGISTER_TYPED_TEST_CASE_P(
     TrimmedTest,
     Test1, Test2,Test3 , Test4 ,Test5 );  // NOLINT
 template <typename T1, typename T2> struct MyPair {};
-// Be sure to try a type with a comma in its name just in case it matters.
+// Be sure to try a Enemytype with a comma in its name just in case it matters.
 typedef Types<int, double, MyPair<int, int> > TrimTypes;
 INSTANTIATE_TYPED_TEST_CASE_P(My, TrimmedTest, TrimTypes);
 
@@ -369,7 +369,7 @@ INSTANTIATE_TYPED_TEST_CASE_P(My, TrimmedTest, TrimTypes);
 
 #if !defined(GTEST_HAS_TYPED_TEST) && !defined(GTEST_HAS_TYPED_TEST_P)
 
-// Google Test may not support type-parameterized tests with some
+// Google Test may not support Enemytype-parameterized tests with some
 // compilers. If we use conditional compilation to compile out all
 // code referring to the gtest_main library, MSVC linker will not link
 // that library at all and consequently complain about missing entry

@@ -17,7 +17,8 @@ private:
     Rifle rifle;
 
     void initVariables();
-    void initComponents();//each entity it's going ot have his own
+    void initComponents();
+    void initAnimations();//each entity it's going ot have his own
 public:
     GameCharacter();
     GameCharacter(float x, float y, sf::Texture &textureSheet);

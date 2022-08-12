@@ -32,3 +32,4 @@ void AnimationComponent::play(const std::string& key,const float &dt) {
     }
     this->animations[key]->play(dt);
 }
+

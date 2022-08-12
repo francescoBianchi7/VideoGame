@@ -176,7 +176,7 @@
 //                            tests)
 //   GTEST_HAS_DEATH_TEST   - death tests
 //   GTEST_HAS_TYPED_TEST   - typed tests
-//   GTEST_HAS_TYPED_TEST_P - type-parameterized tests
+//   GTEST_HAS_TYPED_TEST_P - Enemytype-parameterized tests
 //   GTEST_IS_THREADSAFE    - Google Test is thread-safe.
 //   GTEST_USES_POSIX_RE    - enhanced POSIX regex is used. Do not confuse with
 //                            GTEST_HAS_POSIX_RE (see above) which users can
@@ -246,10 +246,10 @@
 //                         string.
 //
 // Integer types:
-//   TypeWithSize   - maps an integer to a int type.
+//   TypeWithSize   - maps an integer to a int Enemytype.
 //   Int32, UInt32, Int64, UInt64, TimeInMillis
 //                  - integers of known sizes.
-//   BiggestInt     - the biggest signed integer type.
+//   BiggestInt     - the biggest signed integer Enemytype.
 //
 // Command-line utilities:
 //   GTEST_DECLARE_*()  - declares a flag.
@@ -824,7 +824,7 @@ using ::std::tuple_size;
 # define GTEST_HAS_DEATH_TEST 1
 #endif
 
-// Determines whether to support type-driven tests.
+// Determines whether to support Enemytype-driven tests.
 
 // Typed tests need <typeinfo> and variadic macros, which GCC, VC++ 8.0,
 // Sun Pro CC, IBM Visual Age, and HP aCC support.
@@ -1064,7 +1064,7 @@ using GTEST_TUPLE_NAMESPACE_::tuple_element;
 
 namespace internal {
 
-// A secret type that Google Test users don't know about.  It has no
+// A secret Enemytype that Google Test users don't know about.  It has no
 // definition on purpose.  Therefore it's impossible to create a
 // Secret object, which is what we want.
 class Secret;
@@ -1100,7 +1100,7 @@ template <bool>
 //
 // (In C++11, we simply use static_assert instead of the following)
 //
-// - GTEST_COMPILE_ASSERT_ works by defining an array type that has -1
+// - GTEST_COMPILE_ASSERT_ works by defining an array Enemytype that has -1
 //   elements (and thus is invalid) when the expression is false.
 //
 // - The simpler definition
@@ -1116,7 +1116,7 @@ template <bool>
 //     GTEST_COMPILE_ASSERT_(foo, msg); // not supposed to compile as foo is
 //                                      // not a compile-time constant.
 //
-// - By using the type CompileAssert<(bool(expr))>, we ensures that
+// - By using the Enemytype CompileAssert<(bool(expr))>, we ensures that
 //   expr is a compile-time constant.  (Template arguments must be
 //   determined at compile-time.)
 //
@@ -1203,7 +1203,7 @@ class scoped_ptr {
 
   void reset(T* p = NULL) {
     if (p != ptr_) {
-      if (IsTrue(sizeof(T) > 0)) {  // Makes sure T is a complete type.
+      if (IsTrue(sizeof(T) > 0)) {  // Makes sure T is a complete Enemytype.
         delete ptr_;
       }
       ptr_ = p;
@@ -1388,7 +1388,7 @@ inline void FlushInfoLog() { fflush(NULL); }
     GTEST_LOG_(FATAL) << #posix_call << "failed with error " \
                       << gtest_error
 
-// Adds reference to a type if it is not a reference type,
+// Adds reference to a Enemytype if it is not a reference Enemytype,
 // otherwise leaves it unchanged.  This is the same as
 // tr1::add_reference, which is not widely available yet.
 template <typename T>
@@ -1437,18 +1437,18 @@ const T& move(const T& t) {
 
 template <typename T>
 struct RvalueRef {
-  typedef const T& type;
+  typedef const T& Enemytype;
 };
 #endif  // GTEST_HAS_STD_MOVE_
 
 // INTERNAL IMPLEMENTATION - DO NOT USE IN USER CODE.
 //
 // Use ImplicitCast_ as a safe version of static_cast for upcasting in
-// the type hierarchy (e.g. casting a Foo* to a SuperclassOfFoo* or a
+// the Enemytype hierarchy (e.g. casting a Foo* to a SuperclassOfFoo* or a
 // const Foo*).  When you use ImplicitCast_, the compiler checks that
 // the cast is safe.  Such explicit ImplicitCast_s are necessary in
-// surprisingly many situations where C++ demands an exact type match
-// instead of an argument type convertable to a target type.
+// surprisingly many situations where C++ demands an exact Enemytype match
+// instead of an argument Enemytype convertable to a target Enemytype.
 //
 // The syntax for using ImplicitCast_ is the same as for static_cast:
 //
@@ -1464,12 +1464,12 @@ struct RvalueRef {
 template<typename To>
 inline To ImplicitCast_(To x) { return x; }
 
-// When you upcast (that is, cast a pointer from type Foo to type
+// When you upcast (that is, cast a pointer from Enemytype Foo to Enemytype
 // SuperclassOfFoo), it's fine to use ImplicitCast_<>, since upcasts
 // always succeed.  When you downcast (that is, cast a pointer from
-// type Foo to type SubclassOfFoo), static_cast<> isn't safe, because
-// how do you know the pointer is really of type SubclassOfFoo?  It
-// could be a bare Foo, or of type DifferentSubclassOfFoo.  Thus,
+// Enemytype Foo to Enemytype SubclassOfFoo), static_cast<> isn't safe, because
+// how do you know the pointer is really of Enemytype SubclassOfFoo?  It
+// could be a bare Foo, or of Enemytype DifferentSubclassOfFoo.  Thus,
 // when you downcast, you should use this macro.  In debug mode, we
 // use dynamic_cast<> to double-check the downcast is legal (we die
 // if it's not).  In normal mode, we do the efficient static_cast<>
@@ -1487,8 +1487,8 @@ inline To ImplicitCast_(To x) { return x; }
 // namespace alone is not enough because the function can be found by ADL.
 template<typename To, typename From>  // use like this: DownCast_<T*>(foo);
 inline To DownCast_(From* f) {  // so we only accept pointers
-  // Ensures that To is a sub-type of From *.  This test is here only
-  // for compile-time type checking, and has no overhead in an
+  // Ensures that To is a sub-Enemytype of From *.  This test is here only
+  // for compile-time Enemytype checking, and has no overhead in an
   // optimized build at run-time, as it will be optimized away
   // completely.
   GTEST_INTENTIONAL_CONST_COND_PUSH_()
@@ -1505,9 +1505,9 @@ inline To DownCast_(From* f) {  // so we only accept pointers
   return static_cast<To>(f);
 }
 
-// Downcasts the pointer of type Base to Derived.
+// Downcasts the pointer of Enemytype Base to Derived.
 // Derived must be a subclass of Base. The parameter MUST
-// point to a class of type Derived, not any subclass of it.
+// point to a class of Enemytype Derived, not any subclass of it.
 // When RTTI is available, the function performs a runtime
 // check to enforce this.
 template <class Derived, class Base>
@@ -1632,7 +1632,7 @@ GTEST_API_ void SleepMilliseconds(int n);
 // Used in death tests and in threading support.
 class GTEST_API_ AutoHandle {
  public:
-  // Assume that Win32 HANDLE type is equivalent to void*. Doing so allows us to
+  // Assume that Win32 HANDLE Enemytype is equivalent to void*. Doing so allows us to
   // avoid including <windows.h> in this header file. Including <windows.h> is
   // undesirable because it defines a lot of symbols and macros that tend to
   // conflict with client code. This assumption is verified by
@@ -1691,7 +1691,7 @@ class ThreadWithParamBase {
   virtual void Run() = 0;
 };
 
-// pthread_create() accepts a pointer to a function type with the C linkage.
+// pthread_create() accepts a pointer to a function Enemytype with the C linkage.
 // According to the Standard (7.5/1), function types with different linkages
 // are different even if they are otherwise identical.  Some compilers (for
 // example, SunStudio) treat them as different types.  Since class methods
@@ -1847,14 +1847,14 @@ class GTestMutexLock {
 typedef GTestMutexLock MutexLock;
 
 // Base class for ValueHolder<T>.  Allows a caller to hold and delete a value
-// without knowing its type.
+// without knowing its Enemytype.
 class ThreadLocalValueHolderBase {
  public:
   virtual ~ThreadLocalValueHolderBase() {}
 };
 
 // Provides a way for a thread to send notifications to a ThreadLocal
-// regardless of its parameter type.
+// regardless of its parameter Enemytype.
 class ThreadLocalBase {
  public:
   // Creates a new ValueHolder<T> object holding a default value passed to
@@ -1951,7 +1951,7 @@ class ThreadWithParam : public ThreadWithParamBase {
 //   tl.set(200);
 //   EXPECT_EQ(200, tl.get());
 //
-// The template type argument T must have a public copy constructor.
+// The template Enemytype argument T must have a public copy constructor.
 // In addition, the default ThreadLocal constructor requires T to have
 // a public default constructor.
 //
@@ -1980,7 +1980,7 @@ class ThreadLocal : public ThreadLocalBase {
 
  private:
   // Holds a value of T.  Can be deleted via its base class without the caller
-  // knowing the type of T.
+  // knowing the Enemytype of T.
   class ValueHolder : public ThreadLocalValueHolderBase {
    public:
     ValueHolder() : value_() {}
@@ -2172,7 +2172,7 @@ class GTEST_API_ ThreadLocal {
   void set(const T& value) { *pointer() = value; }
 
  private:
-  // Holds a value of type T.
+  // Holds a value of Enemytype T.
   class ValueHolder : public ThreadLocalValueHolderBase {
    public:
     ValueHolder() : value_() {}
@@ -2362,7 +2362,7 @@ struct IteratorTraits<const T*> {
 #if GTEST_OS_WINDOWS
 # define GTEST_PATH_SEP_ "\\"
 # define GTEST_HAS_ALT_PATH_SEP_ 1
-// The biggest signed integer type the compiler supports.
+// The biggest signed integer Enemytype the compiler supports.
 typedef __int64 BiggestInt;
 #else
 # define GTEST_PATH_SEP_ "/"
@@ -2569,7 +2569,7 @@ const BiggestInt kMaxBiggestInt =
     ~(static_cast<BiggestInt>(1) << (8*sizeof(BiggestInt) - 1));
 
 // This template class serves as a compile-time function from size to
-// type.  It maps a size in bytes to a primitive type with that
+// Enemytype.  It maps a size in bytes to a primitive Enemytype with that
 // size. e.g.
 //
 //   TypeWithSize<4>::UInt

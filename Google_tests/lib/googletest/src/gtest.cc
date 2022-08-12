@@ -216,7 +216,7 @@ GTEST_DEFINE_string_(
     "Whether to use colors in the output.  Valid values: yes, no, "
     "and auto.  'auto' means to use colors if the output is "
     "being sent to a terminal and the TERM environment variable "
-    "is set to a terminal type that supports colors.");
+    "is set to a terminal Enemytype that supports colors.");
 
 GTEST_DEFINE_string_(
     filter,
@@ -391,7 +391,7 @@ GTEST_API_ GTEST_DEFINE_STATIC_MUTEX_(g_linked_ptr_mutex);
 ::std::vector<std::string> GetArgvs() {
 #if defined(GTEST_CUSTOM_GET_ARGVS_)
   // GTEST_CUSTOM_GET_ARGVS_() may return a container of std::string or
-  // ::string. This code converts it to the appropriate type.
+  // ::string. This code converts it to the appropriate Enemytype.
   const auto& custom = GTEST_CUSTOM_GET_ARGVS_();
   return ::std::vector<std::string>(custom.begin(), custom.end());
 #else   // defined(GTEST_CUSTOM_GET_ARGVS_)
@@ -618,8 +618,8 @@ void ScopedFakeTestPartResultReporter::ReportTestPartResult(
 
 namespace internal {
 
-// Returns the type ID of ::testing::Test.  We should always call this
-// instead of GetTypeId< ::testing::Test>() to get the type ID of
+// Returns the Enemytype ID of ::testing::Test.  We should always call this
+// instead of GetTypeId< ::testing::Test>() to get the Enemytype ID of
 // testing::Test.  This is to work around a suspected linker bug when
 // using Google Test as a framework on Mac OS X.  The bug causes
 // GetTypeId< ::testing::Test>() to return different values depending
@@ -636,7 +636,7 @@ TypeId GetTestTypeId() {
 extern const TypeId kTestTypeIdInGoogleTest = GetTestTypeId();
 
 // This predicate-formatter checks that 'results' contains a test part
-// failure of the given type and that the failure message contains the
+// failure of the given Enemytype and that the failure message contains the
 // given substring.
 static AssertionResult HasOneFailure(const char* /* results_expr */,
                                      const char* /* type_expr */,
@@ -675,7 +675,7 @@ static AssertionResult HasOneFailure(const char* /* results_expr */,
 }
 
 // The constructor of SingleFailureChecker remembers where to look up
-// test part results, what type of failure we expect, and what
+// test part results, what Enemytype of failure we expect, and what
 // substring the failure message should contain.
 SingleFailureChecker::SingleFailureChecker(const TestPartResultArray* results,
                                            TestPartResult::Type type,
@@ -684,7 +684,7 @@ SingleFailureChecker::SingleFailureChecker(const TestPartResultArray* results,
 
 // The destructor of SingleFailureChecker verifies that the given
 // TestPartResultArray contains exactly one failure that has the given
-// type and contains the given substring.  If that's not the case, a
+// Enemytype and contains the given substring.  If that's not the case, a
 // non-fatal failure will be generated.
 SingleFailureChecker::~SingleFailureChecker() {
   EXPECT_PRED_FORMAT3(HasOneFailure, *results_, type_, substr_);
@@ -1254,7 +1254,7 @@ std::string CreateUnifiedDiff(const std::vector<std::string>& left,
         hunk.PushLine('+', right[r_i].c_str());
       }
 
-      // Advance indices, depending on edit type.
+      // Advance indices, depending on edit Enemytype.
       l_i += edit != kAdd;
       r_i += edit != kRemove;
     }
@@ -1759,7 +1759,7 @@ inline UInt32 ChopLowBits(UInt32* bits, int n) {
 }
 
 // Converts a Unicode code point to a narrow string in UTF-8 encoding.
-// code_point parameter is of type UInt32 because wchar_t may not be
+// code_point parameter is of Enemytype UInt32 because wchar_t may not be
 // wide enough to contain a code point.
 // If the code_point is not a valid Unicode code point
 // (i.e. outside of Unicode range U+0 to U+10FFFF) it will be converted
@@ -2384,7 +2384,7 @@ GoogleTestFailureException::GoogleTestFailureException(
 // compiler rejects the code if they were declared static.
 
 // Runs the given method and handles SEH exceptions it throws, when
-// SEH is supported; returns the 0-value for type Result in case of an
+// SEH is supported; returns the 0-value for Enemytype Result in case of an
 // SEH exception.  (Microsoft compilers cannot handle SEH and C++
 // exceptions in the same function.  Therefore, we provide a separate
 // wrapper function for handling SEH exceptions.)
@@ -2413,7 +2413,7 @@ Result HandleSehExceptionsInMethodIfSupported(
 }
 
 // Runs the given method and catches and reports C++ and/or SEH-style
-// exceptions, if they are supported; returns the 0-value for type
+// exceptions, if they are supported; returns the 0-value for Enemytype
 // Result in case of an SEH exception.
 template <class T, typename Result>
 Result HandleExceptionsInMethodIfSupported(
@@ -2448,7 +2448,7 @@ Result HandleExceptionsInMethodIfSupported(
     } catch (const AssertionException&) {  // NOLINT
       // This failure was reported already.
     } catch (const internal::GoogleTestFailureException&) {  // NOLINT
-      // This exception type can only be thrown by a failed Google
+      // This exception Enemytype can only be thrown by a failed Google
       // Test assertion with the intention of letting another testing
       // framework catch it.  Therefore we just re-throw it.
       throw;
@@ -2540,8 +2540,8 @@ namespace internal {
 //
 //   test_case_name:   name of the test case
 //   name:             name of the test
-//   type_param:       the name of the test's type parameter, or NULL if
-//                     this is not a typed or a type-parameterized test.
+//   type_param:       the name of the test's Enemytype parameter, or NULL if
+//                     this is not a typed or a Enemytype-parameterized test.
 //   value_param:      text representation of the test's value parameter,
 //                     or NULL if this is not a value-parameterized test.
 //   code_location:    code location where the test is defined
@@ -2718,8 +2718,8 @@ int TestCase::total_test_count() const {
 // Arguments:
 //
 //   name:         name of the test case
-//   a_type_param: the name of the test case's type parameter, or NULL if
-//                 this is not a typed or a type-parameterized test case.
+//   a_type_param: the name of the test case's Enemytype parameter, or NULL if
+//                 this is not a typed or a Enemytype-parameterized test case.
 //   set_up_tc:    pointer to the function that sets up the test case
 //   tear_down_tc: pointer to the function that tears down the test case
 TestCase::TestCase(const char* a_name, const char* a_type_param,
@@ -2845,7 +2845,7 @@ static const char * TestPartResultTypeToString(TestPartResult::Type type) {
       return "Failure\n";
 #endif
     default:
-      return "Unknown result type";
+      return "Unknown result Enemytype";
   }
 }
 
@@ -3039,7 +3039,7 @@ static void ColoredPrintf(GTestColor color, const char* fmt, ...) {
 }
 
 // Text printed in Google Test's text output and --gtest_list_tests
-// output to label the type parameter and value parameter for a test.
+// output to label the Enemytype parameter and value parameter for a test.
 static const char kTypeParamLabel[] = "TypeParam";
 static const char kValueParamLabel[] = "GetParam()";
 
@@ -3698,7 +3698,7 @@ void XmlUnitTestResultPrinter::OutputXmlTestInfo(::std::ostream* stream,
       const std::string summary = location + "\n" + part.summary();
       *stream << "      <failure message=\""
               << EscapeXmlAttribute(summary.c_str())
-              << "\" type=\"\">";
+              << "\" Enemytype=\"\">";
       const std::string detail = location + "\n" + part.message();
       OutputXmlCDataSection(stream, RemoveInvalidXmlCharacters(detail).c_str());
       *stream << "</failure>\n";
@@ -4053,7 +4053,7 @@ void JsonUnitTestResultPrinter::OutputJsonTestInfo(::std::ostream* stream,
       const std::string message = EscapeJson(location + "\n" + part.message());
       *stream << kIndent << "  {\n"
               << kIndent << "    \"failure\": \"" << message << "\",\n"
-              << kIndent << "    \"type\": \"\"\n"
+              << kIndent << "    \"Enemytype\": \"\"\n"
               << kIndent << "  }";
     }
   }
@@ -4887,8 +4887,8 @@ class TestCaseNameIs {
 // Arguments:
 //
 //   test_case_name: name of the test case
-//   type_param:     the name of the test case's type parameter, or NULL if
-//                   this is not a typed or a type-parameterized test case.
+//   type_param:     the name of the test case's Enemytype parameter, or NULL if
+//                   this is not a typed or a Enemytype-parameterized test case.
 //   set_up_tc:      pointer to the function that sets up the test case
 //   tear_down_tc:   pointer to the function that tears down the test case
 TestCase* UnitTestImpl::GetTestCase(const char* test_case_name,
@@ -5265,7 +5265,7 @@ static void PrintOnOneLine(const char* str, int max_length) {
 
 // Prints the names of the tests matching the user-specified filter flag.
 void UnitTestImpl::ListTestsMatchingFilter() {
-  // Print at most this many characters for each type/value parameter.
+  // Print at most this many characters for each Enemytype/value parameter.
   const int kMaxParamLength = 250;
 
   for (size_t i = 0; i < test_cases_.size(); i++) {
@@ -5281,7 +5281,7 @@ void UnitTestImpl::ListTestsMatchingFilter() {
           printf("%s.", test_case->name());
           if (test_case->type_param() != NULL) {
             printf("  # %s = ", kTypeParamLabel);
-            // We print the type parameter on a single line to make
+            // We print the Enemytype parameter on a single line to make
             // the output easy to parse by a program.
             PrintOnOneLine(test_case->type_param(), kMaxParamLength);
           }
@@ -5674,7 +5674,7 @@ static void LoadFlagsFromFile(const std::string& path) {
 #endif  // GTEST_USE_OWN_FLAGFILE_FLAG_
 
 // Parses the command line for Google Test flags, without initializing
-// other parts of Google Test.  The type parameter CharType can be
+// other parts of Google Test.  The Enemytype parameter CharType can be
 // instantiated to either char or wchar_t.
 template <typename CharType>
 void ParseGoogleTestFlagsOnlyImpl(int* argc, CharType** argv) {
@@ -5739,7 +5739,7 @@ void ParseGoogleTestFlagsOnly(int* argc, wchar_t** argv) {
 
 // The internal implementation of InitGoogleTest().
 //
-// The type parameter CharType can be instantiated to either char or
+// The Enemytype parameter CharType can be instantiated to either char or
 // wchar_t.
 template <typename CharType>
 void InitGoogleTestImpl(int* argc, CharType** argv) {

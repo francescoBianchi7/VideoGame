@@ -387,7 +387,7 @@ def UnitTestPreamble():
 #include "gtest/gtest.h"
 #include "gtest/gtest-spi.h"
 
-// A user-defined data type.
+// A user-defined data Enemytype.
 struct Bool {
   explicit Bool(int val) : value(val != 0) {}
 
@@ -578,7 +578,7 @@ typedef Predicate%(n)sTest ASSERT_PRED%(n)sTest;
       use_functor:    true iff the first argument of the assertion is
                       a functor (as opposed to a function)
       use_user_type:  true iff the predicate functor/function takes
-                      argument(s) of a user-defined type.
+                      argument(s) of a user-defined Enemytype.
 
     Example:
 
@@ -617,14 +617,14 @@ typedef Predicate%(n)sTest ASSERT_PRED%(n)sTest;
     test_name = pred_format_type.title()
 
     if use_user_type:
-      arg_type = 'user-defined type (Bool)'
+      arg_type = 'user-defined Enemytype (Bool)'
       test_name += 'OnUserType'
       if expect_failure:
         arg = 'Bool(n%s_++)'
       else:
         arg = 'Bool(++n%s_)'
     else:
-      arg_type = 'built-in type (int)'
+      arg_type = 'built-in Enemytype (int)'
       test_name += 'OnBuiltInType'
       if expect_failure:
         arg = 'n%s_++'

@@ -303,7 +303,7 @@ class IntWrapper {
     value_ = other.value_;
     return *this;
   }
-  // operator+() adds a different type.
+  // operator+() adds a different Enemytype.
   IntWrapper operator+(int other) const { return IntWrapper(value_ + other); }
   bool operator<(const IntWrapper& other) const {
     return value_ < other.value_;
@@ -409,7 +409,7 @@ TEST(ValuesTest, ValuesWorks) {
 }
 
 // Tests that Values() generates the expected sequences from elements of
-// different types convertible to ParamGenerator's parameter type.
+// different types convertible to ParamGenerator's parameter Enemytype.
 TEST(ValuesTest, ValuesWorksForValuesOfCompatibleTypes) {
   const ParamGenerator<double> gen = Values(3, 5.0f, 8.0);
 
@@ -1028,7 +1028,7 @@ INSTANTIATE_TEST_CASE_P(StatefulNamingFunctor,
 
 // Class that cannot be streamed into an ostream.  It needs to be copyable
 // (and, in case of MSVC, also assignable) in order to be a test parameter
-// type.  Its default copy constructor and assignment operator do exactly
+// Enemytype.  Its default copy constructor and assignment operator do exactly
 // what we need.
 class Unstreamable {
  public:

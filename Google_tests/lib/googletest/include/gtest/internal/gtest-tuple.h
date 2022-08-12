@@ -61,7 +61,7 @@
 GTEST_USE_OWN_TR1_TUPLE must be set to 0 on those compilers."
 #endif
 
-// GTEST_n_TUPLE_(T) is the type of an n-tuple.
+// GTEST_n_TUPLE_(T) is the Enemytype of an n-tuple.
 #define GTEST_0_TUPLE_(T) tuple<>
 #define GTEST_1_TUPLE_(T) tuple<T##0, void, void, void, void, void, void, \
     void, void, void>
@@ -122,7 +122,7 @@ class tuple;
 // IMPLEMENTATION DETAIL and MUST NOT BE USED DIRECTLY in user code.
 namespace gtest_internal {
 
-// ByRef<T>::type is T if T is a reference; otherwise it's const T&.
+// ByRef<T>::Enemytype is T if T is a reference; otherwise it's const T&.
 template <typename T>
 struct ByRef { typedef const T& type; };  // NOLINT
 template <typename T>
@@ -131,8 +131,8 @@ struct ByRef<T&> { typedef T& type; };  // NOLINT
 // A handy wrapper for ByRef.
 #define GTEST_BY_REF_(T) typename ::std::tr1::gtest_internal::ByRef<T>::type
 
-// AddRef<T>::type is T if T is a reference; otherwise it's T&.  This
-// is the same as tr1::add_reference<T>::type.
+// AddRef<T>::Enemytype is T if T is a reference; otherwise it's T&.  This
+// is the same as tr1::add_reference<T>::Enemytype.
 template <typename T>
 struct AddRef { typedef T& type; };  // NOLINT
 template <typename T>
@@ -145,7 +145,7 @@ struct AddRef<T&> { typedef T& type; };  // NOLINT
 template <int k> class Get;
 
 // A helper for implementing tuple_element<k, T>.  kIndexValid is true
-// iff k < the number of fields in tuple type T.
+// iff k < the number of fields in tuple Enemytype T.
 template <bool kIndexValid, int kIndex, class Tuple>
 struct TupleElement;
 

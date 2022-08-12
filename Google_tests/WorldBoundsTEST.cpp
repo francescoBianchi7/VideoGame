@@ -35,13 +35,13 @@ TEST_F(WorldBoundsFixture, WorldBoundsTest) {
    gc1->setPosition(-1,-1);
    ASSERT_EQ(-1,gc1->getPositionX());
    ASSERT_EQ(-1,gc1->getPositionY());
-   tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
    ASSERT_EQ(0,gc1->getPositionX());
    ASSERT_EQ(0,gc1->getPositionY());
    gc1->setPosition(mapSizeF.x+50,mapSizeF.y+50);
    //ASSERT_EQ(MapSizeF,gc1->getPositionX());
    //ASSERT_EQ(6,gc1->getPositionY());
-   tileMap->updateCollision(gc1,dt);
+    tileMap->update(gc1, dt);
    ASSERT_EQ(gc1->getPositionY(),mapSizeF.y - gc1->getGlobalBounds().height);
    ASSERT_EQ(mapSizeF.x - gc1->getGlobalBounds().width,gc1->getPositionX());
    /*gc1->move(dt,1,0);

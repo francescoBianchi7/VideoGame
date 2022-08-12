@@ -52,7 +52,7 @@
 #include "gtest/gtest.h"
 #include "gtest/gtest-spi.h"
 
-// A user-defined data type.
+// A user-defined data Enemytype.
 struct Bool {
   explicit Bool(int val) : value(val != 0) {}
 
@@ -163,7 +163,7 @@ typedef Predicate1Test EXPECT_PRED1Test;
 typedef Predicate1Test ASSERT_PRED1Test;
 
 // Tests a successful EXPECT_PRED1 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED1Test, FunctionOnBuiltInTypeSuccess) {
   EXPECT_PRED1(PredFunction1Int,
                ++n1_);
@@ -171,7 +171,7 @@ TEST_F(EXPECT_PRED1Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED1 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED1Test, FunctionOnUserTypeSuccess) {
   EXPECT_PRED1(PredFunction1Bool,
                Bool(++n1_));
@@ -179,7 +179,7 @@ TEST_F(EXPECT_PRED1Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED1 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED1Test, FunctorOnBuiltInTypeSuccess) {
   EXPECT_PRED1(PredFunctor1(),
                ++n1_);
@@ -187,7 +187,7 @@ TEST_F(EXPECT_PRED1Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED1 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED1Test, FunctorOnUserTypeSuccess) {
   EXPECT_PRED1(PredFunctor1(),
                Bool(++n1_));
@@ -195,7 +195,7 @@ TEST_F(EXPECT_PRED1Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed EXPECT_PRED1 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED1Test, FunctionOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED1(PredFunction1Int,
@@ -205,7 +205,7 @@ TEST_F(EXPECT_PRED1Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED1 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED1Test, FunctionOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED1(PredFunction1Bool,
@@ -215,7 +215,7 @@ TEST_F(EXPECT_PRED1Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED1 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED1Test, FunctorOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED1(PredFunctor1(),
@@ -225,7 +225,7 @@ TEST_F(EXPECT_PRED1Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED1 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED1Test, FunctorOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED1(PredFunctor1(),
@@ -235,7 +235,7 @@ TEST_F(EXPECT_PRED1Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful ASSERT_PRED1 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED1Test, FunctionOnBuiltInTypeSuccess) {
   ASSERT_PRED1(PredFunction1Int,
                ++n1_);
@@ -243,7 +243,7 @@ TEST_F(ASSERT_PRED1Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED1 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED1Test, FunctionOnUserTypeSuccess) {
   ASSERT_PRED1(PredFunction1Bool,
                Bool(++n1_));
@@ -251,7 +251,7 @@ TEST_F(ASSERT_PRED1Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED1 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED1Test, FunctorOnBuiltInTypeSuccess) {
   ASSERT_PRED1(PredFunctor1(),
                ++n1_);
@@ -259,7 +259,7 @@ TEST_F(ASSERT_PRED1Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED1 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED1Test, FunctorOnUserTypeSuccess) {
   ASSERT_PRED1(PredFunctor1(),
                Bool(++n1_));
@@ -267,7 +267,7 @@ TEST_F(ASSERT_PRED1Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed ASSERT_PRED1 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED1Test, FunctionOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -278,7 +278,7 @@ TEST_F(ASSERT_PRED1Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED1 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED1Test, FunctionOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -289,7 +289,7 @@ TEST_F(ASSERT_PRED1Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED1 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED1Test, FunctorOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -300,7 +300,7 @@ TEST_F(ASSERT_PRED1Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED1 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED1Test, FunctorOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -311,7 +311,7 @@ TEST_F(ASSERT_PRED1Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT1 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT1Test, FunctionOnBuiltInTypeSuccess) {
   EXPECT_PRED_FORMAT1(PredFormatFunction1,
                       ++n1_);
@@ -319,7 +319,7 @@ TEST_F(EXPECT_PRED_FORMAT1Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT1 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT1Test, FunctionOnUserTypeSuccess) {
   EXPECT_PRED_FORMAT1(PredFormatFunction1,
                       Bool(++n1_));
@@ -327,7 +327,7 @@ TEST_F(EXPECT_PRED_FORMAT1Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT1 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT1Test, FunctorOnBuiltInTypeSuccess) {
   EXPECT_PRED_FORMAT1(PredFormatFunctor1(),
                       ++n1_);
@@ -335,7 +335,7 @@ TEST_F(EXPECT_PRED_FORMAT1Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT1 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT1Test, FunctorOnUserTypeSuccess) {
   EXPECT_PRED_FORMAT1(PredFormatFunctor1(),
                       Bool(++n1_));
@@ -343,7 +343,7 @@ TEST_F(EXPECT_PRED_FORMAT1Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT1 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT1Test, FunctionOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT1(PredFormatFunction1,
@@ -353,7 +353,7 @@ TEST_F(EXPECT_PRED_FORMAT1Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT1 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT1Test, FunctionOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT1(PredFormatFunction1,
@@ -363,7 +363,7 @@ TEST_F(EXPECT_PRED_FORMAT1Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT1 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT1Test, FunctorOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT1(PredFormatFunctor1(),
@@ -373,7 +373,7 @@ TEST_F(EXPECT_PRED_FORMAT1Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT1 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT1Test, FunctorOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT1(PredFormatFunctor1(),
@@ -383,7 +383,7 @@ TEST_F(EXPECT_PRED_FORMAT1Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT1 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT1Test, FunctionOnBuiltInTypeSuccess) {
   ASSERT_PRED_FORMAT1(PredFormatFunction1,
                       ++n1_);
@@ -391,7 +391,7 @@ TEST_F(ASSERT_PRED_FORMAT1Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT1 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT1Test, FunctionOnUserTypeSuccess) {
   ASSERT_PRED_FORMAT1(PredFormatFunction1,
                       Bool(++n1_));
@@ -399,7 +399,7 @@ TEST_F(ASSERT_PRED_FORMAT1Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT1 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT1Test, FunctorOnBuiltInTypeSuccess) {
   ASSERT_PRED_FORMAT1(PredFormatFunctor1(),
                       ++n1_);
@@ -407,7 +407,7 @@ TEST_F(ASSERT_PRED_FORMAT1Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT1 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT1Test, FunctorOnUserTypeSuccess) {
   ASSERT_PRED_FORMAT1(PredFormatFunctor1(),
                       Bool(++n1_));
@@ -415,7 +415,7 @@ TEST_F(ASSERT_PRED_FORMAT1Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT1 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT1Test, FunctionOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -426,7 +426,7 @@ TEST_F(ASSERT_PRED_FORMAT1Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT1 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT1Test, FunctionOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -437,7 +437,7 @@ TEST_F(ASSERT_PRED_FORMAT1Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT1 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT1Test, FunctorOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -448,7 +448,7 @@ TEST_F(ASSERT_PRED_FORMAT1Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT1 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT1Test, FunctorOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -560,7 +560,7 @@ typedef Predicate2Test EXPECT_PRED2Test;
 typedef Predicate2Test ASSERT_PRED2Test;
 
 // Tests a successful EXPECT_PRED2 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED2Test, FunctionOnBuiltInTypeSuccess) {
   EXPECT_PRED2(PredFunction2Int,
                ++n1_,
@@ -569,7 +569,7 @@ TEST_F(EXPECT_PRED2Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED2 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED2Test, FunctionOnUserTypeSuccess) {
   EXPECT_PRED2(PredFunction2Bool,
                Bool(++n1_),
@@ -578,7 +578,7 @@ TEST_F(EXPECT_PRED2Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED2 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED2Test, FunctorOnBuiltInTypeSuccess) {
   EXPECT_PRED2(PredFunctor2(),
                ++n1_,
@@ -587,7 +587,7 @@ TEST_F(EXPECT_PRED2Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED2 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED2Test, FunctorOnUserTypeSuccess) {
   EXPECT_PRED2(PredFunctor2(),
                Bool(++n1_),
@@ -596,7 +596,7 @@ TEST_F(EXPECT_PRED2Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed EXPECT_PRED2 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED2Test, FunctionOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED2(PredFunction2Int,
@@ -607,7 +607,7 @@ TEST_F(EXPECT_PRED2Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED2 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED2Test, FunctionOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED2(PredFunction2Bool,
@@ -618,7 +618,7 @@ TEST_F(EXPECT_PRED2Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED2 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED2Test, FunctorOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED2(PredFunctor2(),
@@ -629,7 +629,7 @@ TEST_F(EXPECT_PRED2Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED2 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED2Test, FunctorOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED2(PredFunctor2(),
@@ -640,7 +640,7 @@ TEST_F(EXPECT_PRED2Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful ASSERT_PRED2 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED2Test, FunctionOnBuiltInTypeSuccess) {
   ASSERT_PRED2(PredFunction2Int,
                ++n1_,
@@ -649,7 +649,7 @@ TEST_F(ASSERT_PRED2Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED2 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED2Test, FunctionOnUserTypeSuccess) {
   ASSERT_PRED2(PredFunction2Bool,
                Bool(++n1_),
@@ -658,7 +658,7 @@ TEST_F(ASSERT_PRED2Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED2 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED2Test, FunctorOnBuiltInTypeSuccess) {
   ASSERT_PRED2(PredFunctor2(),
                ++n1_,
@@ -667,7 +667,7 @@ TEST_F(ASSERT_PRED2Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED2 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED2Test, FunctorOnUserTypeSuccess) {
   ASSERT_PRED2(PredFunctor2(),
                Bool(++n1_),
@@ -676,7 +676,7 @@ TEST_F(ASSERT_PRED2Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed ASSERT_PRED2 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED2Test, FunctionOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -688,7 +688,7 @@ TEST_F(ASSERT_PRED2Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED2 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED2Test, FunctionOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -700,7 +700,7 @@ TEST_F(ASSERT_PRED2Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED2 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED2Test, FunctorOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -712,7 +712,7 @@ TEST_F(ASSERT_PRED2Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED2 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED2Test, FunctorOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -724,7 +724,7 @@ TEST_F(ASSERT_PRED2Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT2 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT2Test, FunctionOnBuiltInTypeSuccess) {
   EXPECT_PRED_FORMAT2(PredFormatFunction2,
                       ++n1_,
@@ -733,7 +733,7 @@ TEST_F(EXPECT_PRED_FORMAT2Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT2 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT2Test, FunctionOnUserTypeSuccess) {
   EXPECT_PRED_FORMAT2(PredFormatFunction2,
                       Bool(++n1_),
@@ -742,7 +742,7 @@ TEST_F(EXPECT_PRED_FORMAT2Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT2 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT2Test, FunctorOnBuiltInTypeSuccess) {
   EXPECT_PRED_FORMAT2(PredFormatFunctor2(),
                       ++n1_,
@@ -751,7 +751,7 @@ TEST_F(EXPECT_PRED_FORMAT2Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT2 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT2Test, FunctorOnUserTypeSuccess) {
   EXPECT_PRED_FORMAT2(PredFormatFunctor2(),
                       Bool(++n1_),
@@ -760,7 +760,7 @@ TEST_F(EXPECT_PRED_FORMAT2Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT2 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT2Test, FunctionOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT2(PredFormatFunction2,
@@ -771,7 +771,7 @@ TEST_F(EXPECT_PRED_FORMAT2Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT2 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT2Test, FunctionOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT2(PredFormatFunction2,
@@ -782,7 +782,7 @@ TEST_F(EXPECT_PRED_FORMAT2Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT2 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT2Test, FunctorOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT2(PredFormatFunctor2(),
@@ -793,7 +793,7 @@ TEST_F(EXPECT_PRED_FORMAT2Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT2 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT2Test, FunctorOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT2(PredFormatFunctor2(),
@@ -804,7 +804,7 @@ TEST_F(EXPECT_PRED_FORMAT2Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT2 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT2Test, FunctionOnBuiltInTypeSuccess) {
   ASSERT_PRED_FORMAT2(PredFormatFunction2,
                       ++n1_,
@@ -813,7 +813,7 @@ TEST_F(ASSERT_PRED_FORMAT2Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT2 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT2Test, FunctionOnUserTypeSuccess) {
   ASSERT_PRED_FORMAT2(PredFormatFunction2,
                       Bool(++n1_),
@@ -822,7 +822,7 @@ TEST_F(ASSERT_PRED_FORMAT2Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT2 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT2Test, FunctorOnBuiltInTypeSuccess) {
   ASSERT_PRED_FORMAT2(PredFormatFunctor2(),
                       ++n1_,
@@ -831,7 +831,7 @@ TEST_F(ASSERT_PRED_FORMAT2Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT2 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT2Test, FunctorOnUserTypeSuccess) {
   ASSERT_PRED_FORMAT2(PredFormatFunctor2(),
                       Bool(++n1_),
@@ -840,7 +840,7 @@ TEST_F(ASSERT_PRED_FORMAT2Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT2 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT2Test, FunctionOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -852,7 +852,7 @@ TEST_F(ASSERT_PRED_FORMAT2Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT2 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT2Test, FunctionOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -864,7 +864,7 @@ TEST_F(ASSERT_PRED_FORMAT2Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT2 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT2Test, FunctorOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -876,7 +876,7 @@ TEST_F(ASSERT_PRED_FORMAT2Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT2 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT2Test, FunctorOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -999,7 +999,7 @@ typedef Predicate3Test EXPECT_PRED3Test;
 typedef Predicate3Test ASSERT_PRED3Test;
 
 // Tests a successful EXPECT_PRED3 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED3Test, FunctionOnBuiltInTypeSuccess) {
   EXPECT_PRED3(PredFunction3Int,
                ++n1_,
@@ -1009,7 +1009,7 @@ TEST_F(EXPECT_PRED3Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED3 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED3Test, FunctionOnUserTypeSuccess) {
   EXPECT_PRED3(PredFunction3Bool,
                Bool(++n1_),
@@ -1019,7 +1019,7 @@ TEST_F(EXPECT_PRED3Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED3 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED3Test, FunctorOnBuiltInTypeSuccess) {
   EXPECT_PRED3(PredFunctor3(),
                ++n1_,
@@ -1029,7 +1029,7 @@ TEST_F(EXPECT_PRED3Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED3 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED3Test, FunctorOnUserTypeSuccess) {
   EXPECT_PRED3(PredFunctor3(),
                Bool(++n1_),
@@ -1039,7 +1039,7 @@ TEST_F(EXPECT_PRED3Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed EXPECT_PRED3 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED3Test, FunctionOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED3(PredFunction3Int,
@@ -1051,7 +1051,7 @@ TEST_F(EXPECT_PRED3Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED3 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED3Test, FunctionOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED3(PredFunction3Bool,
@@ -1063,7 +1063,7 @@ TEST_F(EXPECT_PRED3Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED3 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED3Test, FunctorOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED3(PredFunctor3(),
@@ -1075,7 +1075,7 @@ TEST_F(EXPECT_PRED3Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED3 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED3Test, FunctorOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED3(PredFunctor3(),
@@ -1087,7 +1087,7 @@ TEST_F(EXPECT_PRED3Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful ASSERT_PRED3 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED3Test, FunctionOnBuiltInTypeSuccess) {
   ASSERT_PRED3(PredFunction3Int,
                ++n1_,
@@ -1097,7 +1097,7 @@ TEST_F(ASSERT_PRED3Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED3 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED3Test, FunctionOnUserTypeSuccess) {
   ASSERT_PRED3(PredFunction3Bool,
                Bool(++n1_),
@@ -1107,7 +1107,7 @@ TEST_F(ASSERT_PRED3Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED3 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED3Test, FunctorOnBuiltInTypeSuccess) {
   ASSERT_PRED3(PredFunctor3(),
                ++n1_,
@@ -1117,7 +1117,7 @@ TEST_F(ASSERT_PRED3Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED3 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED3Test, FunctorOnUserTypeSuccess) {
   ASSERT_PRED3(PredFunctor3(),
                Bool(++n1_),
@@ -1127,7 +1127,7 @@ TEST_F(ASSERT_PRED3Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed ASSERT_PRED3 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED3Test, FunctionOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1140,7 +1140,7 @@ TEST_F(ASSERT_PRED3Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED3 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED3Test, FunctionOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1153,7 +1153,7 @@ TEST_F(ASSERT_PRED3Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED3 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED3Test, FunctorOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1166,7 +1166,7 @@ TEST_F(ASSERT_PRED3Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED3 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED3Test, FunctorOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1179,7 +1179,7 @@ TEST_F(ASSERT_PRED3Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT3 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT3Test, FunctionOnBuiltInTypeSuccess) {
   EXPECT_PRED_FORMAT3(PredFormatFunction3,
                       ++n1_,
@@ -1189,7 +1189,7 @@ TEST_F(EXPECT_PRED_FORMAT3Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT3 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT3Test, FunctionOnUserTypeSuccess) {
   EXPECT_PRED_FORMAT3(PredFormatFunction3,
                       Bool(++n1_),
@@ -1199,7 +1199,7 @@ TEST_F(EXPECT_PRED_FORMAT3Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT3 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT3Test, FunctorOnBuiltInTypeSuccess) {
   EXPECT_PRED_FORMAT3(PredFormatFunctor3(),
                       ++n1_,
@@ -1209,7 +1209,7 @@ TEST_F(EXPECT_PRED_FORMAT3Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT3 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT3Test, FunctorOnUserTypeSuccess) {
   EXPECT_PRED_FORMAT3(PredFormatFunctor3(),
                       Bool(++n1_),
@@ -1219,7 +1219,7 @@ TEST_F(EXPECT_PRED_FORMAT3Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT3 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT3Test, FunctionOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT3(PredFormatFunction3,
@@ -1231,7 +1231,7 @@ TEST_F(EXPECT_PRED_FORMAT3Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT3 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT3Test, FunctionOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT3(PredFormatFunction3,
@@ -1243,7 +1243,7 @@ TEST_F(EXPECT_PRED_FORMAT3Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT3 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT3Test, FunctorOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT3(PredFormatFunctor3(),
@@ -1255,7 +1255,7 @@ TEST_F(EXPECT_PRED_FORMAT3Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT3 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT3Test, FunctorOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT3(PredFormatFunctor3(),
@@ -1267,7 +1267,7 @@ TEST_F(EXPECT_PRED_FORMAT3Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT3 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT3Test, FunctionOnBuiltInTypeSuccess) {
   ASSERT_PRED_FORMAT3(PredFormatFunction3,
                       ++n1_,
@@ -1277,7 +1277,7 @@ TEST_F(ASSERT_PRED_FORMAT3Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT3 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT3Test, FunctionOnUserTypeSuccess) {
   ASSERT_PRED_FORMAT3(PredFormatFunction3,
                       Bool(++n1_),
@@ -1287,7 +1287,7 @@ TEST_F(ASSERT_PRED_FORMAT3Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT3 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT3Test, FunctorOnBuiltInTypeSuccess) {
   ASSERT_PRED_FORMAT3(PredFormatFunctor3(),
                       ++n1_,
@@ -1297,7 +1297,7 @@ TEST_F(ASSERT_PRED_FORMAT3Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT3 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT3Test, FunctorOnUserTypeSuccess) {
   ASSERT_PRED_FORMAT3(PredFormatFunctor3(),
                       Bool(++n1_),
@@ -1307,7 +1307,7 @@ TEST_F(ASSERT_PRED_FORMAT3Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT3 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT3Test, FunctionOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1320,7 +1320,7 @@ TEST_F(ASSERT_PRED_FORMAT3Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT3 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT3Test, FunctionOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1333,7 +1333,7 @@ TEST_F(ASSERT_PRED_FORMAT3Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT3 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT3Test, FunctorOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1346,7 +1346,7 @@ TEST_F(ASSERT_PRED_FORMAT3Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT3 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT3Test, FunctorOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1480,7 +1480,7 @@ typedef Predicate4Test EXPECT_PRED4Test;
 typedef Predicate4Test ASSERT_PRED4Test;
 
 // Tests a successful EXPECT_PRED4 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED4Test, FunctionOnBuiltInTypeSuccess) {
   EXPECT_PRED4(PredFunction4Int,
                ++n1_,
@@ -1491,7 +1491,7 @@ TEST_F(EXPECT_PRED4Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED4 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED4Test, FunctionOnUserTypeSuccess) {
   EXPECT_PRED4(PredFunction4Bool,
                Bool(++n1_),
@@ -1502,7 +1502,7 @@ TEST_F(EXPECT_PRED4Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED4 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED4Test, FunctorOnBuiltInTypeSuccess) {
   EXPECT_PRED4(PredFunctor4(),
                ++n1_,
@@ -1513,7 +1513,7 @@ TEST_F(EXPECT_PRED4Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED4 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED4Test, FunctorOnUserTypeSuccess) {
   EXPECT_PRED4(PredFunctor4(),
                Bool(++n1_),
@@ -1524,7 +1524,7 @@ TEST_F(EXPECT_PRED4Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed EXPECT_PRED4 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED4Test, FunctionOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED4(PredFunction4Int,
@@ -1537,7 +1537,7 @@ TEST_F(EXPECT_PRED4Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED4 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED4Test, FunctionOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED4(PredFunction4Bool,
@@ -1550,7 +1550,7 @@ TEST_F(EXPECT_PRED4Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED4 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED4Test, FunctorOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED4(PredFunctor4(),
@@ -1563,7 +1563,7 @@ TEST_F(EXPECT_PRED4Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED4 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED4Test, FunctorOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED4(PredFunctor4(),
@@ -1576,7 +1576,7 @@ TEST_F(EXPECT_PRED4Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful ASSERT_PRED4 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED4Test, FunctionOnBuiltInTypeSuccess) {
   ASSERT_PRED4(PredFunction4Int,
                ++n1_,
@@ -1587,7 +1587,7 @@ TEST_F(ASSERT_PRED4Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED4 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED4Test, FunctionOnUserTypeSuccess) {
   ASSERT_PRED4(PredFunction4Bool,
                Bool(++n1_),
@@ -1598,7 +1598,7 @@ TEST_F(ASSERT_PRED4Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED4 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED4Test, FunctorOnBuiltInTypeSuccess) {
   ASSERT_PRED4(PredFunctor4(),
                ++n1_,
@@ -1609,7 +1609,7 @@ TEST_F(ASSERT_PRED4Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED4 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED4Test, FunctorOnUserTypeSuccess) {
   ASSERT_PRED4(PredFunctor4(),
                Bool(++n1_),
@@ -1620,7 +1620,7 @@ TEST_F(ASSERT_PRED4Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed ASSERT_PRED4 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED4Test, FunctionOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1634,7 +1634,7 @@ TEST_F(ASSERT_PRED4Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED4 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED4Test, FunctionOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1648,7 +1648,7 @@ TEST_F(ASSERT_PRED4Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED4 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED4Test, FunctorOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1662,7 +1662,7 @@ TEST_F(ASSERT_PRED4Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED4 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED4Test, FunctorOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1676,7 +1676,7 @@ TEST_F(ASSERT_PRED4Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT4 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT4Test, FunctionOnBuiltInTypeSuccess) {
   EXPECT_PRED_FORMAT4(PredFormatFunction4,
                       ++n1_,
@@ -1687,7 +1687,7 @@ TEST_F(EXPECT_PRED_FORMAT4Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT4 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT4Test, FunctionOnUserTypeSuccess) {
   EXPECT_PRED_FORMAT4(PredFormatFunction4,
                       Bool(++n1_),
@@ -1698,7 +1698,7 @@ TEST_F(EXPECT_PRED_FORMAT4Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT4 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT4Test, FunctorOnBuiltInTypeSuccess) {
   EXPECT_PRED_FORMAT4(PredFormatFunctor4(),
                       ++n1_,
@@ -1709,7 +1709,7 @@ TEST_F(EXPECT_PRED_FORMAT4Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT4 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT4Test, FunctorOnUserTypeSuccess) {
   EXPECT_PRED_FORMAT4(PredFormatFunctor4(),
                       Bool(++n1_),
@@ -1720,7 +1720,7 @@ TEST_F(EXPECT_PRED_FORMAT4Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT4 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT4Test, FunctionOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT4(PredFormatFunction4,
@@ -1733,7 +1733,7 @@ TEST_F(EXPECT_PRED_FORMAT4Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT4 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT4Test, FunctionOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT4(PredFormatFunction4,
@@ -1746,7 +1746,7 @@ TEST_F(EXPECT_PRED_FORMAT4Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT4 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT4Test, FunctorOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT4(PredFormatFunctor4(),
@@ -1759,7 +1759,7 @@ TEST_F(EXPECT_PRED_FORMAT4Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT4 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT4Test, FunctorOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT4(PredFormatFunctor4(),
@@ -1772,7 +1772,7 @@ TEST_F(EXPECT_PRED_FORMAT4Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT4 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT4Test, FunctionOnBuiltInTypeSuccess) {
   ASSERT_PRED_FORMAT4(PredFormatFunction4,
                       ++n1_,
@@ -1783,7 +1783,7 @@ TEST_F(ASSERT_PRED_FORMAT4Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT4 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT4Test, FunctionOnUserTypeSuccess) {
   ASSERT_PRED_FORMAT4(PredFormatFunction4,
                       Bool(++n1_),
@@ -1794,7 +1794,7 @@ TEST_F(ASSERT_PRED_FORMAT4Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT4 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT4Test, FunctorOnBuiltInTypeSuccess) {
   ASSERT_PRED_FORMAT4(PredFormatFunctor4(),
                       ++n1_,
@@ -1805,7 +1805,7 @@ TEST_F(ASSERT_PRED_FORMAT4Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT4 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT4Test, FunctorOnUserTypeSuccess) {
   ASSERT_PRED_FORMAT4(PredFormatFunctor4(),
                       Bool(++n1_),
@@ -1816,7 +1816,7 @@ TEST_F(ASSERT_PRED_FORMAT4Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT4 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT4Test, FunctionOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1830,7 +1830,7 @@ TEST_F(ASSERT_PRED_FORMAT4Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT4 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT4Test, FunctionOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1844,7 +1844,7 @@ TEST_F(ASSERT_PRED_FORMAT4Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT4 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT4Test, FunctorOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -1858,7 +1858,7 @@ TEST_F(ASSERT_PRED_FORMAT4Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT4 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT4Test, FunctorOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -2003,7 +2003,7 @@ typedef Predicate5Test EXPECT_PRED5Test;
 typedef Predicate5Test ASSERT_PRED5Test;
 
 // Tests a successful EXPECT_PRED5 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED5Test, FunctionOnBuiltInTypeSuccess) {
   EXPECT_PRED5(PredFunction5Int,
                ++n1_,
@@ -2015,7 +2015,7 @@ TEST_F(EXPECT_PRED5Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED5 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED5Test, FunctionOnUserTypeSuccess) {
   EXPECT_PRED5(PredFunction5Bool,
                Bool(++n1_),
@@ -2027,7 +2027,7 @@ TEST_F(EXPECT_PRED5Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED5 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED5Test, FunctorOnBuiltInTypeSuccess) {
   EXPECT_PRED5(PredFunctor5(),
                ++n1_,
@@ -2039,7 +2039,7 @@ TEST_F(EXPECT_PRED5Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED5 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED5Test, FunctorOnUserTypeSuccess) {
   EXPECT_PRED5(PredFunctor5(),
                Bool(++n1_),
@@ -2051,7 +2051,7 @@ TEST_F(EXPECT_PRED5Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed EXPECT_PRED5 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED5Test, FunctionOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED5(PredFunction5Int,
@@ -2065,7 +2065,7 @@ TEST_F(EXPECT_PRED5Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED5 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED5Test, FunctionOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED5(PredFunction5Bool,
@@ -2079,7 +2079,7 @@ TEST_F(EXPECT_PRED5Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED5 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED5Test, FunctorOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED5(PredFunctor5(),
@@ -2093,7 +2093,7 @@ TEST_F(EXPECT_PRED5Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED5 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED5Test, FunctorOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED5(PredFunctor5(),
@@ -2107,7 +2107,7 @@ TEST_F(EXPECT_PRED5Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful ASSERT_PRED5 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED5Test, FunctionOnBuiltInTypeSuccess) {
   ASSERT_PRED5(PredFunction5Int,
                ++n1_,
@@ -2119,7 +2119,7 @@ TEST_F(ASSERT_PRED5Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED5 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED5Test, FunctionOnUserTypeSuccess) {
   ASSERT_PRED5(PredFunction5Bool,
                Bool(++n1_),
@@ -2131,7 +2131,7 @@ TEST_F(ASSERT_PRED5Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED5 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED5Test, FunctorOnBuiltInTypeSuccess) {
   ASSERT_PRED5(PredFunctor5(),
                ++n1_,
@@ -2143,7 +2143,7 @@ TEST_F(ASSERT_PRED5Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED5 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED5Test, FunctorOnUserTypeSuccess) {
   ASSERT_PRED5(PredFunctor5(),
                Bool(++n1_),
@@ -2155,7 +2155,7 @@ TEST_F(ASSERT_PRED5Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed ASSERT_PRED5 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED5Test, FunctionOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -2170,7 +2170,7 @@ TEST_F(ASSERT_PRED5Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED5 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED5Test, FunctionOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -2185,7 +2185,7 @@ TEST_F(ASSERT_PRED5Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED5 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED5Test, FunctorOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -2200,7 +2200,7 @@ TEST_F(ASSERT_PRED5Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED5 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED5Test, FunctorOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -2215,7 +2215,7 @@ TEST_F(ASSERT_PRED5Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT5 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT5Test, FunctionOnBuiltInTypeSuccess) {
   EXPECT_PRED_FORMAT5(PredFormatFunction5,
                       ++n1_,
@@ -2227,7 +2227,7 @@ TEST_F(EXPECT_PRED_FORMAT5Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT5 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT5Test, FunctionOnUserTypeSuccess) {
   EXPECT_PRED_FORMAT5(PredFormatFunction5,
                       Bool(++n1_),
@@ -2239,7 +2239,7 @@ TEST_F(EXPECT_PRED_FORMAT5Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT5 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT5Test, FunctorOnBuiltInTypeSuccess) {
   EXPECT_PRED_FORMAT5(PredFormatFunctor5(),
                       ++n1_,
@@ -2251,7 +2251,7 @@ TEST_F(EXPECT_PRED_FORMAT5Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful EXPECT_PRED_FORMAT5 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT5Test, FunctorOnUserTypeSuccess) {
   EXPECT_PRED_FORMAT5(PredFormatFunctor5(),
                       Bool(++n1_),
@@ -2263,7 +2263,7 @@ TEST_F(EXPECT_PRED_FORMAT5Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT5 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT5Test, FunctionOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT5(PredFormatFunction5,
@@ -2277,7 +2277,7 @@ TEST_F(EXPECT_PRED_FORMAT5Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT5 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT5Test, FunctionOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT5(PredFormatFunction5,
@@ -2291,7 +2291,7 @@ TEST_F(EXPECT_PRED_FORMAT5Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT5 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(EXPECT_PRED_FORMAT5Test, FunctorOnBuiltInTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT5(PredFormatFunctor5(),
@@ -2305,7 +2305,7 @@ TEST_F(EXPECT_PRED_FORMAT5Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed EXPECT_PRED_FORMAT5 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(EXPECT_PRED_FORMAT5Test, FunctorOnUserTypeFailure) {
   EXPECT_NONFATAL_FAILURE({  // NOLINT
     EXPECT_PRED_FORMAT5(PredFormatFunctor5(),
@@ -2319,7 +2319,7 @@ TEST_F(EXPECT_PRED_FORMAT5Test, FunctorOnUserTypeFailure) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT5 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT5Test, FunctionOnBuiltInTypeSuccess) {
   ASSERT_PRED_FORMAT5(PredFormatFunction5,
                       ++n1_,
@@ -2331,7 +2331,7 @@ TEST_F(ASSERT_PRED_FORMAT5Test, FunctionOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT5 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT5Test, FunctionOnUserTypeSuccess) {
   ASSERT_PRED_FORMAT5(PredFormatFunction5,
                       Bool(++n1_),
@@ -2343,7 +2343,7 @@ TEST_F(ASSERT_PRED_FORMAT5Test, FunctionOnUserTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT5 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT5Test, FunctorOnBuiltInTypeSuccess) {
   ASSERT_PRED_FORMAT5(PredFormatFunctor5(),
                       ++n1_,
@@ -2355,7 +2355,7 @@ TEST_F(ASSERT_PRED_FORMAT5Test, FunctorOnBuiltInTypeSuccess) {
 }
 
 // Tests a successful ASSERT_PRED_FORMAT5 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT5Test, FunctorOnUserTypeSuccess) {
   ASSERT_PRED_FORMAT5(PredFormatFunctor5(),
                       Bool(++n1_),
@@ -2367,7 +2367,7 @@ TEST_F(ASSERT_PRED_FORMAT5Test, FunctorOnUserTypeSuccess) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT5 where the
-// predicate-formatter is a function on a built-in type (int).
+// predicate-formatter is a function on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT5Test, FunctionOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -2382,7 +2382,7 @@ TEST_F(ASSERT_PRED_FORMAT5Test, FunctionOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT5 where the
-// predicate-formatter is a function on a user-defined type (Bool).
+// predicate-formatter is a function on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT5Test, FunctionOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -2397,7 +2397,7 @@ TEST_F(ASSERT_PRED_FORMAT5Test, FunctionOnUserTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT5 where the
-// predicate-formatter is a functor on a built-in type (int).
+// predicate-formatter is a functor on a built-in Enemytype (int).
 TEST_F(ASSERT_PRED_FORMAT5Test, FunctorOnBuiltInTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT
@@ -2412,7 +2412,7 @@ TEST_F(ASSERT_PRED_FORMAT5Test, FunctorOnBuiltInTypeFailure) {
 }
 
 // Tests a failed ASSERT_PRED_FORMAT5 where the
-// predicate-formatter is a functor on a user-defined type (Bool).
+// predicate-formatter is a functor on a user-defined Enemytype (Bool).
 TEST_F(ASSERT_PRED_FORMAT5Test, FunctorOnUserTypeFailure) {
   expected_to_finish_ = false;
   EXPECT_FATAL_FAILURE({  // NOLINT

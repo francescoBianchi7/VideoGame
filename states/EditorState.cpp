@@ -26,6 +26,7 @@ void EditorState::initVariables() {
     textureRect=sf::IntRect(0,0,static_cast<int>(stateData.tileSize),static_cast<int>(stateData.tileSize));
     this->type=tileTypes::DEFAULT;
     cameraSpeed=500.f;
+    layer=0;
 }
 void EditorState::initBackground() {}
 void EditorState::initKeybinds() {
@@ -61,7 +62,7 @@ void EditorState::initPauseMenu() {
     this->pmenu->addButton("LOAD",500.f,"Load");
 }
 void EditorState::initTileSheet() {
-    tileMap=new TileMap(stateData.tileSize, 100, 100, "./assets/tiles/tilesheet1.png"); //normal game map
+    tileMap=new TileMap(stateData.tileSize, 50, 50, "./assets/tiles/tilesheet1.png"); //normal game map
     //tileMap=new TileMap(stateData.tileSize, 4, 4, "Google_tests/gtest_assets/GrassTestTile.png"); /*test tile sheet and size for world-bounds test*/
     //tileMap=new TileMap(stateData.tileSize, 6, 6, "Google_tests/gtest_assets/GrassTestTile.png"); /*test tile sheet and size for tile collision test*/
 }
@@ -84,7 +85,7 @@ void EditorState::render(sf::RenderTarget *target) {
     if(!target)
         target=window;
     target->setView(view);
-    tileMap->render(*target,true);
+    tileMap->render(*target,mousePosGrid,true);
 
     target->setView(window->getDefaultView());
     renderButtons(*target);
@@ -184,8 +185,9 @@ void EditorState::updateGui(){
     //the selector moves on tiles
     selectorRect.setTexture(tileMap->getTileSheet());
     selectorRect.setTextureRect(textureRect);
-    selectorRect.setPosition(static_cast<float>(mousePosGrid.x)*stateData.tileSize,
-                             static_cast<float>(mousePosGrid.y)*stateData.tileSize);
+    selectorRect.setScale(1/2.f,1/2.f);
+    selectorRect.setPosition(static_cast<float>(mousePosGrid.x)*stateData.tileSize/2.f,
+                             static_cast<float>(mousePosGrid.y)*stateData.tileSize/2.f);
     //showing the text next mouse
     cursorText.setPosition(mouseposView.x,mouseposView.y-50.f);
     std::stringstream ss;
@@ -193,7 +195,8 @@ void EditorState::updateGui(){
     "\n"<<mousePosGrid.x<<" "<<mousePosGrid.y<<
     "\n"<<textureRect.left<<" "<<textureRect.top<<
     "Collision:"<<this->collision<<
-    "\n"<<"type"<<this->type;
+    "\n"<<"Enemytype"<<this->type<<
+    "\n"<<"Tiles"<<tileMap->getLayerSize(mousePosGrid.x,mousePosGrid.y,layer);
     cursorText.setString(ss.str());
 }
 void EditorState::update(const float &dt) {

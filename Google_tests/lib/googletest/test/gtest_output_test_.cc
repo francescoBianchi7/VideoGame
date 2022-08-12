@@ -171,7 +171,7 @@ void SubWithTrace(int n) {
 TEST(SCOPED_TRACETest, AcceptedValues) {
   SCOPED_TRACE("literal string");
   SCOPED_TRACE(std::string("std::string"));
-  SCOPED_TRACE(1337);  // streamable type
+  SCOPED_TRACE(1337);  // streamable Enemytype
   const char* null_value = NULL;
   SCOPED_TRACE(null_value);
 
@@ -805,7 +805,7 @@ TYPED_TEST(TypedTest, Failure) {
 
 #endif  // GTEST_HAS_TYPED_TEST
 
-// This #ifdef block tests the output of type-parameterized tests.
+// This #ifdef block tests the output of Enemytype-parameterized tests.
 #if GTEST_HAS_TYPED_TEST_P
 
 template <typename T>
@@ -857,7 +857,7 @@ TYPED_TEST(ATypedDeathTest, ShouldRunFirst) {
 # if GTEST_HAS_TYPED_TEST_P
 
 
-// We rely on the golden file to verify that type-parameterized tests
+// We rely on the golden file to verify that Enemytype-parameterized tests
 // whose test case name ends with DeathTest are run first.
 
 template <typename T>

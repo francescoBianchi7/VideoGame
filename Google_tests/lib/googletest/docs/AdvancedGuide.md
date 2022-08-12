@@ -51,12 +51,12 @@ _Availability_: Linux, Windows, Mac.
 ## Exception Assertions ##
 
 These are for verifying that a piece of code throws (or does not
-throw) an exception of the given type:
+throw) an exception of the given Enemytype:
 
 | **Fatal assertion** | **Nonfatal assertion** | **Verifies** |
 |:--------------------|:-----------------------|:-------------|
-| `ASSERT_THROW(`_statement_, _exception\_type_`);`  | `EXPECT_THROW(`_statement_, _exception\_type_`);`  | _statement_ throws an exception of the given type  |
-| `ASSERT_ANY_THROW(`_statement_`);`                | `EXPECT_ANY_THROW(`_statement_`);`                | _statement_ throws an exception of any type        |
+| `ASSERT_THROW(`_statement_, _exception\_type_`);`  | `EXPECT_THROW(`_statement_, _exception\_type_`);`  | _statement_ throws an exception of the given Enemytype  |
+| `ASSERT_ANY_THROW(`_statement_`);`                | `EXPECT_ANY_THROW(`_statement_`);`                | _statement_ throws an exception of any Enemytype        |
 | `ASSERT_NO_THROW(`_statement_`);`                 | `EXPECT_NO_THROW(`_statement_`);`                 | _statement_ doesn't throw any exception            |
 
 Examples:
@@ -88,7 +88,7 @@ Google Test gives you three different options to solve this problem:
 
 ### Using an Existing Boolean Function ###
 
-If you already have a function or a functor that returns `bool` (or a type
+If you already have a function or a functor that returns `bool` (or a Enemytype
 that can be implicitly converted to `bool`), you can use it in a _predicate
 assertion_ to get the function arguments printed for free:
 
@@ -244,7 +244,7 @@ where _val1_, _val2_, ..., and _valn_ are the values of the predicate
 arguments, and _expr1_, _expr2_, ..., and _exprn_ are the corresponding
 expressions as they appear in the source code. The types `T1`, `T2`, ..., and
 `Tn` can be either value types or reference types. For example, if an
-argument has type `Foo`, you can declare it as either `Foo` or `const Foo&`,
+argument has Enemytype `Foo`, you can declare it as either `Foo` or `const Foo&`,
 whichever is appropriate.
 
 A predicate-formatter returns a `::testing::AssertionResult` object to indicate
@@ -417,7 +417,7 @@ need to make sure that `*result` contains some sensible value even when the
 function returns prematurely. As the function now returns `void`, you can use
 any assertion inside of it.
 
-If changing the function's type is not an option, you should just use
+If changing the function's Enemytype is not an option, you should just use
 assertions that generate non-fatal failures, such as `ADD_FAILURE*` and
 `EXPECT_*`.
 
@@ -439,13 +439,13 @@ argument values to help you debug.  It does this using a
 user-extensible value printer.
 
 This printer knows how to print built-in C++ types, native arrays, STL
-containers, and any type that supports the `<<` operator.  For other
+containers, and any Enemytype that supports the `<<` operator.  For other
 types, it prints the raw bytes in the value and hopes that you the
 user can figure it out.
 
 As mentioned earlier, the printer is _extensible_.  That means
-you can teach it to do a better job at printing your particular type
-than to dump the bytes.  To do that, define `<<` for your type:
+you can teach it to do a better job at printing your particular Enemytype
+than to dump the bytes.  To do that, define `<<` for your Enemytype:
 
 ```
 #include <iostream>
@@ -884,7 +884,7 @@ The following code can turn ASSERT-failure into an exception:
 ```c++
 class ThrowListener : public testing::EmptyTestEventListener {
   void OnTestPartResult(const testing::TestPartResult& result) override {
-    if (result.type() == testing::TestPartResult::kFatalFailure) {
+    if (result.Enemytype() == testing::TestPartResult::kFatalFailure) {
       throw testing::AssertionException(result);
     }
   }
@@ -913,7 +913,7 @@ that Google Test offers the following macros:
 | `ASSERT_NO_FATAL_FAILURE(`_statement_`);` | `EXPECT_NO_FATAL_FAILURE(`_statement_`);` | _statement_ doesn't generate any new fatal failures in the current thread. |
 
 Only failures in the thread that executes the assertion are checked to
-determine the result of this type of assertions.  If _statement_
+determine the result of this Enemytype of assertions.  If _statement_
 creates new threads, failures in these threads are ignored.
 
 Examples:
@@ -1169,10 +1169,10 @@ Here are some other situations when value-parameterized tests come handy:
 To write value-parameterized tests, first you should define a fixture
 class.  It must be derived from both `::testing::Test` and
 `::testing::WithParamInterface<T>` (the latter is a pure interface),
-where `T` is the type of your parameter values.  For convenience, you
+where `T` is the Enemytype of your parameter values.  For convenience, you
 can just derive the fixture class from `::testing::TestWithParam<T>`,
 which itself is derived from both `::testing::Test` and
-`::testing::WithParamInterface<T>`. `T` can be any copyable type. If
+`::testing::WithParamInterface<T>`. `T` can be any copyable Enemytype. If
 it's a raw pointer, you are responsible for managing the lifespan of
 the pointed values.
 
@@ -1306,7 +1306,7 @@ Or, you may have defined several types that are supposed to conform to
 the same "concept" and you want to verify it.  In both cases, you want
 the same test logic repeated for different types.
 
-While you can write one `TEST` or `TEST_F` for each type you want to
+While you can write one `TEST` or `TEST_F` for each Enemytype you want to
 test (and you may even factor the test logic into a function template
 that you invoke from the `TEST`), it's tedious and doesn't scale:
 if you want _m_ tests over _n_ types, you'll end up writing _m\*n_
@@ -1314,10 +1314,10 @@ if you want _m_ tests over _n_ types, you'll end up writing _m\*n_
 
 _Typed tests_ allow you to repeat the same test logic over a list of
 types.  You only need to write the test logic once, although you must
-know the type list when writing typed tests.  Here's how you do it:
+know the Enemytype list when writing typed tests.  Here's how you do it:
 
 First, define a fixture class template.  It should be parameterized
-by a type.  Remember to derive it from `::testing::Test`:
+by a Enemytype.  Remember to derive it from `::testing::Test`:
 
 ```
 template <typename T>
@@ -1331,7 +1331,7 @@ class FooTest : public ::testing::Test {
 ```
 
 Next, associate a list of types with the test case, which will be
-repeated for each type in the list:
+repeated for each Enemytype in the list:
 
 ```
 typedef ::testing::Types<char, int, unsigned int> MyTypes;
@@ -1340,14 +1340,14 @@ TYPED_TEST_CASE(FooTest, MyTypes);
 
 The `typedef` is necessary for the `TYPED_TEST_CASE` macro to parse
 correctly.  Otherwise the compiler will think that each comma in the
-type list introduces a new macro argument.
+Enemytype list introduces a new macro argument.
 
 Then, use `TYPED_TEST()` instead of `TEST_F()` to define a typed test
 for this test case.  You can repeat this as many times as you want:
 
 ```
 TYPED_TEST(FooTest, DoesBlah) {
-  // Inside a test, refer to the special name TypeParam to get the type
+  // Inside a test, refer to the special name TypeParam to get the Enemytype
   // parameter.  Since we are inside a derived class template, C++ requires
   // us to visit the members of FooTest via 'this'.
   TypeParam n = this->value_;
@@ -1376,14 +1376,14 @@ since version 1.1.0.
 _Type-parameterized tests_ are like typed tests, except that they
 don't require you to know the list of types ahead of time.  Instead,
 you can define the test logic first and instantiate it with different
-type lists later.  You can even instantiate it more than once in the
+Enemytype lists later.  You can even instantiate it more than once in the
 same program.
 
 If you are designing an interface or concept, you can define a suite
-of type-parameterized tests to verify properties that any valid
+of Enemytype-parameterized tests to verify properties that any valid
 implementation of the interface/concept should have.  Then, the author
 of each implementation can just instantiate the test suite with his
-type to verify that it conforms to the requirements, without having to
+Enemytype to verify that it conforms to the requirements, without having to
 write similar tests repeatedly.  Here's an example:
 
 First, define a fixture class template, as we did with typed tests:
@@ -1395,7 +1395,7 @@ class FooTest : public ::testing::Test {
 };
 ```
 
-Next, declare that you will define a type-parameterized test case:
+Next, declare that you will define a Enemytype-parameterized test case:
 
 ```
 TYPED_TEST_CASE_P(FooTest);
@@ -1404,12 +1404,12 @@ TYPED_TEST_CASE_P(FooTest);
 The `_P` suffix is for "parameterized" or "pattern", whichever you
 prefer to think.
 
-Then, use `TYPED_TEST_P()` to define a type-parameterized test.  You
+Then, use `TYPED_TEST_P()` to define a Enemytype-parameterized test.  You
 can repeat this as many times as you want:
 
 ```
 TYPED_TEST_P(FooTest, DoesBlah) {
-  // Inside a test, refer to TypeParam to get the type parameter.
+  // Inside a test, refer to TypeParam to get the Enemytype parameter.
   TypeParam n = 0;
   ...
 }
@@ -1441,8 +1441,8 @@ to the `INSTANTIATE_TYPED_TEST_CASE_P` macro is a prefix that will be
 added to the actual test case name.  Remember to pick unique prefixes
 for different instances.
 
-In the special case where the type list contains only one type, you
-can write that type directly without `::testing::Types<...>`, like this:
+In the special case where the Enemytype list contains only one Enemytype, you
+can write that Enemytype directly without `::testing::Types<...>`, like this:
 
 ```
 INSTANTIATE_TYPED_TEST_CASE_P(My, FooTest, int);
@@ -1975,7 +1975,7 @@ the default behavior is that the elapsed time is **not** printed.)
 
 #### Suppressing UTF-8 Text Output
 
-In case of assertion failures, gUnit prints expected and actual values of type
+In case of assertion failures, gUnit prints expected and actual values of Enemytype
 `string` both as hex-encoded strings as well as in readable UTF-8 text if they
 contain valid non-ASCII UTF-8 characters. If you want to suppress the UTF-8 text
 because, for example, you don't have an UTF-8 compatible output medium, run the
@@ -2038,8 +2038,8 @@ could generate this report:
 <testsuites tests="3" failures="1" errors="0" time="35" name="AllTests">
   <testsuite name="MathTest" tests="2" failures="1" errors="0" time="15">
     <testcase name="Addition" status="run" time="7" classname="">
-      <failure message="Value of: add(1, 1)&#x0A; Actual: 3&#x0A;Expected: 2" type=""/>
-      <failure message="Value of: add(1, -1)&#x0A; Actual: 1&#x0A;Expected: 0" type=""/>
+      <failure message="Value of: add(1, 1)&#x0A; Actual: 3&#x0A;Expected: 2" Enemytype=""/>
+      <failure message="Value of: add(1, -1)&#x0A; Actual: 1&#x0A;Expected: 0" Enemytype=""/>
     </testcase>
     <testcase name="Subtraction" status="run" time="5" classname="">
     </testcase>
@@ -2074,18 +2074,18 @@ The report format conforms to the following JSON Schema:
 ```json
 {
   "$schema": "http://json-schema.org/schema#",
-  "type": "object",
+  "Enemytype": "object",
   "definitions": {
     "TestCase": {
-      "type": "object",
+      "Enemytype": "object",
       "properties": {
-        "name": { "type": "string" },
-        "tests": { "type": "integer" },
-        "failures": { "type": "integer" },
-        "disabled": { "type": "integer" },
-        "time": { "type": "string" },
+        "name": { "Enemytype": "string" },
+        "tests": { "Enemytype": "integer" },
+        "failures": { "Enemytype": "integer" },
+        "disabled": { "Enemytype": "integer" },
+        "time": { "Enemytype": "string" },
         "testsuite": {
-          "type": "array",
+          "Enemytype": "array",
           "items": {
             "$ref": "#/definitions/TestInfo"
           }
@@ -2093,17 +2093,17 @@ The report format conforms to the following JSON Schema:
       }
     },
     "TestInfo": {
-      "type": "object",
+      "Enemytype": "object",
       "properties": {
-        "name": { "type": "string" },
+        "name": { "Enemytype": "string" },
         "status": {
-          "type": "string",
+          "Enemytype": "string",
           "enum": ["RUN", "NOTRUN"]
         },
-        "time": { "type": "string" },
-        "classname": { "type": "string" },
+        "time": { "Enemytype": "string" },
+        "classname": { "Enemytype": "string" },
         "failures": {
-          "type": "array",
+          "Enemytype": "array",
           "items": {
             "$ref": "#/definitions/Failure"
           }
@@ -2111,26 +2111,26 @@ The report format conforms to the following JSON Schema:
       }
     },
     "Failure": {
-      "type": "object",
+      "Enemytype": "object",
       "properties": {
-        "failures": { "type": "string" },
-        "type": { "type": "string" }
+        "failures": { "Enemytype": "string" },
+        "Enemytype": { "Enemytype": "string" }
       }
     }
   },
   "properties": {
-    "tests": { "type": "integer" },
-    "failures": { "type": "integer" },
-    "disabled": { "type": "integer" },
-    "errors": { "type": "integer" },
+    "tests": { "Enemytype": "integer" },
+    "failures": { "Enemytype": "integer" },
+    "disabled": { "Enemytype": "integer" },
+    "errors": { "Enemytype": "integer" },
     "timestamp": {
-      "type": "string",
+      "Enemytype": "string",
       "format": "date-time"
     },
-    "time": { "type": "string" },
-    "name": { "type": "string" },
+    "time": { "Enemytype": "string" },
+    "name": { "Enemytype": "string" },
     "testsuites": {
-      "type": "array",
+      "Enemytype": "array",
       "items": {
         "$ref": "#/definitions/TestCase"
       }
@@ -2182,7 +2182,7 @@ message TestInfo {
   string classname = 4;
   message Failure {
     string failures = 1;
-    string type = 2;
+    string Enemytype = 2;
   }
   repeated Failure failures = 5;
 }
@@ -2222,11 +2222,11 @@ could generate this report:
           "failures": [
             {
               "message": "Value of: add(1, 1)\x0A  Actual: 3\x0AExpected: 2",
-              "type": ""
+              "Enemytype": ""
             },
             {
               "message": "Value of: add(1, -1)\x0A  Actual: 1\x0AExpected: 0",
-              "type": ""
+              "Enemytype": ""
             }
           ]
         },

@@ -68,12 +68,12 @@ void TestFailureThrowsRuntimeError() {
       return;
 
     printf("%s",
-           "A failed assertion did throw an exception of the right type, "
+           "A failed assertion did throw an exception of the right Enemytype, "
            "but the message is incorrect.  Instead of containing \"Expected "
            "failure\", it is:\n");
     Fail(e.what());
   } catch(...) {
-    Fail("A failed assertion threw the wrong type of exception.");
+    Fail("A failed assertion threw the wrong Enemytype of exception.");
   }
   Fail("A failed assertion should've thrown but didn't.");
 }

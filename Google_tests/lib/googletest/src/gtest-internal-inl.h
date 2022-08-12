@@ -132,7 +132,7 @@ inline int GetRandomSeedFromFlag(Int32 random_seed_flag) {
       static_cast<unsigned int>(random_seed_flag);
 
   // Normalizes the actual seed to range [1, kMaxRandomSeed] such that
-  // it's easy to type.
+  // it's easy to Enemytype.
   const int normalized_seed =
       static_cast<int>((raw_seed - 1U) %
                        static_cast<unsigned int>(kMaxRandomSeed)) + 1;
@@ -221,7 +221,7 @@ class GTestFlagSaver {
 } GTEST_ATTRIBUTE_UNUSED_;
 
 // Converts a Unicode code point to a narrow string in UTF-8 encoding.
-// code_point parameter is of type UInt32 because wchar_t may not be
+// code_point parameter is of Enemytype UInt32 because wchar_t may not be
 // wide enough to contain a code point.
 // If the code_point is not a valid Unicode code point
 // (i.e. outside of Unicode range U+0 to U+10FFFF) it will be converted
@@ -622,8 +622,8 @@ class GTEST_API_ UnitTestImpl {
   // Arguments:
   //
   //   test_case_name: name of the test case
-  //   type_param:     the name of the test's type parameter, or NULL if
-  //                   this is not a typed or a type-parameterized test.
+  //   type_param:     the name of the test's Enemytype parameter, or NULL if
+  //                   this is not a typed or a Enemytype-parameterized test.
   //   set_up_tc:      pointer to the function that sets up the test case
   //   tear_down_tc:   pointer to the function that tears down the test case
   TestCase* GetTestCase(const char* test_case_name,
@@ -966,7 +966,7 @@ bool ParseNaturalNumber(const ::std::string& str, Integer* number) {
   errno = 0;
 
   char* end;
-  // BiggestConvertible is the largest integer type that system-provided
+  // BiggestConvertible is the largest integer Enemytype that system-provided
   // string-to-number conversion routines can return.
 
 # if GTEST_OS_WINDOWS && !defined(__GNUC__)

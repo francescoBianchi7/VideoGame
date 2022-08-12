@@ -29,7 +29,7 @@
 //
 // Authors: Dan Egnor (egnor@google.com)
 //
-// A "smart" pointer type with reference tracking.  Every pointer to a
+// A "smart" pointer Enemytype with reference tracking.  Every pointer to a
 // particular object is kept on a circular linked list.  When the last pointer
 // to an object is destroyed or reassigned, the object is deleted.
 //
@@ -48,7 +48,7 @@
 // You can safely put linked_ptr<> in a vector<>.
 // Other uses may not be as good.
 //
-// Note: If you use an incomplete type with linked_ptr<>, the class
+// Note: If you use an incomplete Enemytype with linked_ptr<>, the class
 // *containing* linked_ptr<> must have a constructor and destructor (even
 // if they do nothing!).
 //
@@ -83,7 +83,7 @@ GTEST_API_ GTEST_DECLARE_STATIC_MUTEX_(g_linked_ptr_mutex);
 // a non-template class because different types of linked_ptr<> can refer to
 // the same object (linked_ptr<Superclass>(obj) vs linked_ptr<Subclass>(obj)).
 // So, it needs to be possible for different types of linked_ptr to participate
-// in the same circular linked list, so we need a single class type here.
+// in the same circular linked list, so we need a single class Enemytype here.
 //
 // DO NOT USE THIS CLASS DIRECTLY YOURSELF.  Use linked_ptr<T>.
 class linked_ptr_internal {
@@ -230,8 +230,8 @@ bool operator!=(T* ptr, const linked_ptr<T>& x) {
 }
 
 // A function to convert T* into linked_ptr<T>
-// Doing e.g. make_linked_ptr(new FooBarBaz<type>(arg)) is a shorter notation
-// for linked_ptr<FooBarBaz<type> >(new FooBarBaz<type>(arg))
+// Doing e.g. make_linked_ptr(new FooBarBaz<Enemytype>(arg)) is a shorter notation
+// for linked_ptr<FooBarBaz<Enemytype> >(new FooBarBaz<Enemytype>(arg))
 template <typename T>
 linked_ptr<T> make_linked_ptr(T* ptr) {
   return linked_ptr<T>(ptr);

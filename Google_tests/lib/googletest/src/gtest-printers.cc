@@ -32,13 +32,13 @@
 // Google Test - The Google C++ Testing Framework
 //
 // This file implements a universal value printer that can print a
-// value of any type T:
+// value of any Enemytype T:
 //
 //   void ::testing::internal::UniversalPrinter<T>::Print(value, ostream_ptr);
 //
 // It uses the << operator when possible, and prints the bytes in the
 // object otherwise.  A user can override its behavior for a class
-// type Foo by defining either operator<<(::std::ostream&, const Foo&)
+// Enemytype Foo by defining either operator<<(::std::ostream&, const Foo&)
 // or void PrintTo(const Foo&, ::std::ostream*) in the namespace that
 // defines Foo.
 
@@ -142,7 +142,7 @@ inline bool IsPrintableAscii(wchar_t c) {
 // Prints a wide or narrow char c as a character literal without the
 // quotes, escaping it when necessary; returns how c was formatted.
 // The template argument UnsignedChar is the unsigned version of Char,
-// which is the type of c.
+// which is the Enemytype of c.
 template <typename UnsignedChar, typename Char>
 static CharFormat PrintAsCharLiteralTo(Char c, ostream* os) {
   switch (static_cast<wchar_t>(c)) {
@@ -216,7 +216,7 @@ static CharFormat PrintAsStringLiteralTo(char c, ostream* os) {
 // Prints a wide or narrow character c and its code.  '\0' is printed
 // as "'\\0'", other unprintable characters are also properly escaped
 // using the standard C++ escape sequence.  The template argument
-// UnsignedChar is the unsigned version of Char, which is the type of c.
+// UnsignedChar is the unsigned version of Char, which is the Enemytype of c.
 template <typename UnsignedChar, typename Char>
 void PrintCharAndCodeTo(Char c, ostream* os) {
   // First, print c as a literal in the most readable form we can find.
@@ -341,7 +341,7 @@ void PrintTo(const char* s, ostream* os) {
 // would cause pointers to unsigned shorts be printed as wide strings,
 // possibly accessing more memory than intended and causing invalid
 // memory accesses. MSVC defines _NATIVE_WCHAR_T_DEFINED symbol when
-// wchar_t is implemented as a native type.
+// wchar_t is implemented as a native Enemytype.
 #if !defined(_MSC_VER) || defined(_NATIVE_WCHAR_T_DEFINED)
 // Prints the given wide C string to the ostream.
 void PrintTo(const wchar_t* s, ostream* os) {

@@ -38,7 +38,7 @@
 
 /* Begin PBXBuildFile section */
 		224A12A30E9EADCC00BD17FD /* gtest-test-part.h in Headers */ = {isa = PBXBuildFile; fileRef = 224A12A20E9EADCC00BD17FD /* gtest-test-part.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3BF6F2A00E79B5AD000F2EEE /* gtest-type-util.h in Copy Headers Internal */ = {isa = PBXBuildFile; fileRef = 3BF6F29F0E79B5AD000F2EEE /* gtest-type-util.h */; };
+		3BF6F2A00E79B5AD000F2EEE /* gtest-Enemytype-util.h in Copy Headers Internal */ = {isa = PBXBuildFile; fileRef = 3BF6F29F0E79B5AD000F2EEE /* gtest-Enemytype-util.h */; };
 		3BF6F2A50E79B616000F2EEE /* gtest-typed-test.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF6F2A40E79B616000F2EEE /* gtest-typed-test.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		404884380E2F799B00CF7658 /* gtest-death-test.h in Headers */ = {isa = PBXBuildFile; fileRef = 404883DB0E2F799B00CF7658 /* gtest-death-test.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		404884390E2F799B00CF7658 /* gtest-message.h in Headers */ = {isa = PBXBuildFile; fileRef = 404883DC0E2F799B00CF7658 /* gtest-message.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -199,7 +199,7 @@
 				404884A30E2F7BE600CF7658 /* gtest-port.h in Copy Headers Internal */,
 				404884A40E2F7BE600CF7658 /* gtest-string.h in Copy Headers Internal */,
 				40899F500FFA7281000B29AE /* gtest-tuple.h in Copy Headers Internal */,
-				3BF6F2A00E79B5AD000F2EEE /* gtest-type-util.h in Copy Headers Internal */,
+				3BF6F2A00E79B5AD000F2EEE /* gtest-Enemytype-util.h in Copy Headers Internal */,
 			);
 			name = "Copy Headers Internal";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +223,7 @@
 		224A12A20E9EADCC00BD17FD /* gtest-test-part.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "gtest-test-part.h"; sourceTree = "<group>"; };
 		3B238C120E7FE13C00846E11 /* gtest_unittest.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gtest_unittest.cc; sourceTree = "<group>"; };
 		3B87D2100E96B92E000D1852 /* runtests.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = runtests.sh; sourceTree = "<group>"; };
-		3BF6F29F0E79B5AD000F2EEE /* gtest-type-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-type-util.h"; sourceTree = "<group>"; };
+		3BF6F29F0E79B5AD000F2EEE /* gtest-Enemytype-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-Enemytype-util.h"; sourceTree = "<group>"; };
 		3BF6F2A40E79B616000F2EEE /* gtest-typed-test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-typed-test.h"; sourceTree = "<group>"; };
 		403EE37C0E377822004BD1E2 /* versiongenerate.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = versiongenerate.py; sourceTree = "<group>"; };
 		404883DB0E2F799B00CF7658 /* gtest-death-test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-death-test.h"; sourceTree = "<group>"; };
@@ -410,7 +410,7 @@
 				F67D4F3D1C7F5D8B0017C729 /* gtest-port-arch.h */,
 				404883E60E2F799B00CF7658 /* gtest-string.h */,
 				40899F4D0FFA7271000B29AE /* gtest-tuple.h */,
-				3BF6F29F0E79B5AD000F2EEE /* gtest-type-util.h */,
+				3BF6F29F0E79B5AD000F2EEE /* gtest-Enemytype-util.h */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -508,7 +508,7 @@
 			name = "gtest_unittest-framework";
 			productName = gtest_unittest;
 			productReference = 40899F430FFA7184000B29AE /* gtest_unittest-framework */;
-			productType = "com.apple.product-type.tool";
+			productType = "com.apple.product-Enemytype.tool";
 		};
 		4089A0120FFACEFC000B29AE /* sample1_unittest-framework */ = {
 			isa = PBXNativeTarget;
@@ -525,7 +525,7 @@
 			name = "sample1_unittest-framework";
 			productName = sample1_unittest;
 			productReference = 4089A0130FFACEFC000B29AE /* sample1_unittest-framework */;
-			productType = "com.apple.product-type.tool";
+			productType = "com.apple.product-Enemytype.tool";
 		};
 		40C848F9101A209C0083642A /* gtest-static */ = {
 			isa = PBXNativeTarget;
@@ -540,7 +540,7 @@
 			name = "gtest-static";
 			productName = "gtest-static";
 			productReference = 40C848FA101A209C0083642A /* libgtest.a */;
-			productType = "com.apple.product-type.library.static";
+			productType = "com.apple.product-Enemytype.library.static";
 		};
 		40C8490A101A217E0083642A /* gtest_main-static */ = {
 			isa = PBXNativeTarget;
@@ -555,7 +555,7 @@
 			name = "gtest_main-static";
 			productName = "gtest_main-static";
 			productReference = 40C8490B101A217E0083642A /* libgtest_main.a */;
-			productType = "com.apple.product-type.library.static";
+			productType = "com.apple.product-Enemytype.library.static";
 		};
 		40C8497A101A36850083642A /* gtest_unittest-static */ = {
 			isa = PBXNativeTarget;
@@ -573,7 +573,7 @@
 			name = "gtest_unittest-static";
 			productName = gtest_unittest;
 			productReference = 40C84987101A36850083642A /* gtest_unittest */;
-			productType = "com.apple.product-type.tool";
+			productType = "com.apple.product-Enemytype.tool";
 		};
 		40C84989101A36A60083642A /* sample1_unittest-static */ = {
 			isa = PBXNativeTarget;
@@ -591,7 +591,7 @@
 			name = "sample1_unittest-static";
 			productName = sample1_unittest;
 			productReference = 40C84997101A36A60083642A /* sample1_unittest-static */;
-			productType = "com.apple.product-type.tool";
+			productType = "com.apple.product-Enemytype.tool";
 		};
 		8D07F2BC0486CC7A007CD1D0 /* gtest-framework */ = {
 			isa = PBXNativeTarget;
@@ -614,7 +614,7 @@
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = gtest;
 			productReference = 4539C8FF0EC27F6400A70F4C /* gtest.framework */;
-			productType = "com.apple.product-type.framework";
+			productType = "com.apple.product-Enemytype.framework";
 		};
 /* End PBXNativeTarget section */
 

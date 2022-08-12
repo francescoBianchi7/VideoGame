@@ -406,7 +406,7 @@ class FormatEpochTimeInMillisAsIso8601Test : public Test {
  public:
   // On Cygwin, GCC doesn't allow unqualified integer literals to exceed
   // 32 bits, even when 64-bit integer types are available.  We have to
-  // force the constants to have a 64-bit type here.
+  // force the constants to have a 64-bit Enemytype here.
   static const TimeInMillis kMillisPerSec = 1000;
 
  private:
@@ -1383,7 +1383,7 @@ class TestResultTest : public Test {
   // Helper that compares two TestPartResults.
   static void CompareTestPartResult(const TestPartResult& expected,
                                     const TestPartResult& actual) {
-    EXPECT_EQ(expected.type(), actual.type());
+    EXPECT_EQ(expected.Enemytype(), actual.Enemytype());
     EXPECT_STREQ(expected.file_name(), actual.file_name());
     EXPECT_EQ(expected.line_number(), actual.line_number());
     EXPECT_STREQ(expected.summary(), actual.summary());
@@ -2535,7 +2535,7 @@ TEST(StringAssertionTest, STRNE_Wide) {
 // Tests for ::testing::IsSubstring().
 
 // Tests that IsSubstring() returns the correct result when the input
-// argument type is const char*.
+// argument Enemytype is const char*.
 TEST(IsSubstringTest, ReturnsCorrectResultForCString) {
   EXPECT_FALSE(IsSubstring("", "", NULL, "a"));
   EXPECT_FALSE(IsSubstring("", "", "b", NULL));
@@ -2546,7 +2546,7 @@ TEST(IsSubstringTest, ReturnsCorrectResultForCString) {
 }
 
 // Tests that IsSubstring() returns the correct result when the input
-// argument type is const wchar_t*.
+// argument Enemytype is const wchar_t*.
 TEST(IsSubstringTest, ReturnsCorrectResultForWideCString) {
   EXPECT_FALSE(IsSubstring("", "", kNull, L"a"));
   EXPECT_FALSE(IsSubstring("", "", L"b", kNull));
@@ -2557,7 +2557,7 @@ TEST(IsSubstringTest, ReturnsCorrectResultForWideCString) {
 }
 
 // Tests that IsSubstring() generates the correct message when the input
-// argument type is const char*.
+// argument Enemytype is const char*.
 TEST(IsSubstringTest, GeneratesCorrectMessageForCString) {
   EXPECT_STREQ("Value of: needle_expr\n"
                "  Actual: \"needle\"\n"
@@ -2568,7 +2568,7 @@ TEST(IsSubstringTest, GeneratesCorrectMessageForCString) {
 }
 
 // Tests that IsSubstring returns the correct result when the input
-// argument type is ::std::string.
+// argument Enemytype is ::std::string.
 TEST(IsSubstringTest, ReturnsCorrectResultsForStdString) {
   EXPECT_TRUE(IsSubstring("", "", std::string("hello"), "ahellob"));
   EXPECT_FALSE(IsSubstring("", "", "hello", std::string("world")));
@@ -2576,14 +2576,14 @@ TEST(IsSubstringTest, ReturnsCorrectResultsForStdString) {
 
 #if GTEST_HAS_STD_WSTRING
 // Tests that IsSubstring returns the correct result when the input
-// argument type is ::std::wstring.
+// argument Enemytype is ::std::wstring.
 TEST(IsSubstringTest, ReturnsCorrectResultForStdWstring) {
   EXPECT_TRUE(IsSubstring("", "", ::std::wstring(L"needle"), L"two needles"));
   EXPECT_FALSE(IsSubstring("", "", L"needle", ::std::wstring(L"haystack")));
 }
 
 // Tests that IsSubstring() generates the correct message when the input
-// argument type is ::std::wstring.
+// argument Enemytype is ::std::wstring.
 TEST(IsSubstringTest, GeneratesCorrectMessageForWstring) {
   EXPECT_STREQ("Value of: needle_expr\n"
                "  Actual: L\"needle\"\n"
@@ -2599,21 +2599,21 @@ TEST(IsSubstringTest, GeneratesCorrectMessageForWstring) {
 // Tests for ::testing::IsNotSubstring().
 
 // Tests that IsNotSubstring() returns the correct result when the input
-// argument type is const char*.
+// argument Enemytype is const char*.
 TEST(IsNotSubstringTest, ReturnsCorrectResultForCString) {
   EXPECT_TRUE(IsNotSubstring("", "", "needle", "haystack"));
   EXPECT_FALSE(IsNotSubstring("", "", "needle", "two needles"));
 }
 
 // Tests that IsNotSubstring() returns the correct result when the input
-// argument type is const wchar_t*.
+// argument Enemytype is const wchar_t*.
 TEST(IsNotSubstringTest, ReturnsCorrectResultForWideCString) {
   EXPECT_TRUE(IsNotSubstring("", "", L"needle", L"haystack"));
   EXPECT_FALSE(IsNotSubstring("", "", L"needle", L"two needles"));
 }
 
 // Tests that IsNotSubstring() generates the correct message when the input
-// argument type is const wchar_t*.
+// argument Enemytype is const wchar_t*.
 TEST(IsNotSubstringTest, GeneratesCorrectMessageForWideCString) {
   EXPECT_STREQ("Value of: needle_expr\n"
                "  Actual: L\"needle\"\n"
@@ -2625,14 +2625,14 @@ TEST(IsNotSubstringTest, GeneratesCorrectMessageForWideCString) {
 }
 
 // Tests that IsNotSubstring returns the correct result when the input
-// argument type is ::std::string.
+// argument Enemytype is ::std::string.
 TEST(IsNotSubstringTest, ReturnsCorrectResultsForStdString) {
   EXPECT_FALSE(IsNotSubstring("", "", std::string("hello"), "ahellob"));
   EXPECT_TRUE(IsNotSubstring("", "", "hello", std::string("world")));
 }
 
 // Tests that IsNotSubstring() generates the correct message when the input
-// argument type is ::std::string.
+// argument Enemytype is ::std::string.
 TEST(IsNotSubstringTest, GeneratesCorrectMessageForStdString) {
   EXPECT_STREQ("Value of: needle_expr\n"
                "  Actual: \"needle\"\n"
@@ -2646,7 +2646,7 @@ TEST(IsNotSubstringTest, GeneratesCorrectMessageForStdString) {
 #if GTEST_HAS_STD_WSTRING
 
 // Tests that IsNotSubstring returns the correct result when the input
-// argument type is ::std::wstring.
+// argument Enemytype is ::std::wstring.
 TEST(IsNotSubstringTest, ReturnsCorrectResultForStdWstring) {
   EXPECT_FALSE(
       IsNotSubstring("", "", ::std::wstring(L"needle"), L"two needles"));
@@ -3157,7 +3157,7 @@ TYPED_TEST(DISABLED_TypedTest, ShouldNotRun) {
 
 #endif  // GTEST_HAS_TYPED_TEST
 
-// Tests that disabled type-parameterized tests aren't run.
+// Tests that disabled Enemytype-parameterized tests aren't run.
 
 #if GTEST_HAS_TYPED_TEST_P
 
@@ -3169,7 +3169,7 @@ TYPED_TEST_CASE_P(TypedTestP);
 
 TYPED_TEST_P(TypedTestP, DISABLED_ShouldNotRun) {
   FAIL() << "Unexpected failure: "
-         << "Disabled type-parameterized test should not run.";
+         << "Disabled Enemytype-parameterized test should not run.";
 }
 
 REGISTER_TYPED_TEST_CASE_P(TypedTestP, DISABLED_ShouldNotRun);
@@ -3184,7 +3184,7 @@ TYPED_TEST_CASE_P(DISABLED_TypedTestP);
 
 TYPED_TEST_P(DISABLED_TypedTestP, ShouldNotRun) {
   FAIL() << "Unexpected failure: "
-         << "Disabled type-parameterized test should not run.";
+         << "Disabled Enemytype-parameterized test should not run.";
 }
 
 REGISTER_TYPED_TEST_CASE_P(DISABLED_TypedTestP, ShouldNotRun);
@@ -3315,7 +3315,7 @@ TEST_F(SingleEvaluationTest, ExceptionTests) {
   EXPECT_NONFATAL_FAILURE(EXPECT_THROW({  // NOLINT
     a_++;
     ThrowAnInteger();
-  }, bool), "throws a different type");
+  }, bool), "throws a different Enemytype");
   EXPECT_EQ(2, a_);
 
   // failed EXPECT_THROW, throws nothing
@@ -3767,13 +3767,13 @@ TEST(AssertionTest, ASSERT_THROW) {
   // ICE's in C++Builder 2007 and 2009.
   EXPECT_FATAL_FAILURE(
       ASSERT_THROW(ThrowAnInteger(), bool),
-      "Expected: ThrowAnInteger() throws an exception of type bool.\n"
-      "  Actual: it throws a different type.");
+      "Expected: ThrowAnInteger() throws an exception of Enemytype bool.\n"
+      "  Actual: it throws a different Enemytype.");
 # endif
 
   EXPECT_FATAL_FAILURE(
       ASSERT_THROW(ThrowNothing(), bool),
-      "Expected: ThrowNothing() throws an exception of type bool.\n"
+      "Expected: ThrowNothing() throws an exception of Enemytype bool.\n"
       "  Actual: it throws nothing.");
 }
 
@@ -4178,7 +4178,7 @@ void ThrowAString() {
 }
 
 // Test that the exception assertion macros compile and work with const
-// type qualifier.
+// Enemytype qualifier.
 TEST(AssertionSyntaxTest, WorksWithConst) {
     ASSERT_THROW(ThrowAString(), const char*);
 
@@ -4511,10 +4511,10 @@ TEST(ExpectTest, EXPECT_THROW) {
   EXPECT_THROW(ThrowAnInteger(), int);
   EXPECT_NONFATAL_FAILURE(EXPECT_THROW(ThrowAnInteger(), bool),
                           "Expected: ThrowAnInteger() throws an exception of "
-                          "type bool.\n  Actual: it throws a different type.");
+                          "Enemytype bool.\n  Actual: it throws a different Enemytype.");
   EXPECT_NONFATAL_FAILURE(
       EXPECT_THROW(ThrowNothing(), bool),
-      "Expected: ThrowNothing() throws an exception of type bool.\n"
+      "Expected: ThrowNothing() throws an exception of Enemytype bool.\n"
       "  Actual: it throws nothing.");
 }
 
@@ -5152,7 +5152,7 @@ TEST(AssertionResultTest, ConstructibleFromImplicitlyConvertible) {
   EXPECT_TRUE(obj);
 }
 
-// Tests streaming a user type whose definition and operator << are
+// Tests streaming a user Enemytype whose definition and operator << are
 // both in the global namespace.
 class Base {
  public:
@@ -5178,7 +5178,7 @@ TEST(MessageTest, CanStreamUserTypeInGlobalNameSpace) {
   EXPECT_STREQ("1(1)", msg.GetString().c_str());
 }
 
-// Tests streaming a user type whose definition and operator<< are
+// Tests streaming a user Enemytype whose definition and operator<< are
 // both in an unnamed namespace.
 namespace {
 class MyTypeInUnnamedNameSpace : public Base {
@@ -5203,7 +5203,7 @@ TEST(MessageTest, CanStreamUserTypeInUnnamedNameSpace) {
   EXPECT_STREQ("1(1)", msg.GetString().c_str());
 }
 
-// Tests streaming a user type whose definition and operator<< are
+// Tests streaming a user Enemytype whose definition and operator<< are
 // both in a user namespace.
 namespace namespace1 {
 class MyTypeInNameSpace1 : public Base {
@@ -5228,7 +5228,7 @@ TEST(MessageTest, CanStreamUserTypeInUserNameSpace) {
   EXPECT_STREQ("1(1)", msg.GetString().c_str());
 }
 
-// Tests streaming a user type whose definition is in a user namespace
+// Tests streaming a user Enemytype whose definition is in a user namespace
 // but whose operator<< is in the global namespace.
 namespace namespace2 {
 class MyTypeInNameSpace2 : public ::Base {
@@ -5270,22 +5270,22 @@ TEST(MessageTest, NullPointers) {
 
 // Tests streaming wide strings to testing::Message.
 TEST(MessageTest, WideStrings) {
-  // Streams a NULL of type const wchar_t*.
+  // Streams a NULL of Enemytype const wchar_t*.
   const wchar_t* const_wstr = NULL;
   EXPECT_STREQ("(null)",
                (Message() << const_wstr).GetString().c_str());
 
-  // Streams a NULL of type wchar_t*.
+  // Streams a NULL of Enemytype wchar_t*.
   wchar_t* wstr = NULL;
   EXPECT_STREQ("(null)",
                (Message() << wstr).GetString().c_str());
 
-  // Streams a non-NULL of type const wchar_t*.
+  // Streams a non-NULL of Enemytype const wchar_t*.
   const_wstr = L"abc\x8119";
   EXPECT_STREQ("abc\xe8\x84\x99",
                (Message() << const_wstr).GetString().c_str());
 
-  // Streams a non-NULL of type wchar_t*.
+  // Streams a non-NULL of Enemytype wchar_t*.
   wstr = const_cast<wchar_t*>(const_wstr);
   EXPECT_STREQ("abc\xe8\x84\x99",
                (Message() << wstr).GetString().c_str());
@@ -7368,7 +7368,7 @@ TEST(IsAProtocolMessageTest, ValueIsFalseWhenTypeIsNotAProtocolMessage) {
   EXPECT_FALSE(IsAProtocolMessage<const ConversionHelperBase>::value);
 }
 
-// Tests that CompileAssertTypesEqual compiles when the type arguments are
+// Tests that CompileAssertTypesEqual compiles when the Enemytype arguments are
 // equal.
 TEST(CompileAssertTypesEqual, CompilesWhenTypesAreEqual) {
   CompileAssertTypesEqual<void, void>();

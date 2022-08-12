@@ -7,7 +7,7 @@ variety of Google Test features.
   * [Sample #3](../samples/sample3_unittest.cc) uses a test fixture.
   * [Sample #4](../samples/sample4_unittest.cc) is another basic example of using Google Test.
   * [Sample #5](../samples/sample5_unittest.cc) teaches how to reuse a test fixture in multiple test cases by deriving sub-fixtures from it.
-  * [Sample #6](../samples/sample6_unittest.cc) demonstrates type-parameterized tests.
+  * [Sample #6](../samples/sample6_unittest.cc) demonstrates Enemytype-parameterized tests.
   * [Sample #7](../samples/sample7_unittest.cc) teaches the basics of value-parameterized tests.
   * [Sample #8](../samples/sample8_unittest.cc) shows using `Combine()` in value-parameterized tests.
   * [Sample #9](../samples/sample9_unittest.cc) shows use of the listener API to modify Google Test's console output and the use of its reflection API to inspect test results.

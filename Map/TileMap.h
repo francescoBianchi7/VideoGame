@@ -7,7 +7,7 @@
 class TileMap {
 private:
     void clear();
-    std::vector<std::vector<std::vector<Tile*>>> map;
+    std::vector<std::vector<std::vector<std::vector<Tile*>>>> map;
     float tileSizeF;
     int tileSizeI;
     int layers;
@@ -25,12 +25,12 @@ public:
     const sf::Texture* getTileSheet();
     sf::Vector2i getMapSizeI() const;
     sf::Vector2f getMapSizeF() const;
+    int getLayerSize(int x,int y, int layer) const;
     //functions
-    void update();
-    void render(sf::RenderTarget & target,const bool showCollision=false, Entity* entity=nullptr);
+    void render(sf::RenderTarget & target,sf::Vector2i gridPosition,const bool showCollision=false);
     void addTile(unsigned x,unsigned y,unsigned z,sf::IntRect& textureRect,bool& collision,short& type);
     void removeTile(unsigned x,unsigned y,unsigned z);
-    void updateCollision(Entity* entity,const float &dt);
+    void update(Entity* entity, const float &dt);
     //save & load
     void saveToFile(const std::string& file_name);
     void loadFromFile(const std::string &file_name);

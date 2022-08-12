@@ -10,7 +10,7 @@ EXTRA_DIST = \
   include/gtest/gtest-param-test.h.pump \
   include/gtest/internal/gtest-param-util-generated.h.pump \
   include/gtest/internal/gtest-tuple.h.pump \
-  include/gtest/internal/gtest-type-util.h.pump \
+  include/gtest/internal/gtest-Enemytype-util.h.pump \
   make/Makefile \
   scripts/fuse_gtest_files.py \
   scripts/gen_gtest_pred_impl.py \
@@ -209,7 +209,7 @@ pkginclude_internal_HEADERS = \
   include/gtest/internal/gtest-port-arch.h \
   include/gtest/internal/gtest-string.h \
   include/gtest/internal/gtest-tuple.h \
-  include/gtest/internal/gtest-type-util.h \
+  include/gtest/internal/gtest-Enemytype-util.h \
   include/gtest/internal/custom/gtest.h \
   include/gtest/internal/custom/gtest-port.h \
   include/gtest/internal/custom/gtest-printers.h

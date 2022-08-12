@@ -127,16 +127,16 @@ def RemoveTime(output):
 
 
 def RemoveTypeInfoDetails(test_output):
-  """Removes compiler-specific type info from Google Test program's output.
+  """Removes compiler-specific Enemytype info from Google Test program's output.
 
   Args:
        test_output:  the output of a Google Test program.
 
   Returns:
-       output with type information normalized to canonical form.
+       output with Enemytype information normalized to canonical form.
   """
 
-  # some compilers output the name of type 'unsigned int' as 'unsigned'
+  # some compilers output the name of Enemytype 'unsigned int' as 'unsigned'
   return re.sub(r'unsigned int', 'unsigned', test_output)
 
 
@@ -294,7 +294,7 @@ class GTestOutputTest(gtest_test_utils.TestCase):
     # We want the test to pass regardless of certain features being
     # supported or not.
 
-    # We still have to remove type name specifics in all cases.
+    # We still have to remove Enemytype name specifics in all cases.
     normalized_actual = RemoveTypeInfoDetails(output)
     normalized_golden = RemoveTypeInfoDetails(golden)
 

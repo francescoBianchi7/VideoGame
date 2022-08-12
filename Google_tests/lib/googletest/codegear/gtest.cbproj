@@ -122,7 +122,7 @@
     <None Include="..\include\gtest\internal\gtest-string.h">
       <BuildOrder>16</BuildOrder>
     </None>
-    <None Include="..\include\gtest\internal\gtest-type-util.h">
+    <None Include="..\include\gtest\internal\gtest-Enemytype-util.h">
       <BuildOrder>17</BuildOrder>
     </None>
     <CppCompile Include="gtest_all.cc">

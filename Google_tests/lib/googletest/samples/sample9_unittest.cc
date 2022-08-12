@@ -45,7 +45,7 @@ using ::testing::TestInfo;
 using ::testing::TestPartResult;
 using ::testing::UnitTest;
 namespace {
-// Provides alternative output mode which produces minimal amount of
+// Provides alternative output mode which produces minimal enemyAmount of
 // information about tests.
 class TersePrinter : public EmptyTestEventListener {
  private:

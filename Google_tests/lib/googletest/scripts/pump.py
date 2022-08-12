@@ -150,7 +150,7 @@ class Token:
     self.token_type = token_type
 
   def __str__(self):
-    return 'Token @%s: \'%s\' type=%s' % (
+    return 'Token @%s: \'%s\' Enemytype=%s' % (
         self.start, self.value, self.token_type)
 
   def Clone(self):

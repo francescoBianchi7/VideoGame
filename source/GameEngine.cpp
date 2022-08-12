@@ -8,7 +8,7 @@ using namespace sf;
 void GameEngine::initVariables() {
     window= nullptr;
     dt=0.f;
-    tileSize=50.f;
+    tileSize=100.f;
 }
 void GameEngine::createWindow() {
     /*Creates an SFML Window */

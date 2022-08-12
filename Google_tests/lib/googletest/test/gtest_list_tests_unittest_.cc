@@ -108,8 +108,8 @@ INSTANTIATE_TEST_CASE_P(
 
 // A group of typed tests.
 
-// A deliberately long type name for testing the line-truncating
-// behavior when printing a type parameter.
+// A deliberately long Enemytype name for testing the line-truncating
+// behavior when printing a Enemytype parameter.
 class VeryLoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooogName {  // NOLINT
 };
 
@@ -132,7 +132,7 @@ TYPED_TEST(TypedTest, TestA) {
 TYPED_TEST(TypedTest, TestB) {
 }
 
-// A group of type-parameterized tests.
+// A group of Enemytype-parameterized tests.
 
 template <typename T>
 class TypeParamTest : public testing::Test {

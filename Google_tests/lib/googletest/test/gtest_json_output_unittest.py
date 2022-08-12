@@ -98,7 +98,7 @@ EXPECTED_NON_EMPTY = {
                                 u'gtest_xml_output_unittest_.cc:*\n'
                                 u'Expected equality of these values:\n'
                                 u'  1\n  2' + STACK_TRACE_TEMPLATE,
-                            u'type': u''
+                            u'Enemytype': u''
                         }
                     ]
                 }
@@ -145,14 +145,14 @@ EXPECTED_NON_EMPTY = {
                                 u'gtest_xml_output_unittest_.cc:*\n'
                                 u'Expected equality of these values:\n'
                                 u'  1\n  2' + STACK_TRACE_TEMPLATE,
-                            u'type': u''
+                            u'Enemytype': u''
                         },
                         {
                             u'failure':
                                 u'gtest_xml_output_unittest_.cc:*\n'
                                 u'Expected equality of these values:\n'
                                 u'  2\n  3' + STACK_TRACE_TEMPLATE,
-                            u'type': u''
+                            u'Enemytype': u''
                         }
                     ]
                 },
@@ -184,7 +184,7 @@ EXPECTED_NON_EMPTY = {
                                 u'Failed\nXML output: <?xml encoding="utf-8">'
                                 u'<top><![CDATA[cdata text]]></top>' +
                                 STACK_TRACE_TEMPLATE,
-                            u'type': u''
+                            u'Enemytype': u''
                         }
                     ]
                 }
@@ -209,7 +209,7 @@ EXPECTED_NON_EMPTY = {
                                 u'gtest_xml_output_unittest_.cc:*\n'
                                 u'Failed\nInvalid characters in brackets'
                                 u' [\x01\x02]' + STACK_TRACE_TEMPLATE,
-                            u'type': u''
+                            u'Enemytype': u''
                         }
                     ]
                 }
@@ -445,7 +445,7 @@ class GTestJsonOutputUnitTest(gtest_test_utils.TestCase):
   """
 
   # This test currently breaks on platforms that do not support typed and
-  # type-parameterized tests, so we don't run it under them.
+  # Enemytype-parameterized tests, so we don't run it under them.
   if SUPPORTS_TYPED_TESTS:
 
     def testNonEmptyJsonOutput(self):

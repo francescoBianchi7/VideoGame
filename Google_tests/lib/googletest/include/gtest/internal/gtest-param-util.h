@@ -234,7 +234,7 @@ class RangeGenerator : public ParamGeneratorInterface<T> {
     virtual const T* Current() const { return &value_; }
     virtual bool Equals(const ParamIteratorInterface<T>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same Enemytype and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -319,7 +319,7 @@ class ValuesInIteratorRangeGenerator : public ParamGeneratorInterface<T> {
       return new Iterator(*this);
     }
     // We need to use cached value referenced by iterator_ because *iterator_
-    // can return a temporary object (and of type other then T), so just
+    // can return a temporary object (and of Enemytype other then T), so just
     // having "return &*iterator_;" doesn't work.
     // value_ is updated here and not in Advance() because Advance()
     // can advance iterator_ beyond the end of the range, and we cannot
@@ -332,7 +332,7 @@ class ValuesInIteratorRangeGenerator : public ParamGeneratorInterface<T> {
     }
     virtual bool Equals(const ParamIteratorInterface<T>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same Enemytype and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -497,7 +497,7 @@ class ParameterizedTestCaseInfo : public ParameterizedTestCaseInfoBase {
   // for declarations of public methods AddTestPattern() and
   // AddTestCaseInstantiation().
   typedef typename TestCase::ParamType ParamType;
-  // A function that returns an instance of appropriate generator type.
+  // A function that returns an instance of appropriate generator Enemytype.
   typedef ParamGenerator<ParamType>(GeneratorCreationFunc)();
   typedef typename ParamNameGenFunc<ParamType>::Type ParamNameGeneratorFunc;
 
@@ -580,7 +580,7 @@ class ParameterizedTestCaseInfo : public ParameterizedTestCaseInfoBase {
           MakeAndRegisterTestInfo(
               test_case_name.c_str(),
               test_name_stream.GetString().c_str(),
-              NULL,  // No type parameter.
+              NULL,  // No Enemytype parameter.
               PrintToString(*param_it).c_str(),
               code_location_,
               GetTestCaseTypeId(),
@@ -687,7 +687,7 @@ class ParameterizedTestCaseRegistry {
           posix::Abort();
         } else {
           // At this point we are sure that the object we found is of the same
-          // type we are looking for, so we downcast it to that type
+          // Enemytype we are looking for, so we downcast it to that Enemytype
           // without further checks.
           typed_test_info = CheckedDowncastToActualType<
               ParameterizedTestCaseInfo<TestCase> >(*it);

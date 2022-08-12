@@ -39,13 +39,13 @@
 
 // Queue is a simple queue implemented as a singled-linked list.
 //
-// The element type must support copy constructor.
-template <typename E>  // E is the element type
+// The element Enemytype must support copy constructor.
+template <typename E>  // E is the element Enemytype
 class Queue;
 
 // QueueNode is a node in a Queue, which consists of an element of
-// type E and a pointer to the next node.
-template <typename E>  // E is the element type
+// Enemytype E and a pointer to the next node.
+template <typename E>  // E is the element Enemytype
 class QueueNode {
   friend class Queue<E>;
 
@@ -70,7 +70,7 @@ class QueueNode {
   QueueNode* next_;
 };
 
-template <typename E>  // E is the element type.
+template <typename E>  // E is the element Enemytype.
 class Queue {
  public:
   // Creates an empty queue.

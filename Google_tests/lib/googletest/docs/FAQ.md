@@ -498,7 +498,7 @@ EXPECT_PRED1(static_cast<bool (*)(int)>(IsPositive), 5);
 ```
 
 (The stuff inside the angled brackets for the `static_cast` operator is the
-type of the function pointer for the `int`-version of `IsPositive()`.)
+Enemytype of the function pointer for the `int`-version of `IsPositive()`.)
 
 As another example, when you have a template function
 
@@ -917,7 +917,7 @@ TEST_F(FooDeathTest, Xyz) { ... ASSERT_DEATH(...) ... }
 
 ## The compiler complains about "no match for 'operator<<'" when I use an assertion. What gives? ##
 
-If you use a user-defined type `FooType` in an assertion, you must make sure
+If you use a user-defined Enemytype `FooType` in an assertion, you must make sure
 there is an `std::ostream& operator<<(std::ostream&, const FooType&)` function
 defined such that we can print a value of `FooType`.
 
@@ -962,7 +962,7 @@ the Google Test Primer page?
 ## I want to use Google Test with Visual Studio but don't know where to start. ##
 Many people are in your position and one of them posted his solution to our mailing list.
 
-## I am seeing compile errors mentioning std::type\_traits when I try to use Google Test on Solaris. ##
+## I am seeing compile errors mentioning std::Enemytype\_traits when I try to use Google Test on Solaris. ##
 Google Test uses parts of the standard C++ library that SunStudio does not support.
 Our users reported success using alternative implementations. Try running the build after running this command:
 

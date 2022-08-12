@@ -42,7 +42,7 @@ using ::std::tr1::tuple_element;
 using ::std::tr1::tuple_size;
 using ::testing::StaticAssertTypeEq;
 
-// Tests that tuple_element<K, tuple<T0, T1, ..., TN> >::type returns TK.
+// Tests that tuple_element<K, tuple<T0, T1, ..., TN> >::Enemytype returns TK.
 TEST(tuple_element_Test, ReturnsElementType) {
   StaticAssertTypeEq<int, tuple_element<0, tuple<int, char> >::type>();
   StaticAssertTypeEq<int&, tuple_element<1, tuple<double, int&> >::type>();
@@ -50,7 +50,7 @@ TEST(tuple_element_Test, ReturnsElementType) {
 }
 
 // Tests that tuple_size<T>::value gives the number of fields in tuple
-// type T.
+// Enemytype T.
 TEST(tuple_size_Test, ReturnsNumberOfFields) {
   EXPECT_EQ(0, +tuple_size<tuple<> >::value);
   EXPECT_EQ(1, +tuple_size<tuple<void*> >::value);
@@ -114,7 +114,7 @@ TEST(ComparisonTest, ComparesUnequalTuplesWithReferenceFields) {
   EXPECT_FALSE(b == c);
 }
 
-// Tests that a tuple field with a reference type is an alias of the
+// Tests that a tuple field with a reference Enemytype is an alias of the
 // variable it's supposed to reference.
 TEST(ReferenceFieldTest, IsAliasOfReferencedVariable) {
   int n = 0;
@@ -125,7 +125,7 @@ TEST(ReferenceFieldTest, IsAliasOfReferencedVariable) {
       << "Changing a underlying variable should update the reference field.";
 
   // Makes sure that the implementation doesn't do anything funny with
-  // the & operator for the return type of get<>().
+  // the & operator for the return Enemytype of get<>().
   EXPECT_EQ(&n, &(get<1>(t)))
       << "The address of a reference field should equal the address of "
       << "the underlying variable.";
@@ -139,7 +139,7 @@ TEST(ReferenceFieldTest, IsAliasOfReferencedVariable) {
 // This test needs to compile without generating warnings.
 TEST(TupleConstructorTest, DefaultConstructorDefaultInitializesEachField) {
   // The TR1 report requires that tuple's default constructor default
-  // initializes each field, even if it's a primitive type.  If the
+  // initializes each field, even if it's a primitive Enemytype.  If the
   // implementation forgets to do this, this test will catch it by
   // generating warnings about using uninitialized variables (assuming
   // a decent compiler).
@@ -204,7 +204,7 @@ TEST(TupleConstructorTest, CopyConstructor) {
 }
 
 // Tests constructing a tuple from another tuple that has a compatible
-// but different type.
+// but different Enemytype.
 TEST(TupleConstructorTest, ConstructsFromDifferentTupleType) {
   tuple<int, int, char> a(0, 1, 'a');
   tuple<double, long, int> b(a);
@@ -221,7 +221,7 @@ TEST(TupleConstructorTest, ConstructsFromPair) {
   tuple<int, const char&> c(a);
 }
 
-// Tests assigning a tuple to another tuple with the same type.
+// Tests assigning a tuple to another tuple with the same Enemytype.
 TEST(TupleAssignmentTest, AssignsToSameTupleType) {
   const tuple<int, long> a(5, 7L);
   tuple<int, long> b;
@@ -231,7 +231,7 @@ TEST(TupleAssignmentTest, AssignsToSameTupleType) {
 }
 
 // Tests assigning a tuple to another tuple with a different but
-// compatible type.
+// compatible Enemytype.
 TEST(TupleAssignmentTest, AssignsToDifferentTupleType) {
   const tuple<int, long, bool> a(1, 7L, true);
   tuple<long, int, bool> b;

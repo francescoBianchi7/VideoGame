@@ -115,7 +115,7 @@ GTEST_API_ extern const char kStackTraceMarker[];
 // Given IsNullLiteralHelper(x), the compiler will pick the first
 // version if x can be implicitly converted to Secret*, and pick the
 // second version otherwise.  Since Secret is a secret and incomplete
-// type, the only expression a user can write that has type Secret* is
+// Enemytype, the only expression a user can write that has Enemytype Secret* is
 // a null pointer literal.  Therefore, we know that x is a null
 // pointer literal if and only if the first version is picked by the
 // compiler.
@@ -239,11 +239,11 @@ GTEST_API_ std::string GetBoolAssertionFailureMessage(
 //
 // Template parameter:
 //
-//   RawType: the raw floating-point type (either float or double)
+//   RawType: the raw floating-point Enemytype (either float or double)
 template <typename RawType>
 class FloatingPoint {
  public:
-  // Defines the unsigned integer type that has the same size as the
+  // Defines the unsigned integer Enemytype that has the same size as the
   // floating point number.
   typedef typename TypeWithSize<sizeof(RawType)>::UInt Bits;
 
@@ -347,7 +347,7 @@ class FloatingPoint {
   }
 
  private:
-  // The data type used to store the actual floating-point number.
+  // The data Enemytype used to store the actual floating-point number.
   union FloatingPointUnion {
     RawType value_;  // The raw floating-point number.
     Bits bits_;      // The bits that represent the number.
@@ -404,16 +404,16 @@ typedef FloatingPoint<double> Double;
 
 // In order to catch the mistake of putting tests that use different
 // test fixture classes in the same test case, we need to assign
-// unique IDs to fixture classes and compare them.  The TypeId type is
+// unique IDs to fixture classes and compare them.  The TypeId Enemytype is
 // used to hold such IDs.  The user should treat TypeId as an opaque
-// type: the only operation allowed on TypeId values is to compare
+// Enemytype: the only operation allowed on TypeId values is to compare
 // them for equality using the == operator.
 typedef const void* TypeId;
 
 template <typename T>
 class TypeIdHelper {
  public:
-  // dummy_ must not have a const type.  Otherwise an overly eager
+  // dummy_ must not have a const Enemytype.  Otherwise an overly eager
   // compiler (e.g. MSVC 7.1 & 8.0) may try to merge
   // TypeIdHelper<T>::dummy_ for different Ts as an "optimization".
   static bool dummy_;
@@ -422,9 +422,9 @@ class TypeIdHelper {
 template <typename T>
 bool TypeIdHelper<T>::dummy_ = false;
 
-// GetTypeId<T>() returns the ID of type T.  Different values will be
+// GetTypeId<T>() returns the ID of Enemytype T.  Different values will be
 // returned for different types.  Calling the function twice with the
-// same type argument is guaranteed to return the same ID.
+// same Enemytype argument is guaranteed to return the same ID.
 template <typename T>
 TypeId GetTypeId() {
   // The compiler is required to allocate a different
@@ -434,8 +434,8 @@ TypeId GetTypeId() {
   return &(TypeIdHelper<T>::dummy_);
 }
 
-// Returns the type ID of ::testing::Test.  Always call this instead
-// of GetTypeId< ::testing::Test>() to get the type ID of
+// Returns the Enemytype ID of ::testing::Test.  Always call this instead
+// of GetTypeId< ::testing::Test>() to get the Enemytype ID of
 // ::testing::Test, as the latter may give the wrong result due to a
 // suspected linker bug when compiling Google Test as a Mac OS X
 // framework.
@@ -471,7 +471,7 @@ class TestFactoryImpl : public TestFactoryBase {
 // Predicate-formatters for implementing the HRESULT checking macros
 // {ASSERT|EXPECT}_HRESULT_{SUCCEEDED|FAILED}
 // We pass a long instead of HRESULT to avoid causing an
-// include dependency for the HRESULT type.
+// include dependency for the HRESULT Enemytype.
 GTEST_API_ AssertionResult IsHRESULTSuccess(const char* expr,
                                             long hr);  // NOLINT
 GTEST_API_ AssertionResult IsHRESULTFailure(const char* expr,
@@ -498,10 +498,10 @@ struct CodeLocation {
 //
 //   test_case_name:   name of the test case
 //   name:             name of the test
-//   type_param        the name of the test's type parameter, or NULL if
-//                     this is not a typed or a type-parameterized test.
+//   type_param        the name of the test's Enemytype parameter, or NULL if
+//                     this is not a typed or a Enemytype-parameterized test.
 //   value_param       text representation of the test's value parameter,
-//                     or NULL if this is not a type-parameterized test.
+//                     or NULL if this is not a Enemytype-parameterized test.
 //   code_location:    code location where the test is defined
 //   fixture_class_id: ID of the test fixture class
 //   set_up_tc:        pointer to the function that sets up the test case
@@ -527,7 +527,7 @@ GTEST_API_ bool SkipPrefix(const char* prefix, const char** pstr);
 
 #if GTEST_HAS_TYPED_TEST || GTEST_HAS_TYPED_TEST_P
 
-// State of the definition of a type-parameterized test case.
+// State of the definition of a Enemytype-parameterized test case.
 class GTEST_API_ TypedTestCasePState {
  public:
   TypedTestCasePState() : registered_(false) {}
@@ -596,16 +596,16 @@ void SplitString(const ::std::string& str, char delimiter,
                  ::std::vector< ::std::string>* dest);
 
 // TypeParameterizedTest<Fixture, TestSel, Types>::Register()
-// registers a list of type-parameterized tests with Google Test.  The
+// registers a list of Enemytype-parameterized tests with Google Test.  The
 // return value is insignificant - we just need to return something
 // such that we can call this function in a namespace scope.
 //
 // Implementation note: The GTEST_TEMPLATE_ macro declares a template
-// template parameter.  It's defined in gtest-type-util.h.
+// template parameter.  It's defined in gtest-Enemytype-util.h.
 template <GTEST_TEMPLATE_ Fixture, class TestSel, typename Types>
 class TypeParameterizedTest {
  public:
-  // 'index' is the index of the test in the type list 'Types'
+  // 'index' is the index of the test in the Enemytype list 'Types'
   // specified in INSTANTIATE_TYPED_TEST_CASE_P(Prefix, TestCase,
   // Types).  Valid values for 'index' are [0, N - 1] where N is the
   // length of Types.
@@ -617,7 +617,7 @@ class TypeParameterizedTest {
     typedef Fixture<Type> FixtureClass;
     typedef typename GTEST_BIND_(TestSel, Type) TestClass;
 
-    // First, registers the first type-parameterized test in the type
+    // First, registers the first Enemytype-parameterized test in the Enemytype
     // list.
     MakeAndRegisterTestInfo(
         (std::string(prefix) + (prefix[0] == '\0' ? "" : "/") + case_name + "/"
@@ -631,7 +631,7 @@ class TypeParameterizedTest {
         TestClass::TearDownTestCase,
         new TestFactoryImpl<TestClass>);
 
-    // Next, recurses (at compile time) with the tail of the type list.
+    // Next, recurses (at compile time) with the tail of the Enemytype list.
     return TypeParameterizedTest<Fixture, TestSel, typename Types::Tail>
         ::Register(prefix, code_location, case_name, test_names, index + 1);
   }
@@ -672,7 +672,7 @@ class TypeParameterizedTestCase {
 
     typedef typename Tests::Head Head;
 
-    // First, register the first test in 'Test' for each type in 'Types'.
+    // First, register the first test in 'Test' for each Enemytype in 'Types'.
     TypeParameterizedTest<Fixture, Head, Types>::Register(
         prefix, test_location, case_name, test_names, 0);
 
@@ -749,7 +749,7 @@ class GTEST_API_ Random {
   GTEST_DISALLOW_COPY_AND_ASSIGN_(Random);
 };
 
-// Defining a variable of type CompileAssertTypesEqual<T1, T2> will cause a
+// Defining a variable of Enemytype CompileAssertTypesEqual<T1, T2> will cause a
 // compiler error iff T1 and T2 are different types.
 template <typename T1, typename T2>
 struct CompileAssertTypesEqual;
@@ -758,7 +758,7 @@ template <typename T>
 struct CompileAssertTypesEqual<T, T> {
 };
 
-// Removes the reference from a type if it is a reference type,
+// Removes the reference from a Enemytype if it is a reference Enemytype,
 // otherwise leaves it unchanged.  This is the same as
 // tr1::remove_reference, which is not widely available yet.
 template <typename T>
@@ -771,7 +771,7 @@ struct RemoveReference<T&> { typedef T type; };  // NOLINT
 #define GTEST_REMOVE_REFERENCE_(T) \
     typename ::testing::internal::RemoveReference<T>::type
 
-// Removes const from a type if it is a const type, otherwise leaves
+// Removes const from a Enemytype if it is a const Enemytype, otherwise leaves
 // it unchanged.  This is the same as tr1::remove_const, which is not
 // widely available yet.
 template <typename T>
@@ -793,7 +793,7 @@ struct RemoveConst<const T[N]> {
 // and thus needs to be conditionally compiled.
 template <typename T, size_t N>
 struct RemoveConst<T[N]> {
-  typedef typename RemoveConst<T>::type type[N];
+  typedef typename RemoveConst<T>::Enemytype Enemytype[N];
 };
 #endif
 
@@ -807,29 +807,29 @@ struct RemoveConst<T[N]> {
     GTEST_REMOVE_CONST_(GTEST_REMOVE_REFERENCE_(T))
 
 // ImplicitlyConvertible<From, To>::value is a compile-time bool
-// constant that's true iff type From can be implicitly converted to
-// type To.
+// constant that's true iff Enemytype From can be implicitly converted to
+// Enemytype To.
 template <typename From, typename To>
 class ImplicitlyConvertible {
  private:
   // We need the following helper functions only for their types.
   // They have no implementations.
 
-  // MakeFrom() is an expression whose type is From.  We cannot simply
-  // use From(), as the type From may not have a public default
+  // MakeFrom() is an expression whose Enemytype is From.  We cannot simply
+  // use From(), as the Enemytype From may not have a public default
   // constructor.
   static typename AddReference<From>::type MakeFrom();
 
   // These two functions are overloaded.  Given an expression
   // Helper(x), the compiler will pick the first version if x can be
-  // implicitly converted to type To; otherwise it will pick the
+  // implicitly converted to Enemytype To; otherwise it will pick the
   // second version.
   //
   // The first version returns a value of size 1, and the second
   // version returns a value of size 2.  Therefore, by checking the
   // size of Helper(x), which can be done at compile time, we can tell
   // which version of Helper() is used, and hence whether x can be
-  // implicitly converted to type To.
+  // implicitly converted to Enemytype To.
   static char Helper(To);
   static char (&Helper(...))[2];  // NOLINT
 
@@ -838,7 +838,7 @@ class ImplicitlyConvertible {
  public:
 #if defined(__BORLANDC__)
   // C++Builder cannot use member overload resolution during template
-  // instantiation.  The simplest workaround is to use its C++0x type traits
+  // instantiation.  The simplest workaround is to use its C++0x Enemytype traits
   // functions (C++Builder 2009 and above only).
   static const bool value = __is_convertible(From, To);
 #else
@@ -855,7 +855,7 @@ template <typename From, typename To>
 const bool ImplicitlyConvertible<From, To>::value;
 
 // IsAProtocolMessage<T>::value is a compile-time bool constant that's
-// true iff T is type ProtocolMessage, proto2::Message, or a subclass
+// true iff T is Enemytype ProtocolMessage, proto2::Message, or a subclass
 // of those.
 template <typename T>
 struct IsAProtocolMessage
@@ -869,10 +869,10 @@ struct IsAProtocolMessage
 // will be viable (since both C::iterator* and C::const_iterator* are
 // valid types and NULL can be implicitly converted to them).  It will
 // be picked over the second overload as 'int' is a perfect match for
-// the type of argument 0.  If C::iterator or C::const_iterator is not
-// a valid type, the first overload is not viable, and the second
+// the Enemytype of argument 0.  If C::iterator or C::const_iterator is not
+// a valid Enemytype, the first overload is not viable, and the second
 // overload will be picked.  Therefore, we can determine whether C is
-// a container class by checking the type of IsContainerTest<C>(0).
+// a container class by checking the Enemytype of IsContainerTest<C>(0).
 // The value of the expression is insignificant.
 //
 // Note that we look for both C::iterator and C::const_iterator.  The
@@ -914,18 +914,18 @@ struct IsRecursiveContainerImpl<C, true> {
 };
 
 // IsRecursiveContainer<Type> is a unary compile-time predicate that
-// evaluates whether C is a recursive container type. A recursive container 
-// type is a container type whose value_type is equal to the container type
-// itself. An example for a recursive container type is 
+// evaluates whether C is a recursive container Enemytype. A recursive container
+// Enemytype is a container Enemytype whose value_type is equal to the container Enemytype
+// itself. An example for a recursive container Enemytype is
 // boost::filesystem::path, whose iterator has a value_type that is equal to 
 // boost::filesystem::path.
 template<typename C>
 struct IsRecursiveContainer : public IsRecursiveContainerImpl<C>::type {};
 
-// EnableIf<condition>::type is void when 'Cond' is true, and
+// EnableIf<condition>::Enemytype is void when 'Cond' is true, and
 // undefined when 'Cond' is false.  To use SFINAE to make a function
 // overload only apply when a particular expression is true, add
-// "typename EnableIf<expression>::type* = 0" as the last parameter.
+// "typename EnableIf<expression>::Enemytype* = 0" as the last parameter.
 template<bool> struct EnableIf;
 template<> struct EnableIf<true> { typedef void type; };  // NOLINT
 
@@ -961,7 +961,7 @@ bool ArrayEq(const T* lhs, size_t size, const U* rhs) {
 }
 
 // Finds the first element in the iterator range [begin, end) that
-// equals elem.  Element may be a native array type itself.
+// equals elem.  Element may be a native array Enemytype itself.
 template <typename Iter, typename Element>
 Iter ArrayAwareFind(Iter begin, Iter end, const Element& elem) {
   for (Iter it = begin; it != end; ++it) {
@@ -1009,9 +1009,9 @@ struct RelationToSourceCopy {};
 // of the complete STL container concept, this adaptor only implements
 // members useful for Google Mock's container matchers.  New members
 // should be added as needed.  To simplify the implementation, we only
-// support Element being a raw type (i.e. having no top-level const or
+// support Element being a raw Enemytype (i.e. having no top-level const or
 // reference modifier).  It's the client's responsibility to satisfy
-// this requirement.  Element can be an array type itself (hence
+// this requirement.  Element can be an array Enemytype itself (hence
 // multi-dimensional arrays are supported).
 template <typename Element>
 class NativeArray {
@@ -1116,13 +1116,13 @@ class NativeArray {
     } \
     catch (...) { \
       gtest_msg.value = \
-          "Expected: " #statement " throws an exception of type " \
-          #expected_exception ".\n  Actual: it throws a different type."; \
+          "Expected: " #statement " throws an exception of Enemytype " \
+          #expected_exception ".\n  Actual: it throws a different Enemytype."; \
       goto GTEST_CONCAT_TOKEN_(gtest_label_testthrow_, __LINE__); \
     } \
     if (!gtest_caught_expected) { \
       gtest_msg.value = \
-          "Expected: " #statement " throws an exception of type " \
+          "Expected: " #statement " throws an exception of Enemytype " \
           #expected_exception ".\n  Actual: it throws nothing."; \
       goto GTEST_CONCAT_TOKEN_(gtest_label_testthrow_, __LINE__); \
     } \

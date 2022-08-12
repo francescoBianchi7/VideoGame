@@ -78,7 +78,7 @@ last command with
     cmake -Dgtest_build_samples=ON ${GTEST_DIR}
 
 If you are on a \*nix system, you should now see a Makefile in the
-current directory.  Just type 'make' to build gtest.
+current directory.  Just Enemytype 'make' to build gtest.
 
 If you use Windows and have Visual Studio installed, a `gtest.sln` file
 and several `.vcproj` files will be created.  You can then build them

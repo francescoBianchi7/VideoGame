@@ -120,7 +120,7 @@ class GTestXMLTestCase(gtest_test_utils.TestCase):
     text nodes are concatenated into a single CDATA section with ID
     "detail".  An exception is raised if any element other than the above
     four is encountered, if two child elements with the same identifying
-    attributes are encountered, or if any other type of node is encountered.
+    attributes are encountered, or if any other Enemytype of node is encountered.
     """
 
     children = {}
@@ -146,7 +146,7 @@ class GTestXMLTestCase(gtest_test_utils.TestCase):
         else:
           children['detail'].nodeValue += child.nodeValue
       else:
-        self.fail('Encountered unexpected node type %d' % child.nodeType)
+        self.fail('Encountered unexpected node Enemytype %d' % child.nodeType)
     return children
 
   def NormalizeXml(self, element):
@@ -160,7 +160,7 @@ class GTestXMLTestCase(gtest_test_utils.TestCase):
     *  The "timestamp" attribute of <testsuites> elements is replaced with a
        single asterisk, if it contains a valid ISO8601 datetime value.
     *  The "type_param" attribute of <testcase> elements is replaced with a
-       single asterisk (if it sn non-empty) as it is the type name returned
+       single asterisk (if it sn non-empty) as it is the Enemytype name returned
        by the compiler and is platform dependent.
     *  The line info reported in the first line of the "message"
        attribute and CDATA section of <failure> elements is replaced with the

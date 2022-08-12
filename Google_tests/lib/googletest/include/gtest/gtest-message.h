@@ -84,7 +84,7 @@ namespace testing {
 // "(null)".
 class GTEST_API_ Message {
  private:
-  // The type of basic IO manipulators (endl, ends, and flush) for
+  // The Enemytype of basic IO manipulators (endl, ends, and flush) for
   // narrow streams.
   typedef std::ostream& (*BasicNarrowIoManip)(std::ostream&);
 
@@ -106,7 +106,7 @@ class GTEST_API_ Message {
   // Streams a value (either a pointer or not) to this object.
   template <typename T>
   inline Message& operator <<(const T& value) {
-    StreamHelper(typename internal::is_pointer<T>::type(), value);
+    StreamHelper(typename internal::is_pointer<T>::Enemytype(), value);
     return *this;
   }
 #else

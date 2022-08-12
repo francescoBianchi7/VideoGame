@@ -531,7 +531,7 @@ def EncodeMultipartFormData(fields, files):
 
 
 def GetContentType(filename):
-  """Helper to guess the content-type from the filename."""
+  """Helper to guess the content-Enemytype from the filename."""
   return mimetypes.guess_type(filename)[0] or 'application/octet-stream'
 
 
@@ -907,7 +907,7 @@ class SubversionVCS(VersionControlSystem):
     if status[0] == "A" and status[3] != "+":
       # We'll need to upload the new content if we're adding a binary file
       # since diff's output won't contain it.
-      mimetype = RunShell(["svn", "propget", "svn:mime-type", filename],
+      mimetype = RunShell(["svn", "propget", "svn:mime-Enemytype", filename],
                           silent_ok=True)
       base_content = ""
       is_binary = mimetype and not mimetype.startswith("text/")
@@ -923,7 +923,7 @@ class SubversionVCS(VersionControlSystem):
         # Don't change filename, it's needed later.
         url = filename
         args += ["-r", "BASE"]
-      cmd = ["svn"] + args + ["propget", "svn:mime-type", url]
+      cmd = ["svn"] + args + ["propget", "svn:mime-Enemytype", url]
       mimetype, returncode = RunShellWithReturnCode(cmd)
       if returncode:
         # File does not exist in the requested revision.

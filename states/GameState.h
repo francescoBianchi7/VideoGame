@@ -5,6 +5,7 @@
 #include "..\GUI\PauseMenu.h"
 #include "..\Map\TileMap.h"
 #include "..\Weapon\Gun.h"
+#include "..\entities\Enemy.h"
 
 class GameCharacter;
 class PauseMenu;
@@ -29,6 +30,7 @@ private:
     sf::Font font;
 
     GameCharacter* player;//memory is dinamically allocated
+    Enemy* enemy;
     sf::Texture texture;
 
     TileMap* tileMap;

@@ -66,6 +66,7 @@ public:
                                             int start_frame_x,int start_frame_y,int frames_x
                                             ,int frames_y,int width,int height);
     void play(const std::string& key,const float& dt);
+
 };
 
 

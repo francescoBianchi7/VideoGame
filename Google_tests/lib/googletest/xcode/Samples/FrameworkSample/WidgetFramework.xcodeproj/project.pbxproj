@@ -199,7 +199,7 @@
 			name = WidgetFrameworkTest;
 			productName = gTestExampleTest;
 			productReference = 3B07BDEA0E3F3F9E00647869 /* WidgetFrameworkTest */;
-			productType = "com.apple.product-type.tool";
+			productType = "com.apple.product-Enemytype.tool";
 		};
 		8D07F2BC0486CC7A007CD1D0 /* WidgetFramework */ = {
 			isa = PBXNativeTarget;
@@ -219,7 +219,7 @@
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = gTestExample;
 			productReference = 8D07F2C80486CC7A007CD1D0 /* Widget.framework */;
-			productType = "com.apple.product-type.framework";
+			productType = "com.apple.product-Enemytype.framework";
 		};
 /* End PBXNativeTarget section */
 

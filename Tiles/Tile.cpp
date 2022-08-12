@@ -3,11 +3,11 @@ Tile::Tile() {
  collision= false;
  type=0;
 }
-Tile::Tile(unsigned x,unsigned y,float tileSizeF,sf::Texture& texture,sf::IntRect& rect,
+Tile::Tile(unsigned pos_grid_x,unsigned pos_grid_y,float tileSizeF,sf::Texture& texture,sf::IntRect& rect,
             bool collision,short type){
     this->tile.setSize(sf::Vector2f(tileSizeF,tileSizeF));
     //tile.setFillColor(sf::Color::Green);
-    tile.setPosition(static_cast<float>(x)*tileSizeF,static_cast<float>(y)*tileSizeF);
+    tile.setPosition(static_cast<float>(pos_grid_x)*tileSizeF,static_cast<float>(pos_grid_y)*tileSizeF);
     //tile.setOutlineColor(sf::Color::White);
     //tile.setOutlineThickness(1.f);
     tile.setTexture(&texture);
@@ -34,7 +34,6 @@ std::string Tile::getAsString() const {
     return ss.str();
 }
 void Tile::update() {
-
 }
 
 void Tile::render(sf::RenderTarget &target) {

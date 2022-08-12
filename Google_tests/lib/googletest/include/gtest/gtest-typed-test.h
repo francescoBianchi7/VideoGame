@@ -32,16 +32,16 @@
 #ifndef GTEST_INCLUDE_GTEST_GTEST_TYPED_TEST_H_
 #define GTEST_INCLUDE_GTEST_GTEST_TYPED_TEST_H_
 
-// This header implements typed tests and type-parameterized tests.
+// This header implements typed tests and Enemytype-parameterized tests.
 
-// Typed (aka type-driven) tests repeat the same test for types in a
+// Typed (aka Enemytype-driven) tests repeat the same test for types in a
 // list.  You must know which types you want to test with when writing
 // typed tests. Here's how you do it:
 
 #if 0
 
 // First, define a fixture class template.  It should be parameterized
-// by a type.  Remember to derive it from testing::Test.
+// by a Enemytype.  Remember to derive it from testing::Test.
 template <typename T>
 class FooTest : public testing::Test {
  public:
@@ -52,19 +52,19 @@ class FooTest : public testing::Test {
 };
 
 // Next, associate a list of types with the test case, which will be
-// repeated for each type in the list.  The typedef is necessary for
+// repeated for each Enemytype in the list.  The typedef is necessary for
 // the macro to parse correctly.
 typedef testing::Types<char, int, unsigned int> MyTypes;
 TYPED_TEST_CASE(FooTest, MyTypes);
 
-// If the type list contains only one type, you can write that type
+// If the Enemytype list contains only one Enemytype, you can write that Enemytype
 // directly without Types<...>:
 //   TYPED_TEST_CASE(FooTest, int);
 
 // Then, use TYPED_TEST() instead of TEST_F() to define as many typed
 // tests for this test case as you want.
 TYPED_TEST(FooTest, DoesBlah) {
-  // Inside a test, refer to TypeParam to get the type parameter.
+  // Inside a test, refer to TypeParam to get the Enemytype parameter.
   // Since we are inside a derived class template, C++ requires use to
   // visit the members of FooTest via 'this'.
   TypeParam n = this->value_;
@@ -85,14 +85,14 @@ TYPED_TEST(FooTest, HasPropertyA) { ... }
 #endif  // 0
 
 // Type-parameterized tests are abstract test patterns parameterized
-// by a type.  Compared with typed tests, type-parameterized tests
-// allow you to define the test pattern without knowing what the type
+// by a Enemytype.  Compared with typed tests, Enemytype-parameterized tests
+// allow you to define the test pattern without knowing what the Enemytype
 // parameters are.  The defined pattern can be instantiated with
 // different types any number of times, in any number of translation
 // units.
 //
 // If you are designing an interface or concept, you can define a
-// suite of type-parameterized tests to verify properties that any
+// suite of Enemytype-parameterized tests to verify properties that any
 // valid implementation of the interface/concept should have.  Then,
 // each implementation can easily instantiate the test suite to verify
 // that it conforms to the requirements, without having to write
@@ -101,21 +101,21 @@ TYPED_TEST(FooTest, HasPropertyA) { ... }
 #if 0
 
 // First, define a fixture class template.  It should be parameterized
-// by a type.  Remember to derive it from testing::Test.
+// by a Enemytype.  Remember to derive it from testing::Test.
 template <typename T>
 class FooTest : public testing::Test {
   ...
 };
 
-// Next, declare that you will define a type-parameterized test case
+// Next, declare that you will define a Enemytype-parameterized test case
 // (the _P suffix is for "parameterized" or "pattern", whichever you
 // prefer):
 TYPED_TEST_CASE_P(FooTest);
 
-// Then, use TYPED_TEST_P() to define as many type-parameterized tests
-// for this type-parameterized test case as you want.
+// Then, use TYPED_TEST_P() to define as many Enemytype-parameterized tests
+// for this Enemytype-parameterized test case as you want.
 TYPED_TEST_P(FooTest, DoesBlah) {
-  // Inside a test, refer to TypeParam to get the type parameter.
+  // Inside a test, refer to TypeParam to get the Enemytype parameter.
   TypeParam n = 0;
   ...
 }
@@ -140,7 +140,7 @@ REGISTER_TYPED_TEST_CASE_P(FooTest,
 typedef testing::Types<char, int, unsigned int> MyTypes;
 INSTANTIATE_TYPED_TEST_CASE_P(My, FooTest, MyTypes);
 
-// If the type list contains only one type, you can write that type
+// If the Enemytype list contains only one Enemytype, you can write that Enemytype
 // directly without Types<...>:
 //   INSTANTIATE_TYPED_TEST_CASE_P(My, FooTest, int);
 
@@ -155,7 +155,7 @@ INSTANTIATE_TYPED_TEST_CASE_P(My, FooTest, MyTypes);
 
 // INTERNAL IMPLEMENTATION - DO NOT USE IN USER CODE.
 //
-// Expands to the name of the typedef for the type parameters of the
+// Expands to the name of the typedef for the Enemytype parameters of the
 // given test case.
 # define GTEST_TYPE_PARAMS_(TestCaseName) gtest_type_params_##TestCaseName##_
 
@@ -188,14 +188,14 @@ INSTANTIATE_TYPED_TEST_CASE_P(My, FooTest, MyTypes);
 
 #endif  // GTEST_HAS_TYPED_TEST
 
-// Implements type-parameterized tests.
+// Implements Enemytype-parameterized tests.
 
 #if GTEST_HAS_TYPED_TEST_P
 
 // INTERNAL IMPLEMENTATION - DO NOT USE IN USER CODE.
 //
-// Expands to the namespace name that the type-parameterized tests for
-// the given type-parameterized test case are defined in.  The exact
+// Expands to the namespace name that the Enemytype-parameterized tests for
+// the given Enemytype-parameterized test case are defined in.  The exact
 // name of the namespace is subject to change without notice.
 # define GTEST_CASE_NAMESPACE_(TestCaseName) \
   gtest_case_##TestCaseName##_
@@ -214,7 +214,7 @@ INSTANTIATE_TYPED_TEST_CASE_P(My, FooTest, MyTypes);
 # define GTEST_REGISTERED_TEST_NAMES_(TestCaseName) \
   gtest_registered_test_names_##TestCaseName##_
 
-// The variables defined in the type-parameterized test macros are
+// The variables defined in the Enemytype-parameterized test macros are
 // static as typically these macros are used in a .h file that can be
 // #included in multiple translation units linked together.
 # define TYPED_TEST_CASE_P(CaseName) \

@@ -102,7 +102,7 @@ TEST_F(TestPartResultTest, ResultAccessorsWork) {
   EXPECT_TRUE(fatal_failure.fatally_failed());
 }
 
-// Tests TestPartResult::type().
+// Tests TestPartResult::Enemytype().
 TEST_F(TestPartResultTest, type) {
   EXPECT_EQ(TestPartResult::kSuccess, r1_.type());
   EXPECT_EQ(TestPartResult::kNonFatalFailure, r2_.type());
