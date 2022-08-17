@@ -44,7 +44,9 @@ void GameState::initFonts() {
     }
 }
 void GameState::initTextures() {
-    if(!this->textures["PLAYER_SHEET"].loadFromFile("./assets/Sprites/GC/GC_Sheet.png"))
+    if(!this->textures["PLAYER_SHEET"].loadFromFile("./assets/Sprites/GC/R.png"))
+        throw "ERROR::GAME_STATE::COULDNOTLOADIDLETEXTURE";
+    if(!this->textures["ZOMBIE_SHEET"].loadFromFile("./assets/Sprites/Zombies/ZombieBaldSprite.png"))
         throw "ERROR::GAME_STATE::COULDNOTLOADIDLETEXTURE";
 }
 void GameState::initPlayer() {
@@ -76,7 +78,7 @@ GameState::GameState(StateData &stateData)
     initPlayer();
     //initBullets();
     //temporary
-    //enemy=new Enemy(200.f,200.f,textures["PLAYER_SHEET"]);
+    //activeEnemies.push_back(new BaldZombie(200.f,200.f,textures["ZOMBIE_SHEET"]));
 }
 
 GameState::~GameState() {
@@ -86,18 +88,21 @@ GameState::~GameState() {
     delete tileMap;
     for(auto bullet:bullets)
         delete &bullet;
+    for(auto & activeEnemy : activeEnemies)
+        delete activeEnemy;
 }
 //
-//RENDER FUNCTIONS
+///RENDER FUNCTIONS
 void GameState::render(sf::RenderTarget* target) {
     if(!target)
         target= window;
 
     renderTexture.clear();
     renderTexture.setView(view);
-    tileMap->render(renderTexture,player->getGridPosition(static_cast<int>(stateData.tileSize)),false);
+    tileMap->render(renderTexture,player->getGridPosition(static_cast<int>(stateData.tileSize)/2),false);
     player->render(renderTexture,true);
-    //enemy->render(renderTexture,false);
+    for(auto *i :activeEnemies)
+        i->render(renderTexture,true);
     for(auto & bullet : bullets)
         bullet.render(renderTexture);
     if(paused)
@@ -111,7 +116,7 @@ void GameState::render(sf::RenderTarget* target) {
     target->draw(this->renderSprite);
 }
 //
-//UPDATE FUNCTIONS
+///UPDATE FUNCTIONS
 void GameState::updatePlayerInput(const float &dt) {
     //Update player input
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_LEFT"))))
@@ -144,6 +149,10 @@ void GameState::updatePlayerInput(const float &dt) {
 void GameState::updatePlayer(const float & dt) {
     player->update(dt,mouseposView);
 }
+void GameState::updateEnemies(const float &) {
+
+}
+
 void GameState::updateInput(const float &dt) {
     //pause& unpause
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("CLOSE"))) && this->getKeyTime()){
@@ -158,20 +167,25 @@ void GameState::updateView(const float &dt) {
                          std::floor(player->getPosition().y+(static_cast<float>(this->mouseposWindow.y)-static_cast<float>(stateData.gxSettings->resolution.height/2))/5.f));
 
     if(view.getCenter().x - view.getSize().x/2.f<0.f)
-        view.setCenter(0.f + view.getSize().x/2.f,view.getCenter().y);
+        view.setCenter(0.f + view.getSize().x/2.f, view.getCenter().y);
     else if(view.getCenter().x - view.getSize().x/2.f>tileMap->getMapSizeF().x)
         view.setCenter(tileMap->getMapSizeF().x- view.getSize().x/2.f,view.getCenter().y);
     if(view.getCenter().y - view.getSize().y/2.f<0.f)
         view.setCenter(view.getCenter().x,0.f + view.getSize().y/2.f);
     else if(view.getCenter().y - view.getSize().y/2.f>tileMap->getMapSizeF().y)
-        view.setCenter(view.getCenter().x,0.f +tileMap->getMapSizeF().y- view.getSize().x);
+        view.setCenter(view.getCenter().x,0.f + tileMap->getMapSizeF().y- view.getSize().x);
 
     viewGridPos.x=static_cast<int>(view.getCenter().x/stateData.tileSize);
     viewGridPos.y=static_cast<int>(view.getCenter().y/stateData.tileSize);
 }
 void GameState::updateTileMap(const float &dt) {
-    tileMap->update(player, dt);
-    //tileMap->update(enemy,dt);
+    tileMap->updateWorldBoundsCollision(player, dt);
+    tileMap->updateTileCollision(player, dt);
+    tileMap->updateTiles(player, dt,activeEnemies,textures);
+    for(auto *i:activeEnemies){
+        tileMap->updateWorldBoundsCollision(i, dt);
+        tileMap->updateTileCollision(i, dt);
+    }
 }
 
 void GameState::update(const float& dt) {
@@ -190,12 +204,12 @@ void GameState::update(const float& dt) {
     }
     std::cout<<bullets.size()<<"\n";
     if(!paused){
-        updatePlayerInput(dt);
-        updatePlayer(dt);
         updateTileMap(dt);
         updateView(dt);
-        //enemy->update(dt,mouseposView);
-        //enemy->move(dt,1.f,0.f);
+        updatePlayerInput(dt);
+        updatePlayer(dt);
+        for(auto *i :activeEnemies)
+            i->update(dt,mouseposView);
     }else{//paused state
         pmenu->update(mouseposWindow);
         updatePMenuButtons();
@@ -211,6 +225,5 @@ void GameState::endState() {
     quit=true;
     std::cout<<"ending gamestate"<<"\n";
 }
-
 
 

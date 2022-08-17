@@ -3,7 +3,7 @@
 #include "Entity.h"
 
 Entity::Entity(){
-    this->initVariables();//to store important vars
+    initVariables();//to store important vars
 }
 
 Entity::~Entity() {

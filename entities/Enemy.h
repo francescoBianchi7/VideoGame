@@ -10,17 +10,17 @@
 class Enemy: public Entity {
 private:
     float speed;
-    EnemySpawner& enemySpawner;
+    //EnemySpawner& enemySpawner;
     //initializers
     void initVariables();
     void initAnimations();
 public:
-    Enemy(EnemySpawner& enemySpawner, float x, float y, sf::Texture &textureSheet);
+    Enemy();
     virtual ~Enemy();
 
     //functions
-    void update(const float &dt, sf::Vector2f mousePosView);
-    void render(sf::RenderTarget &target, const bool show_hitbox);
+    virtual void update(const float &dt, sf::Vector2f mousePosView)=0;
+    virtual void render(sf::RenderTarget &target, const bool show_hitbox)=0;
 };
 
 

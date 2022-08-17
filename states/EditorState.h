@@ -26,6 +26,11 @@ private:
     bool collision=false;
     short type;
     float cameraSpeed;
+    bool tileAddLock;
+    //enemy
+    int amountToSpawn;
+    int enemyType;
+    int enemySpawnTimer;
     //init functions
     void initVariables();
     void initBackground();
@@ -40,6 +45,7 @@ private:
 public:
     explicit EditorState(StateData &stateData);
     ~EditorState() override;
+    //GETTER & SETTER
 
     //render functions
     void render(sf::RenderTarget* target) override;

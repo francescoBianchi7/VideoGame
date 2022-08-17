@@ -1,13 +1,9 @@
-//
-// Created by bianc on 15/02/2022.
-//
-
 #ifndef VIDEOGAME_TILE_H
 #define VIDEOGAME_TILE_H
 
 #include "GUI.h"
 #include "PreCompHeaders.h"
-enum tileTypes{DEFAULT=0,SLOWING,ENEMYSPAWNER};
+enum tileTypes{DEFAULT=0,SLOWING, ENEMYSPAWNER};
 
 class Tile {
 private:
@@ -15,21 +11,25 @@ protected:
     sf::RectangleShape tile;
     bool collision;
     short type;//tile Type
+
 public:
     Tile();
-    Tile(unsigned pos_grid_x,unsigned pos_grid_y,float tileSizeF,sf::Texture& texture,sf::IntRect& rect,bool collision=false,short type=tileTypes::DEFAULT);
+    Tile(short type,unsigned pos_grid_x,unsigned pos_grid_y,float tileSizeF,sf::Texture& texture,sf::IntRect& rect,bool collision);
     virtual ~Tile();
 
     //getter
     const sf::Vector2f& getPosition() const;
     const bool &getCollision() const;
+    const short& getType() const;
     sf::FloatRect getGlobalBounds()const;
-    bool intersects(sf::FloatRect bounds)const;
-    std::string getAsString() const;
+    //setter
     void setCollision();
     //functions+
-    virtual void update();
-    void render(sf::RenderTarget& target);
+    bool intersects(sf::FloatRect bounds)const;
+
+    virtual std::string getAsString() const=0;
+    virtual void update()=0;
+    virtual void render(sf::RenderTarget& target)=0;
 };
 
 

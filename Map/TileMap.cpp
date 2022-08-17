@@ -1,7 +1,3 @@
-//
-// Created by bianc on 15/02/2022.
-//
-
 #include "TileMap.h"
 void TileMap::clear() {
     for(size_t x=0;x<this->mapSizeGrid.x; x++){
@@ -24,8 +20,8 @@ TileMap::TileMap(float tileSize,unsigned width,unsigned height,std::string textu
     tileSizeI=static_cast<int>(tileSizeF);
     mapSizeGrid.x=width;
     mapSizeGrid.y=height;
-    MapSizeF.x= static_cast<float>(width) * tileSizeF;
-    MapSizeF.y= static_cast<float>(height) * tileSizeF;
+    mapSizeF.x= static_cast<float>(width) * tileSizeF;
+    mapSizeF.y= static_cast<float>(height) * tileSizeF;
     layers=2;
     textureFile=texture_file;
     map.resize(mapSizeGrid.x, std::vector<std::vector<std::vector<Tile*>>>());
@@ -41,10 +37,15 @@ TileMap::TileMap(float tileSize,unsigned width,unsigned height,std::string textu
     if(!tileTextureSheet.loadFromFile(texture_file))
         std::cout<<"ERROR::TILEMAP::FAILED TO LOAD TILETEXTURESHEET"<<texture_file<<"\n";
 
-    this->collisionBox.setSize(sf::Vector2f(tileSizeF,tileSizeF));
-    this->collisionBox.setFillColor(sf::Color(255,0,0,50));
-    this->collisionBox.setOutlineColor(sf::Color::Red);
-    this->collisionBox.setOutlineThickness(-1.f);
+    collisionBox.setSize(sf::Vector2f(tileSizeF,tileSizeF));
+    collisionBox.setFillColor(sf::Color(255,0,0,50));
+    collisionBox.setOutlineColor(sf::Color::Red);
+    collisionBox.setOutlineThickness(-1.f);
+
+    spawnerTileBox.setSize(sf::Vector2f(tileSizeF,tileSizeF));
+    spawnerTileBox.setFillColor(sf::Color(0,0,255,50));
+    spawnerTileBox.setOutlineColor(sf::Color::Blue);
+    spawnerTileBox.setOutlineThickness(-1.f);
 }
 
 TileMap::~TileMap() {
@@ -67,34 +68,79 @@ sf::Vector2i TileMap::getMapSizeI() const {
     return mapSizeGrid;
 }
 sf::Vector2f TileMap::getMapSizeF() const {
-    return MapSizeF;
+    return mapSizeF;
+}
+int TileMap::getLayerSize(int x, int y, int layer) const {
+    if(x>=0 && x<map.size()){
+        if(y>=0 && y<map[x].size()){
+            if(layer>=0 && layer<map[x][y].size()){
+                return map[x][y][layer].size();
+            }
+        }
+    }
+    return -1;
+}
+bool TileMap::tileEmpty(int x, int y, int z) {
+    if(x>=0 && x<=mapSizeF.x &&
+    y>=0 && y<=mapSizeF.y &&
+    z>0)
+        return map[x][y][z].empty();
+    else
+        return false;
+}
+
+void TileMap::addTile(unsigned x,unsigned y,unsigned z,sf::IntRect& textureRect,bool& collision,short& type) {
+    //adds a tile where the mouse is,if the mouse is inside the array
+    if(x < mapSizeGrid.x && x >= 0 && y < mapSizeGrid.y && y >= 0 && z < layers && z >= 0){
+            map[x][y][z].push_back(new DefaultTile(type,x,y,tileSizeF,tileTextureSheet,textureRect,collision));
+        //std::cout<<"DEBUG::ADDED TILE";
+    }
+}
+void TileMap::addTile(unsigned int x, unsigned int y, unsigned int z, sf::IntRect &textureRect, int enemy_type,
+                      int enemy_amount, int enemy_tts) {
+    if(x < mapSizeGrid.x && x >= 0 && y < mapSizeGrid.y && y >= 0 && z < layers && z >= 0){
+        map[x][y][z].push_back(new EnemySpawner(x,y,tileSizeF,tileTextureSheet,textureRect,enemy_type,enemy_amount,enemy_tts));
+        //std::cout<<"DEBUG::ADDED TILE";
+    }
+
+}
+void TileMap::removeTile(unsigned x,unsigned y,unsigned z) {
+    //remove if a tile is present
+    if(x < mapSizeGrid.x && x >= 0 && y < mapSizeGrid.y && y >= 0 && z < layers && z >= 0){
+        if(!map[x][y][z].empty()){//can remove
+            delete map[x][y][z][map[x][y][z].size()-1];
+            map[x][y][z].pop_back();
+            std::cout<<"DEBUG::REMOVED TILE";
+        }
+    }
 }
 
 void TileMap::render(sf::RenderTarget & target,sf::Vector2i gridPosition,const bool showCollision) {
         layer=0;
-        fromX=gridPosition.x - 15;
+        fromX=gridPosition.x - 14;
         if(fromX<0)
             fromX=0;
         else if(fromX>mapSizeGrid.x)
             fromX=static_cast<int>(mapSizeGrid.x);
 
-        toX=gridPosition.x + 17;
+        toX=gridPosition.x + 18;
         if(toX<0)
             toX=0;
         else if(toX>mapSizeGrid.x)
             toX=static_cast<int>(mapSizeGrid.x);
 
-        this->fromY=gridPosition.y - 9;
+        this->fromY=gridPosition.y - 15;
         if(this->fromY<0)
             this->fromY=0;
         else if(fromY>mapSizeGrid.y)
             fromY=static_cast<int>(mapSizeGrid.y);
 
-        this->toY=gridPosition.y + 10;
+        this->toY=gridPosition.y + 20;
         if(toY<0)
             toY=0;
         else if(toY>mapSizeGrid.y)
             toY=static_cast<int>(mapSizeGrid.y);
+
         for(size_t x=fromX;x<toX;x++){
             for(size_t y=fromY;y<toY;y++){
                 for (auto & k : map[x][y][layer]){
@@ -106,23 +152,74 @@ void TileMap::render(sf::RenderTarget & target,sf::Vector2i gridPosition,const b
                             target.draw(collisionBox);
                         }
                     }
+                    if(k->getType()==tileTypes::ENEMYSPAWNER){
+                        spawnerTileBox.setPosition(k->getPosition());
+                        target.draw(spawnerTileBox);
+                    }
                 }
             }
         }
 }
 
-void TileMap::update(Entity *entity, const float &dt) {
+void TileMap::updateWorldBoundsCollision(Entity *entity, const float &dt) const {
     //WORlD BOUNDS
+    std::cout<<"mapsizes"<<mapSizeF.y<<","<<mapSizeGrid.y<<"\n";
+    std::cout<<"mapPosition"<<entity->getPosition().y<<","<<entity->getGridPosition(tileSizeI).y<<"\n";
     if(entity->getPosition().x<0.f)
         entity->setPosition(0.f,entity->getPosition().y);
-    else if(entity->getPosition().x + entity->getGlobalBounds().width>this->MapSizeF.x)
-        entity->setPosition(MapSizeF.x - entity->getGlobalBounds().width, entity->getPosition().y);
+    else if(entity->getPosition().x + entity->getGlobalBounds().width>mapSizeF.x/2.f)
+        entity->setPosition(mapSizeF.x/2.f - entity->getGlobalBounds().width, entity->getPosition().y);
     if(entity->getPosition().y<0.f)
         entity->setPosition(entity->getPosition().x,0.f);
-    else if(entity->getPosition().y+entity->getGlobalBounds().height>this->MapSizeF.y)
-        entity->setPosition(entity->getPosition().x, MapSizeF.y - entity->getGlobalBounds().height);
-    //TILE COLLISION
-    /*setting up for loop;should find a better way to this*/
+    else if(entity->getPosition().y+entity->getGlobalBounds().height>mapSizeF.y/2.f)
+        entity->setPosition(entity->getPosition().x, mapSizeF.y/2.f - entity->getGlobalBounds().height);
+}
+
+void TileMap::updateTiles(Entity *entity, const float &dt,std::vector<Enemy*>& activeEnemies,std::map<std::string, sf::Texture>& textures) {
+    this->layer=0;
+    this->fromX=entity->getGridPosition(this->tileSizeI).x - 14;
+    if(this->fromX<0)
+        this->fromX=0;
+    else if(fromX>mapSizeGrid.x)
+        fromX=static_cast<int>(mapSizeGrid.x);
+
+    this->toX=entity->getGridPosition(this->tileSizeI).x + 18;
+    if(toX<0)
+        toX=0;
+    else if(toX>mapSizeGrid.x)
+        toX=static_cast<int>(mapSizeGrid.x);
+
+    this->fromY=entity->getGridPosition(this->tileSizeI).y - 15;
+    if(this->fromY<0)
+        this->fromY=0;
+    else if(fromY>mapSizeGrid.y)
+        fromY=static_cast<int>(mapSizeGrid.y);
+
+    this->toY=entity->getGridPosition(this->tileSizeI).y + 20;
+    if(toY<0)
+        toY=0;
+    else if(toY>mapSizeGrid.y)
+        toY=static_cast<int>(mapSizeGrid.y);
+    sf::FloatRect entityBounds=entity->getGlobalBounds();
+    sf::FloatRect nextPosition=entity->getNextPositionBounds(dt);
+
+    for(size_t x=fromX;x<this->toX;x++){
+        for(size_t y=fromY;y<this->toY;y++){
+            for (auto & k : map[x][y][layer]){
+                k->update();
+                if(k->getType()==tileTypes::ENEMYSPAWNER){
+                    auto* es=dynamic_cast<EnemySpawner*>(k);
+                    if(!es->getSpawned()){
+                        activeEnemies.push_back(new BaldZombie(x*tileSizeF,y*tileSizeF,textures["ZOMBIE_SHEET"]));
+                        es->setSpawned(true);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void TileMap::updateTileCollision(Entity *entity, const float &dt) {
     this->layer=0;
     this->fromX=entity->getGridPosition(this->tileSizeI).x - 1;
     if(this->fromX<0)
@@ -165,10 +262,10 @@ void TileMap::update(Entity *entity, const float &dt) {
                     }
                     //Left collision
                     if (entity->getVelocity().x<0){
-                            std::cout<<"left collision"<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
-                            std::cout<<"left collision"<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
-                            entity->setPosition(wallBounds.left + wallBounds.width, entityBounds.top);
-                            std::cout<<" "<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
+                        std::cout<<"left collision"<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
+                        std::cout<<"left collision"<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
+                        entity->setPosition(wallBounds.left + wallBounds.width, entityBounds.top);
+                        std::cout<<" "<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
                     }
                     //Bottom collision
                     if (entity->getVelocity().y>0){
@@ -187,23 +284,14 @@ void TileMap::update(Entity *entity, const float &dt) {
         }
     }
 }
-void TileMap::addTile(unsigned x,unsigned y,unsigned z,sf::IntRect& textureRect,bool& collision,short& type) {
-    //adds a tile where the mouse is,if the mouse is inside the array
-    if(x < mapSizeGrid.x && x >= 0 && y < mapSizeGrid.y && y >= 0 && z < layers && z >= 0){
-        map[x][y][z].push_back(new Tile(x,y,tileSizeF,tileTextureSheet,textureRect,collision,type));
-        std::cout<<"DEBUG::ADDED TILE";
-    }
+
+void TileMap::update(Entity *entity, const float &dt) {
+    updateWorldBoundsCollision(entity,dt);
+    //TILE COLLISION
+    /*setting up for loop;should find a better way to this*/
+
 }
-void TileMap::removeTile(unsigned x,unsigned y,unsigned z) {
-//remove if a tile is present
-    if(x < mapSizeGrid.x && x >= 0 && y < mapSizeGrid.y && y >= 0 && z < layers && z >= 0){
-        if(!map[x][y][z].empty()){//can remove
-            delete map[x][y][z][map[x][y][z].size()-1];
-            map[x][y][z].pop_back();
-            std::cout<<"DEBUG::REMOVED TILE";
-        }
-    }
-}
+
 void TileMap::saveToFile(const std::string &file_name) {
 //saves the tile maps to a text file
 // Format: Size x,y tileSize
@@ -265,29 +353,27 @@ void TileMap::loadFromFile(const std::string& file_name) {
         if(!tileTextureSheet.loadFromFile(texture_file))
             std::cout<<"Error";
         //load all tiles
-        for(int i=0;i<mapSizeGrid.x;i++){
-            for(int j=0;j<mapSizeGrid.y;j++){
-                in_file>> x>> y>> z>> trX>> trY>>collision>>type;
-                sf::IntRect textureRect=sf::IntRect(static_cast<int>(trX), static_cast<int>(trY),
-                                                    static_cast<int>(tileSizeI)*2.f, static_cast<int>(tileSizeI)*2.f);
-                this->map[x][y][z].push_back(new Tile(x,y,tileSizeF,tileTextureSheet,
-                                            textureRect,collision,type));
+        while(in_file>> x>> y>> z>> type){
+            if(type == tileTypes::ENEMYSPAWNER){
+                //type amount time to spawn
+                int enemy_type =0, enemy_am=0,enemy_tts=0;
+                in_file>> trX>> trY>> enemy_type >> enemy_am >> enemy_tts;
+                sf::IntRect textureRect=sf::IntRect(trX, trY,tileSizeI*2, tileSizeI*2);
+                this->map[x][y][z].push_back(new EnemySpawner(x,y,
+                                     tileSizeF,tileTextureSheet,textureRect,
+                                     enemy_type,enemy_am,enemy_tts));
+                }else{
+                    in_file>> trX>> trY>>collision;
+                    sf::IntRect textureRect=sf::IntRect(trX, trY,
+                                                    tileSizeI*2, tileSizeI*2);
+                    this->map[x][y][z].push_back(
+                            new DefaultTile(type,x,y,tileSizeF,tileTextureSheet,
+                                     textureRect,collision));
+                }
             }
-        }
     }else{
         std::cout<<"ERROR::COULD NOT LOAD FROM FILE,"<<file_name;
     }
     in_file.close();
-}
-
-int TileMap::getLayerSize(int x, int y, int layer) const {
-    if(x>=0 && x<map.size()){
-        if(y>=0 && y<map[x].size()){
-            if(layer>=0 && layer<map[x][y].size()){
-                return map[x][y][layer].size();
-            }
-        }
-    }
-    return -1;
 }
 

@@ -27,6 +27,10 @@ void EditorState::initVariables() {
     this->type=tileTypes::DEFAULT;
     cameraSpeed=500.f;
     layer=0;
+    tileAddLock=false;
+    enemyType = 0;
+    amountToSpawn = 1;
+    enemySpawnTimer = 60;
 }
 void EditorState::initBackground() {}
 void EditorState::initKeybinds() {
@@ -148,38 +152,52 @@ void EditorState::updateEditorInput(const float &dt) {
 
     //add a tile
     if(sf::Mouse::isButtonPressed((sf::Mouse::Left))&&getKeyTime()){
-        tileMap->addTile(mousePosGrid.x,mousePosGrid.y,0,textureRect,this->collision,this->type);
-    }else if(sf::Mouse::isButtonPressed((sf::Mouse::Right))&&getKeyTime()){
+        if(type==tileTypes::ENEMYSPAWNER){
+            tileMap->addTile(mousePosGrid.x,mousePosGrid.y,0,textureRect,
+                             type,amountToSpawn,enemySpawnTimer);
+        }else{
+            tileMap->addTile(mousePosGrid.x,mousePosGrid.y,0,textureRect,this->collision,this->type);
+        }
         //remove tile
+    }else if(sf::Mouse::isButtonPressed((sf::Mouse::Right))&&getKeyTime()){
         tileMap->removeTile(mousePosGrid.x,mousePosGrid.y,0);
-    }
-    //change tile Texture selected
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && getKeyTime()){
-        if(textureRect.left<=700){
-            textureRect.left+=100;
         }
-    }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && getKeyTime()){
-        if(textureRect.left>=100)
-            textureRect.left-=100;
-    }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && getKeyTime()){
-        if(textureRect.top==0)
-            textureRect.top+=100;
-    }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && getKeyTime()){
-        if(textureRect.top==100){
-            textureRect.top-=100;
+        //change tile Texture selected
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && getKeyTime()){
+            if(textureRect.left<=700){
+                textureRect.left+=100;
+            }
+        }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && getKeyTime()){
+            if(textureRect.left>=100)
+                textureRect.left-=100;
+        }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && getKeyTime()){
+            if(textureRect.top==0)
+                textureRect.top+=100;
+        }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && getKeyTime()){
+            if(textureRect.top==100){
+                textureRect.top-=100;
+            }
         }
-    }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("TOGGLE_COLLISION")))&& getKeyTime()){
-        if(this->collision)
-            this->collision=false;
-        else
-            this->collision=true;
-    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("INCREASE_TYPE")))&& getKeyTime()){
-        this->type++;
-    }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("DECREASE_TYPE")))&& getKeyTime()){
-        if(this->type>0)
-            this->type--;
-    }
+        //collision
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("TOGGLE_COLLISION")))&& getKeyTime()){
+            if(this->collision)
+                this->collision=false;
+            else
+                this->collision=true;
+            //type
+        } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("INCREASE_TYPE")))&& getKeyTime()){
+            this->type++;
+        }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("DECREASE_TYPE")))&& getKeyTime()){
+            if(this->type>0)
+                this->type--;
+        }
+        //set lock on /off
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("TOGGLE_TILE_LOCK")))&& getKeyTime()){
+            if(tileAddLock)
+                tileAddLock=false;
+            else
+                tileAddLock=true;
+        }
 }
 void EditorState::updateGui(){
     //the selector moves on tiles
@@ -195,8 +213,9 @@ void EditorState::updateGui(){
     "\n"<<mousePosGrid.x<<" "<<mousePosGrid.y<<
     "\n"<<textureRect.left<<" "<<textureRect.top<<
     "Collision:"<<this->collision<<
-    "\n"<<"Enemytype"<<this->type<<
-    "\n"<<"Tiles"<<tileMap->getLayerSize(mousePosGrid.x,mousePosGrid.y,layer);
+    "\n"<<"TyleType"<<this->type<<
+    "\n"<<"Tiles"<<tileMap->getLayerSize(mousePosGrid.x,mousePosGrid.y,layer)<<
+    "\n"<<"Lock"<<tileAddLock;
     cursorText.setString(ss.str());
 }
 void EditorState::update(const float &dt) {
@@ -217,5 +236,6 @@ void EditorState::endState() {
     this->quit=true;
     std::cout<<"ending gamestate"<<"\n";
 }
+
 
 

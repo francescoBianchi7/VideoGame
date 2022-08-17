@@ -6,6 +6,7 @@
 #include "..\Map\TileMap.h"
 #include "..\Weapon\Gun.h"
 #include "..\entities\Enemy.h"
+#include "..\entities\BaldZombie.h"
 
 class GameCharacter;
 class PauseMenu;
@@ -22,7 +23,7 @@ private:
     sf::RenderTexture renderTexture; //renders all tiles in a canvas
     sf::Sprite renderSprite; // paste the canvas on window
 
-    //BULLET
+    ///BULLET
     Bullet b1;
     std::vector<Bullet> bullets;
 
@@ -30,11 +31,11 @@ private:
     sf::Font font;
 
     GameCharacter* player;//memory is dinamically allocated
-    Enemy* enemy;
+    std::vector<Enemy*> activeEnemies;// vector containing all enemies
     sf::Texture texture;
 
     TileMap* tileMap;
-    //Initialization Functions
+    ///Initialization Functions
     void initDelayedRender();//to render faster
     void initView();
     void initBullets();
@@ -49,15 +50,19 @@ public:
     explicit GameState(StateData &stateData);
     virtual ~GameState();
 
-    void endState() override;//just to see which state is ending
+    void render(sf::RenderTarget* target) override;
+    ///update functions
     void updatePlayerInput(const float& dt);//choose player actions based on input received
     void updatePlayer(const float& dt);//updates player
+    void updateEnemies(const float& dt);
     void updateInput(const float& dt) override;//pause & unpuase & quit
     void updatePMenuButtons();
     void updateView(const float& dt);//moves camera based on player position
     void updateTileMap(const float& dt);//checks for collisions, and choose which tiles to render
     void update(const float& dt) override;
-    void render(sf::RenderTarget* target) override;
+
+
+    void endState() override;//just to see which state is ending
 };
 
 
