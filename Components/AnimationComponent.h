@@ -1,7 +1,3 @@
-//
-// Created by bianc on 29/12/2021.
-//
-
 #ifndef VIDEOGAME_ANIMATIONCOMPONENT_H
 #define VIDEOGAME_ANIMATIONCOMPONENT_H
 #include "PreCompHeaders.h"

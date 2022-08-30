@@ -25,6 +25,7 @@ public:
     void stopVelocityX();
     void stopVelocityY();
 
+    void updateSpeed(int speed);
     void move(const float &dt,float dir_x,float dir_y);
     void update(const float& dt);
 };

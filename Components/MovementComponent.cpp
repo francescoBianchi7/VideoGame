@@ -42,6 +42,7 @@ void MovementComponent::stopVelocityY() {
     /* collisions*/
     this->velocity.y=0.f;
 }
+
 //updating
 void MovementComponent::update(const float &dt) {
     sprite.move(velocity * dt); //Uses velocity
@@ -50,4 +51,8 @@ void MovementComponent::update(const float &dt) {
 void MovementComponent::move(const float& dt,float dir_x, float dir_y) {
     velocity.x= speed * dir_x;
     velocity.y= speed * dir_y;
+}
+
+void MovementComponent::updateSpeed(int speed) {
+    this->speed=speed;
 }

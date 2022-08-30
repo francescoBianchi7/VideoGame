@@ -5,6 +5,7 @@
 #include "GameCharacter.h"
 GameCharacter::GameCharacter() {
     speed=300.f;
+    hp=10;
     this->createHitboxComponent(10.f,10.f,36.f,52.f);
     this->createMovementComponent(speed);
     this->setPosition(0,0);
@@ -12,9 +13,11 @@ GameCharacter::GameCharacter() {
 
 GameCharacter::GameCharacter( float x, float y, sf::Texture &textureSheet){
     initVariables();
-    createMovementComponent(speed);
+    this->createAttributeComponent(1,true);
+    createMovementComponent(attributeComponent->speed);
     createAnimationComponent(textureSheet);
     initAnimations();
+
     sprite.setScale(1.5,1.5);
     createHitboxComponent(9.f,26.f,38,49);
     setPosition(x,y);
@@ -24,7 +27,7 @@ GameCharacter::~GameCharacter()= default;
 
 //init function
 void GameCharacter::initVariables() {
-    speed=300.f;
+
 }
 void GameCharacter::initAnimations() {
     this->animationComponent->addAnimation("IDLE_DOWN",10.f,0,0,0,0,36,48);
@@ -41,6 +44,13 @@ void GameCharacter::initComponents(){}
 
 void GameCharacter::update(const float &dt,sf::Vector2f mouseposView) {
    //updates which animation is playing and components
+   if(sf::Keyboard::isKeyPressed(sf::Keyboard::E)){
+       attributeComponent->gainExp(20);
+       movementComponent->updateSpeed(attributeComponent->speed);
+       system("cls");
+       std::cout<<attributeComponent->debugPrint()<<"\n";
+       std::cout<<movementComponent->getSpeed()<<"\n";
+   }
     movementComponent->update(dt);
     if(!movementComponent->isMoving())
         animationComponent->play("IDLE_DOWN",dt);
@@ -61,6 +71,10 @@ void GameCharacter::render(sf::RenderTarget &target, const bool show_hitbox) {
     if(show_hitbox)
         hitboxComponent->render(target);
 }
+
+void GameCharacter::loseHp(int dmg) {
+    hp=hp-dmg;
+}
 /*void GameCharacter::updateInput(const float &dt) {
     if(sf::Keyboard::isKeyPressed((sf::Keyboard::Key(keybinds.at("M))){
         movementComponent->move(dt,0.f,-1.f);
@@ -79,23 +93,3 @@ void GameCharacter::render(sf::RenderTarget &target, const bool show_hitbox) {
         stopVelocity();
     }
 }*/
-
-//this function are used for testing purposes
-//during the testing, the updateInput function is unusable
-//because Keyboard cannot be pressed.
-void GameCharacter::moveLeft(const float &dt) {
-    movementComponent->move(dt,-1.f,0.f);
-    movementComponent->update(dt);
-}
-void GameCharacter::moveRight(const float &dt) {
-    movementComponent->move(dt,1.f,0.f);
-    movementComponent->update(dt);
-}
-void GameCharacter::moveUp(const float &dt) {
-    movementComponent->move(dt,0.f,-1.f);
-    movementComponent->update(dt);
-}
-void GameCharacter::moveDown(const float &dt) {
-    movementComponent->move(dt,0.f,1.f);
-    movementComponent->update(dt);
-}

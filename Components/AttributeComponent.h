@@ -1,15 +1,48 @@
-//
-// Created by bianc on 29/07/2022.
-//
-
 #ifndef VIDEOGAME_ATTRIBUTECOMPONENT_H
 #define VIDEOGAME_ATTRIBUTECOMPONENT_H
 
 //made to avoid repeating code
 //TBD when hp and GUI are implemented
-
+#include "..\headers\PreCompHeaders.h"
 class AttributeComponent {
+public:
+    //Leveling
+    int level;
+    int exp;
+    int expNext;
+    int baseExp;
+    int attributePoints;
 
+
+    //Stats
+    int hp;
+    int hpMax;
+    int bonusHp;
+    int bonusDmg;
+    int extraDmg;
+    int speed;
+    int baseSpeed;
+    int bonusSpeed;
+
+    //enemyStats
+    int expGiven;
+
+    //Con / Des
+    AttributeComponent(int level,bool player);
+    virtual ~AttributeComponent();
+
+    //Functions
+    void loseHP(int hp);
+    void gainHP(int hp);
+    void loseEXP(int exp);
+    void gainExp(int exp);
+    std::string debugPrint() const;
+    const bool isDead() const;
+
+    void updateStats();
+    void updateLevel();
+
+    void update();
 };
 
 

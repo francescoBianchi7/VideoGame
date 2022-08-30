@@ -1,7 +1,3 @@
-//
-// Created by bianc on 26/12/2021.
-//
-
 #ifndef VIDEOGAME_GAMECHARACTER_H
 #define VIDEOGAME_GAMECHARACTER_H
 
@@ -15,6 +11,7 @@ private:
     bool attacking;
     float speed;
     Rifle rifle;
+    int hp;
 
     void initVariables();
     void initComponents();
@@ -25,10 +22,7 @@ public:
     ~GameCharacter() override;
     Rifle getWeapon();
 
-    void moveRight(const float &dt);
-    void moveLeft(const float &dt);
-    void moveUp(const float &dt);
-    void moveDown(const float &dt);
+    void loseHp(int dmg);
     void update(const float& dt,sf::Vector2f mouseposView) override;
     void render(sf::RenderTarget &target,const bool show_hitbox);
     void updateInput(const float & dt);

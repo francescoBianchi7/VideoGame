@@ -30,7 +30,7 @@ void EditorState::initVariables() {
     tileAddLock=false;
     enemyType = 0;
     amountToSpawn = 1;
-    enemySpawnTimer = 60;
+    enemySpawnTimer = 10.f;
 }
 void EditorState::initBackground() {}
 void EditorState::initKeybinds() {

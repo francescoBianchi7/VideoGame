@@ -12,6 +12,7 @@ Bullet::Bullet(float radius,float speed) {
     bulletShape.setRadius(radius);
     bulletShape.setFillColor(sf::Color::Yellow);
     //bulletShape.setPosition(startingPos);
+    dmg=3;
 }
 
 Bullet::~Bullet() {
@@ -26,6 +27,14 @@ void Bullet::setStartingPosition(float x,float y) {
     this->startingPos=sf::Vector2f(x,y);
 }
 //GETTER
+int Bullet::getDmg() const {
+    return this->dmg;
+}
+sf::Vector2f Bullet::getPosition() {
+    return bulletShape.getPosition();
+}
+
+
 float Bullet::getDistanceTravelled() const {
     return sqrt(pow(bulletShape.getPosition().x-startingPos.x,2)
         +pow(bulletShape.getPosition().y-startingPos.y,2));
@@ -46,3 +55,5 @@ float Bullet::getRange() {
     return range;
 }
 
+void Bullet::deleteBullet() {
+}

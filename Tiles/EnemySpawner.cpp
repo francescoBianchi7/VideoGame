@@ -7,9 +7,10 @@ EnemySpawner::EnemySpawner(unsigned pos_grid_x,unsigned pos_grid_y,float tileSiz
 
     tile.setFillColor(sf::Color(0,0,255,50));
     this->enemytype=enemy_type;
-    this->enemyAmount=amount;
-    this->timeToSpawn=time_to_spawn;
-    spawned=false;
+    enemySpawnTimer.restart();
+    enemyAmount=amount;
+    this->timeToSpawn = time_to_spawn;
+    spawned = true;
 }
 
 EnemySpawner::~EnemySpawner() {
@@ -22,7 +23,14 @@ void EnemySpawner::setSpawned(const bool spawned) {
 bool EnemySpawner::getSpawned() {
     return spawned;
 }
-
+bool EnemySpawner::getSpawnTimer() {
+    if (enemySpawnTimer.getElapsedTime().asSeconds() >= timeToSpawn || firstSpawn){
+        enemySpawnTimer.restart();
+        firstSpawn = false;
+        return true;
+    }
+    return false;
+}
 ///FUNCTIONS
 void EnemySpawner::spawn() {
 
@@ -31,6 +39,7 @@ void EnemySpawner::spawn() {
 void EnemySpawner::clear() {
 
 }
+
 std::string EnemySpawner::getAsString() const {
     std::stringstream ss;
     ss<<this->type<<" "<<tile.getTextureRect().left<<" "<<tile.getTextureRect().top<<" "<<
@@ -39,9 +48,21 @@ std::string EnemySpawner::getAsString() const {
 }
 
 void EnemySpawner::update() {
-
 }
 
 void EnemySpawner::render(sf::RenderTarget &target) {
     target.draw(tile);
 }
+
+void EnemySpawner::increaseEnemyCounter()
+{
+    if (enemyCounter < enemyAmount)
+        ++enemyCounter;
+}
+
+void EnemySpawner::decreaseEnemyCounter()
+{
+    if (enemyCounter > 0)
+        --enemyCounter;
+}
+

@@ -11,6 +11,7 @@ private:
 
     float range;
     float speed;
+    int dmg;
 
 public:
     sf::CircleShape bulletShape;
@@ -23,9 +24,12 @@ public:
     void setDirection(sf::Vector2f& mousePosView);
     void setStartingPosition(float x,float y);
     //GETTER
+    int getDmg() const;
     float getDistanceTravelled() const;
     float getRange();
+    sf::Vector2f getPosition();
     //FUNCTIONS
+    void deleteBullet();
     void update(const float& dt);
     void render(sf::RenderTarget& target);
 };

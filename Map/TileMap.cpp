@@ -89,6 +89,7 @@ bool TileMap::tileEmpty(int x, int y, int z) {
         return false;
 }
 
+
 void TileMap::addTile(unsigned x,unsigned y,unsigned z,sf::IntRect& textureRect,bool& collision,short& type) {
     //adds a tile where the mouse is,if the mouse is inside the array
     if(x < mapSizeGrid.x && x >= 0 && y < mapSizeGrid.y && y >= 0 && z < layers && z >= 0){
@@ -114,6 +115,7 @@ void TileMap::removeTile(unsigned x,unsigned y,unsigned z) {
         }
     }
 }
+
 
 void TileMap::render(sf::RenderTarget & target,sf::Vector2i gridPosition,const bool showCollision) {
         layer=0;
@@ -163,8 +165,6 @@ void TileMap::render(sf::RenderTarget & target,sf::Vector2i gridPosition,const b
 
 void TileMap::updateWorldBoundsCollision(Entity *entity, const float &dt) const {
     //WORlD BOUNDS
-    std::cout<<"mapsizes"<<mapSizeF.y<<","<<mapSizeGrid.y<<"\n";
-    std::cout<<"mapPosition"<<entity->getPosition().y<<","<<entity->getGridPosition(tileSizeI).y<<"\n";
     if(entity->getPosition().x<0.f)
         entity->setPosition(0.f,entity->getPosition().y);
     else if(entity->getPosition().x + entity->getGlobalBounds().width>mapSizeF.x/2.f)
@@ -176,22 +176,22 @@ void TileMap::updateWorldBoundsCollision(Entity *entity, const float &dt) const 
 }
 
 void TileMap::updateTiles(Entity *entity, const float &dt,std::vector<Enemy*>& activeEnemies,std::map<std::string, sf::Texture>& textures) {
-    this->layer=0;
-    this->fromX=entity->getGridPosition(this->tileSizeI).x - 14;
+    layer=0;
+    fromX=entity->getGridPosition(this->tileSizeI).x - 14;
     if(this->fromX<0)
-        this->fromX=0;
+        fromX=0;
     else if(fromX>mapSizeGrid.x)
         fromX=static_cast<int>(mapSizeGrid.x);
 
-    this->toX=entity->getGridPosition(this->tileSizeI).x + 18;
+    toX=entity->getGridPosition(this->tileSizeI).x + 18;
     if(toX<0)
         toX=0;
     else if(toX>mapSizeGrid.x)
         toX=static_cast<int>(mapSizeGrid.x);
 
-    this->fromY=entity->getGridPosition(this->tileSizeI).y - 15;
+    fromY=entity->getGridPosition(this->tileSizeI).y - 15;
     if(this->fromY<0)
-        this->fromY=0;
+        fromY=0;
     else if(fromY>mapSizeGrid.y)
         fromY=static_cast<int>(mapSizeGrid.y);
 
@@ -209,9 +209,12 @@ void TileMap::updateTiles(Entity *entity, const float &dt,std::vector<Enemy*>& a
                 k->update();
                 if(k->getType()==tileTypes::ENEMYSPAWNER){
                     auto* es=dynamic_cast<EnemySpawner*>(k);
-                    if(!es->getSpawned()){
-                        activeEnemies.push_back(new BaldZombie(x*tileSizeF,y*tileSizeF,textures["ZOMBIE_SHEET"]));
-                        es->setSpawned(true);
+                    if(es){
+                        es->setSpawned(es->getSpawnTimer());
+                        if(es->getSpawned()){
+                            activeEnemies.push_back(new BaldZombie(x*tileSizeF,y*tileSizeF,textures["ZOMBIE_SHEET"],*entity));
+                            //es->setSpawned(true);
+                        }
                     }
                 }
             }
@@ -220,22 +223,22 @@ void TileMap::updateTiles(Entity *entity, const float &dt,std::vector<Enemy*>& a
 }
 
 void TileMap::updateTileCollision(Entity *entity, const float &dt) {
-    this->layer=0;
-    this->fromX=entity->getGridPosition(this->tileSizeI).x - 1;
-    if(this->fromX<0)
-        this->fromX=0;
+    layer=0;
+    fromX=entity->getGridPosition(this->tileSizeI).x - 1;
+    if(fromX<0)
+        fromX=0;
     else if(fromX>mapSizeGrid.x)
         fromX=static_cast<int>(mapSizeGrid.x);
 
-    this->toX=entity->getGridPosition(this->tileSizeI).x + 5;
+    toX=entity->getGridPosition(this->tileSizeI).x + 5;
     if(toX<0)
         toX=0;
     else if(toX>mapSizeGrid.x)
         toX=static_cast<int>(mapSizeGrid.x);
 
-    this->fromY=entity->getGridPosition(this->tileSizeI).y - 2;
+    fromY=entity->getGridPosition(this->tileSizeI).y - 2;
     if(this->fromY<0)
-        this->fromY=0;
+        fromY=0;
     else if(fromY>mapSizeGrid.y)
         fromY=static_cast<int>(mapSizeGrid.y);
 
@@ -258,26 +261,18 @@ void TileMap::updateTileCollision(Entity *entity, const float &dt) {
                     //Right collision
                     if(entity->getVelocity().x>0){
                         entity->setPosition(wallBounds.left - entityBounds.width, entityBounds.top);
-                        std::cout<<" "<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
                     }
                     //Left collision
                     if (entity->getVelocity().x<0){
-                        std::cout<<"left collision"<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
-                        std::cout<<"left collision"<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
                         entity->setPosition(wallBounds.left + wallBounds.width, entityBounds.top);
-                        std::cout<<" "<<entityBounds.top<<" ,"<<entityBounds.left<<"\n";
                     }
                     //Bottom collision
                     if (entity->getVelocity().y>0){
-                        std::cout<<"bot collision"<<static_cast<int>(entityBounds.top)<<", "<<static_cast<int>(entityBounds.left);
                         entity->setPosition(static_cast<int>(entityBounds.left), static_cast<int>(wallBounds.top-entityBounds.height));
-                        std::cout<<static_cast<int>(entityBounds.top)<<", "<<static_cast<int>(entityBounds.left)<<"\n";
                     }
                     //Top collision
                     if (entity->getVelocity().y<0){
-                        std::cout<<"top collision"<<entityBounds.top<<" ,"<<entityBounds.left;
                         entity->setPosition(entityBounds.left, wallBounds.top + wallBounds.height);
-                        std::cout<<" "<<entityBounds.top<<", "<<entityBounds.left<<"\n";
                     }
                 }
             }
@@ -376,4 +371,3 @@ void TileMap::loadFromFile(const std::string& file_name) {
     }
     in_file.close();
 }
-

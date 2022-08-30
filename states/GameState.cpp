@@ -42,6 +42,10 @@ void GameState::initFonts() {
     {
         throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
     }
+    if(!this->GOfont.loadFromFile("assets/fonts/slant_regular.ttf"))
+    {
+        throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
+    }
 }
 void GameState::initTextures() {
     if(!this->textures["PLAYER_SHEET"].loadFromFile("./assets/Sprites/GC/R.png"))
@@ -51,7 +55,11 @@ void GameState::initTextures() {
 }
 void GameState::initPlayer() {
     player= new GameCharacter(1, 1, this->textures["PLAYER_SHEET"]);
+    std::cout<<player->getAttributeComponent()->hp<<", "<<player->getAttributeComponent()->level<<", ";
+}
 
+void GameState::initPlayerGui() {
+    this->playerGui=new PlayerGui(player);
 }
 void GameState::initPauseMenu() {
     pmenu=new PauseMenu(*window,this->font);
@@ -65,6 +73,21 @@ void GameState::initTileMap() {
     //tileMap->loadFromFile("Google_tests/gtest_assets/tileCollisionTestMap.txt"); /*tile collision test*/
     //tileMap->loadFromFile("Google_tests/gtest_assets/worldboundTestMap.txt"); /* world bounds test*/
 }
+void GameState::initGameOver() {
+    setupText(&gameOverText,GOfont,"GAME OVER",72,sf::Color::Yellow);
+    sf::FloatRect gameOverTextBounds=gameOverText.getLocalBounds();
+    gameOverText.setPosition(sf::Vector2f(stateData.gxSettings->resolution.width/2-gameOverTextBounds.width/2,100));
+    gameOverText.setOutlineColor(sf::Color::Black);
+    gameOverText.setOutlineThickness(2);
+
+    setupText(&pressEnterText,GOfont,"press ENTER to try again",38,sf::Color::Green);
+    sf::FloatRect pressEnterTextBounds=pressEnterText.getLocalBounds();
+    pressEnterText.setPosition(sf::Vector2f(stateData.gxSettings->resolution.height/2-pressEnterTextBounds.width/2,200));
+    pressEnterText.setOutlineColor(sf::Color::White);
+    pressEnterText.setOutlineThickness(2);
+
+}
+
 //CON & DES
 GameState::GameState(StateData &stateData)
 :State(stateData){
@@ -73,9 +96,11 @@ GameState::GameState(StateData &stateData)
     initKeybinds();
     initFonts();
     initTextures();
+    initPlayerGui();
     initPauseMenu();
     initTileMap();
     initPlayer();
+    initGameOver();
     //initBullets();
     //temporary
     //activeEnemies.push_back(new BaldZombie(200.f,200.f,textures["ZOMBIE_SHEET"]));
@@ -83,6 +108,7 @@ GameState::GameState(StateData &stateData)
 
 GameState::~GameState() {
     delete player;
+    delete playerGui;
     //delete enemy;
     delete this->pmenu;
     delete tileMap;
@@ -101,21 +127,38 @@ void GameState::render(sf::RenderTarget* target) {
     renderTexture.setView(view);
     tileMap->render(renderTexture,player->getGridPosition(static_cast<int>(stateData.tileSize)/2),false);
     player->render(renderTexture,true);
+
     for(auto *i :activeEnemies)
         i->render(renderTexture,true);
     for(auto & bullet : bullets)
         bullet.render(renderTexture);
+    //render Gui
+    renderTexture.setView(renderTexture.getDefaultView());
+    playerGui->render(renderTexture);
     if(paused)
     {
-        renderTexture.setView(renderTexture.getDefaultView());
+        //renderTexture.setView(renderTexture.getDefaultView());
         pmenu->render(renderTexture);
     }
     //FINAL RENDER
     this->renderTexture.display();
     renderSprite.setTexture(this->renderTexture.getTexture());
     target->draw(this->renderSprite);
+    if(gameOver){
+        renderTexture.setView(renderTexture.getDefaultView());
+        target->draw(gameOverText);
+        target->draw(pressEnterText);
+        renderTexture.display();
+    }
 }
 //
+void GameState::setupText(sf::Text *textItem, const sf::Font &font, const std::string &value, int size, sf::Color color) {
+    textItem->setFont(font);
+    textItem->setString(value);
+    textItem->setCharacterSize(size);
+    textItem->setFillColor(color);
+
+}
 ///UPDATE FUNCTIONS
 void GameState::updatePlayerInput(const float &dt) {
     //Update player input
@@ -149,8 +192,14 @@ void GameState::updatePlayerInput(const float &dt) {
 void GameState::updatePlayer(const float & dt) {
     player->update(dt,mouseposView);
 }
-void GameState::updateEnemies(const float &) {
-
+void GameState::updateEnemies(const float & dt) {
+    for(size_t i=0;i<activeEnemies.size();i++){
+        activeEnemies[i]->update(dt,mouseposView);
+        updateCombat(activeEnemies[i],dt);
+        activeEnemies[i]->update(dt,mouseposView);
+        if (activeEnemies[i]->getHp()<0)
+            activeEnemies.erase(activeEnemies.begin()+i);
+    }
 }
 
 void GameState::updateInput(const float &dt) {
@@ -162,6 +211,27 @@ void GameState::updateInput(const float &dt) {
             unpauseState();
     }
 }
+void GameState::updatePlayerGui(const float &dt) {
+
+}
+
+
+void GameState::updatePMenuButtons() {
+    //quit from state
+    if(this->pmenu->isButtonPressed("QUIT"))
+        endState();
+}
+void GameState::updateCombat(Enemy* enemy,const float &dt) {
+    for (size_t i=0;i<bullets.size();i++){
+        if(enemy->getGlobalBounds().contains(bullets[i].getPosition())){
+            std::cout<<"enemy hit"<<enemy->getHp();
+            enemy->loseHP(bullets[i].getDmg());
+            std::cout<<"enemy hit"<<enemy->getHp();
+            bullets.erase(bullets.begin()+i);
+        }
+    }
+}
+
 void GameState::updateView(const float &dt) {
     view.setCenter(std::floor(player->getPosition().x+(static_cast<float>(this->mouseposWindow.x)-static_cast<float>(stateData.gxSettings->resolution.width/2))/5.f),
                          std::floor(player->getPosition().y+(static_cast<float>(this->mouseposWindow.y)-static_cast<float>(stateData.gxSettings->resolution.height/2))/5.f));
@@ -202,23 +272,17 @@ void GameState::update(const float& dt) {
         }
         bullets[i].update(dt);
     }
-    std::cout<<bullets.size()<<"\n";
     if(!paused){
         updateTileMap(dt);
         updateView(dt);
         updatePlayerInput(dt);
         updatePlayer(dt);
-        for(auto *i :activeEnemies)
-            i->update(dt,mouseposView);
+        updateEnemies(dt);
+        updatePlayerGui(dt);
     }else{//paused state
         pmenu->update(mouseposWindow);
         updatePMenuButtons();
     }
-}
-void GameState::updatePMenuButtons() {
-    //quit from state
-    if(this->pmenu->isButtonPressed("QUIT"))
-        endState();
 }
 
 void GameState::endState() {
@@ -226,4 +290,7 @@ void GameState::endState() {
     std::cout<<"ending gamestate"<<"\n";
 }
 
-
+void GameState::setGameOver() {
+    if(player->getAttributeComponent()->isDead())
+        gameOver=true;
+}

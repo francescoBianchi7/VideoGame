@@ -30,6 +30,7 @@ public:
     sf::Vector2f getMapSizeF() const;
     int getLayerSize(int x,int y, int layer) const;
     bool tileEmpty(int x,int y,int z);
+
     //functions
     void addTile(unsigned x,unsigned y,unsigned z,sf::IntRect& textureRect,bool& collision,short& type);
     void addTile(unsigned x,unsigned y,unsigned z,sf::IntRect& textureRect,int enemy_type,int enemy_amount,int enemy_tts);

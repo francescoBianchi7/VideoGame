@@ -5,20 +5,20 @@
 
 PauseMenu::PauseMenu(sf::RenderWindow& window,sf::Font& font) :font(font){
     //init bg
-    this->background.setSize(sf::Vector2f(static_cast<float>(window.getSize().x),
+    background.setSize(sf::Vector2f(static_cast<float>(window.getSize().x),
                                                static_cast<float>(window.getSize().y)));
-    this->background.setFillColor(sf::Color(20,20,20,100));
+    background.setFillColor(sf::Color(20,20,20,100));
     //init container
-    this->container.setSize(sf::Vector2f(static_cast<float>(window.getSize().x)/4.f,
+    container.setSize(sf::Vector2f(static_cast<float>(window.getSize().x)/4.f,
                                          static_cast<float>(window.getSize().y)- 60.f));
-    this->container.setFillColor(sf::Color(20,20,20,200));
-    this->container.setPosition(static_cast<float>(window.getSize().x)/2.f-this->container.getSize().x,30.f);
+    container.setFillColor(sf::Color(20,20,20,200));
+    container.setPosition(static_cast<float>(window.getSize().x)/2.f-this->container.getSize().x,30.f);
     //init text
-        this->menuText.setFont(font);
-        this->menuText.setFillColor(sf::Color(255,255,255,200));
-        this->menuText.setCharacterSize(60);
-        this->menuText.setString("PAUSED");
-        this->menuText.setPosition(
+    menuText.setFont(font);
+    menuText.setFillColor(sf::Color(255,255,255,200));
+    menuText.setCharacterSize(60);
+    menuText.setString("PAUSED");
+    menuText.setPosition(
                 container.getPosition().x+container.getSize().x/2.f-menuText.getGlobalBounds().width/2.f
                                    ,container.getPosition().y+30.f);
 }

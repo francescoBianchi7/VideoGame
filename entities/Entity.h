@@ -1,13 +1,10 @@
-//
-// Created by bianc on 05/12/2021.
-//
-
 #ifndef VIDEOGAME_ENTITY_H
 #define VIDEOGAME_ENTITY_H
 #include "PreCompHeaders.h"
 #include "../Components/MovementComponent.h"
 #include "../Components/AnimationComponent.h"
 #include "../Components/HitboxComponent.h"
+#include "../Components/AttributeComponent.h"
 
 class Entity {
 private:
@@ -18,6 +15,7 @@ protected:
     MovementComponent* movementComponent;
     AnimationComponent* animationComponent;
     HitboxComponent* hitboxComponent;
+    AttributeComponent* attributeComponent;
 public:
     Entity();
     virtual ~Entity();
@@ -26,6 +24,7 @@ public:
     void createHitboxComponent(float offset_x,float offset_y,float width,float height);
     void createMovementComponent(float speed);
     void createAnimationComponent(sf::Texture &textureSheet);
+    void createAttributeComponent(int level,bool player);
     //Getter
     virtual const sf::Vector2f& getPosition() const;
     virtual sf::Vector2f getCenter() const;
@@ -36,6 +35,7 @@ public:
     virtual const float& getPositionX();
     virtual const float& getPositionY();
     virtual MovementComponent* getMovementComponent();
+    virtual AttributeComponent* getAttributeComponent();
     virtual HitboxComponent* getHitboxComponent();
     //SETTER
     virtual void setPosition(float x,float y);
@@ -44,9 +44,15 @@ public:
     virtual void stopVelocityY();
     //FUNCTIONS
     virtual void move(const float&dt,float x,float y);
+    void moveRight(const float &dt);
+    void moveLeft(const float &dt);
+    void moveUp(const float &dt);
+    void moveDown(const float &dt);
     virtual void update(const float& dt, sf::Vector2f mouseposView)=0;
     virtual void render(sf::RenderTarget& target,const bool showHitbox=false)=0;
 
+    virtual const float getSpriteDistance(const Entity& entity) const;
+    virtual const sf::Vector2f getSpriteCenter() const;
 };
 
 
