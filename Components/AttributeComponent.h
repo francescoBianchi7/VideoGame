@@ -10,16 +10,16 @@ public:
     int level;
     int exp;
     int expNext;
-    int baseExp;
-    int attributePoints;
 
 
     //Stats
     int hp;
     int hpMax;
+
     int bonusHp;
     int bonusDmg;
     int extraDmg;
+
     int speed;
     int baseSpeed;
     int bonusSpeed;
@@ -33,13 +33,13 @@ public:
 
     //Functions
     void loseHP(int hp);
-    void gainHP(int hp);
+    void gainHP();
     void loseEXP(int exp);
     void gainExp(int exp);
     std::string debugPrint() const;
-    const bool isDead() const;
+    bool isDead() const;
 
-    void updateStats();
+    void updatePlayerStats();
     void updateLevel();
 
     void update();

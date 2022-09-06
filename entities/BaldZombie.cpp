@@ -1,12 +1,9 @@
-//
-// Created by bianc on 15/08/2022.
-//
-
 #include "BaldZombie.h"
 void BaldZombie::initVariables() {
     speed=100.f;
     maxHp=20;
     hp=maxHp;
+
 }
 
 void BaldZombie::initAnimations() {
@@ -28,9 +25,11 @@ BaldZombie::BaldZombie(float x, float y, sf::Texture &textureSheet,Entity& playe
     createMovementComponent(speed);
     createAnimationComponent(textureSheet);
     initAnimations();
-    createAttributeComponent(1,false);
+    createAIcomponent(*this,player);
+    createAttributeComponent(player.getAttributeComponent()->level,false);
     initGUI();
-    createHitboxComponent(6.f,6.f,32.f,42.f);
+    sprite.setScale(1.25f,1.25f);
+    createHitboxComponent(6.f,6.f,40.f,53.f);
     setPosition(x,y);
     createAIcomponent(*this,player);
 
@@ -42,13 +41,12 @@ BaldZombie::~BaldZombie() {
 int BaldZombie::getHp() {
     return hp;
 }
-
 void BaldZombie::update(const float &dt,sf::Vector2f mousePosView) {
     //updates which animation is playing and components
-    //movementComponent->update(dt);
+    this->getAi()->update(dt);
+    movementComponent->update(dt);
     this->hpBar.setSize(sf::Vector2f(30.f * (static_cast<float>(hp) / static_cast<float>(maxHp)), 3.f));
     this->hpBar.setPosition(this->sprite.getPosition());
-    getAi()->update(dt);
     if(!movementComponent->isMoving())
         animationComponent->play("IDLE_DOWN",dt);
     else if(movementComponent->getVelocityX()>0.f)
@@ -60,6 +58,7 @@ void BaldZombie::update(const float &dt,sf::Vector2f mousePosView) {
     else if(movementComponent->getVelocityY()>0.f)
         animationComponent->play("WALK_DOWN",dt);
     hitboxComponent->update();
+
 }
 
 void BaldZombie::render(sf::RenderTarget &target, const bool show_hitbox) {

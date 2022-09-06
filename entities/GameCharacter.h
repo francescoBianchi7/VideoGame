@@ -23,6 +23,8 @@ public:
     Rifle getWeapon();
 
     void loseHp(int dmg);
+    void gainExp(int exp);
+    void refillHP();
     void update(const float& dt,sf::Vector2f mouseposView) override;
     void render(sf::RenderTarget &target,const bool show_hitbox);
     void updateInput(const float & dt);

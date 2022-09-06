@@ -6,22 +6,40 @@ AttributeComponent::AttributeComponent(int level, bool player)
     this->level = level;
     if(player){
         this->hpMax=10;
-        hp=hpMax;
+        this->hp=hpMax;
         bonusHp=0;
+
         exp = 0;
         expNext = 50*level;
-        attributePoints = 2;
+        this->expGiven=0;
+
         baseSpeed = 300.f;
-        extraDmg=0;
-        speed=baseSpeed;
+        this->speed=baseSpeed;
+        bonusSpeed=0;
+
         this->bonusDmg=0;
+        extraDmg=0;
+
         updateLevel();
-        updateStats();
+        updatePlayerStats();
     }else{
-        expGiven=5*level;
-        speed=100*level;
+        exp=expNext=0;
+        this->expGiven=5*level;
+
+        baseSpeed=100.f;
+        this->speed=baseSpeed+level*5;
+        bonusSpeed=0;
+
         bonusHp = level*5;
-        hpMax=20+bonusHp;
+        hpMax=15+bonusHp;
+        hp=hpMax;
+
+
+        this->bonusDmg=level;
+        extraDmg=0;
+
+        updateLevel();
+        updatePlayerStats();
     }
 }
 
@@ -31,17 +49,15 @@ AttributeComponent::~AttributeComponent()=default;
 
 void AttributeComponent::loseHP(const int dmg)
 {
-    hp -= dmg;
+    this->hp=this->hp-dmg;
     if (hp < 0)
         hp = 0;
 }
 
-void AttributeComponent::gainHP(const int hp)
+void AttributeComponent::gainHP()
 {
-    this->hp += hp;
+    this->hp=hpMax;
 
-    if (this->hp > this->hpMax)
-        this->hp = this->hpMax;
 }
 std::string AttributeComponent::debugPrint() const
 {
@@ -61,7 +77,6 @@ std::string AttributeComponent::debugPrint() const
 void AttributeComponent::loseEXP(const int exp)
 {
     this->exp -= exp;
-
     if (this->exp < 0)
         this->exp = 0;
 }
@@ -72,18 +87,16 @@ void AttributeComponent::gainExp(const int exp)
     this->updateLevel();
 }
 
-const bool AttributeComponent::isDead() const
+bool AttributeComponent::isDead() const
 {
     return hp <= 0;
 }
 
-void AttributeComponent::updateStats()
+void AttributeComponent::updatePlayerStats()
 {
     this->hpMax= hpMax+bonusHp+(level/2);
-    bonusDmg=int(std::floor(float(level/2)))+bonusDmg+extraDmg;
+    bonusDmg=int(std::floor((level/2)))+bonusDmg+extraDmg;
     speed=baseSpeed+bonusSpeed+level*10;
-    hp = hpMax;
-
 }
 
 void AttributeComponent::updateLevel()
@@ -93,7 +106,8 @@ void AttributeComponent::updateLevel()
         ++level;
         exp=0;
         expNext = 50*level;
-        updateStats();
+        updatePlayerStats();
+        this->gainHP();
     }
 }
 

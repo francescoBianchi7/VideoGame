@@ -1,11 +1,6 @@
-//
-// Created by bianc on 26/12/2021.
-//
-
 #include "GameCharacter.h"
 GameCharacter::GameCharacter() {
     speed=300.f;
-    hp=10;
     this->createHitboxComponent(10.f,10.f,36.f,52.f);
     this->createMovementComponent(speed);
     this->setPosition(0,0);
@@ -14,10 +9,9 @@ GameCharacter::GameCharacter() {
 GameCharacter::GameCharacter( float x, float y, sf::Texture &textureSheet){
     initVariables();
     this->createAttributeComponent(1,true);
-    createMovementComponent(attributeComponent->speed);
+    createMovementComponent(300.f);
     createAnimationComponent(textureSheet);
     initAnimations();
-
     sprite.setScale(1.5,1.5);
     createHitboxComponent(9.f,26.f,38,49);
     setPosition(x,y);
@@ -27,7 +21,7 @@ GameCharacter::~GameCharacter()= default;
 
 //init function
 void GameCharacter::initVariables() {
-
+    speed=300.f;
 }
 void GameCharacter::initAnimations() {
     this->animationComponent->addAnimation("IDLE_DOWN",10.f,0,0,0,0,36,48);
@@ -73,7 +67,15 @@ void GameCharacter::render(sf::RenderTarget &target, const bool show_hitbox) {
 }
 
 void GameCharacter::loseHp(int dmg) {
-    hp=hp-dmg;
+    attributeComponent->loseHP(dmg);
+}
+
+void GameCharacter::gainExp(int exp) {
+    attributeComponent->gainExp(exp);
+}
+
+void GameCharacter::refillHP() {
+    attributeComponent->gainHP();
 }
 /*void GameCharacter::updateInput(const float &dt) {
     if(sf::Keyboard::isKeyPressed((sf::Keyboard::Key(keybinds.at("M))){

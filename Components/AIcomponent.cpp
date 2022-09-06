@@ -1,6 +1,7 @@
 #include "AIcomponent.h"
 
 AIcomponent::AIcomponent(Entity& self, Entity& entity): self(self), entity(entity){
+    this->attackTimerMax=2.f;
 }
 
 AIcomponent::~AIcomponent()=default;
@@ -8,57 +9,72 @@ AIcomponent::~AIcomponent()=default;
 void AIcomponent::update(const float &dt) {
     sf::Vector2f moveVec;
     moveVec=calculateDistance();
-    if (std::abs(moveVec.x)>=std::abs(moveVec.y)){
-        if(moveVec.x<0)
-            self.moveLeft(dt);
-        else
-            self.moveRight(dt);
-    }else {//if (std::abs(moveVec.y)>std::abs(moveVec.x))
-        if(moveVec.y<0)
-            self.moveUp(dt);
-        else
-            self.moveDown(dt);
+    if(getDirectionTimer()){
+        resetDirectionTimer();
+        if (std::abs(moveVec.x)>std::abs(moveVec.y)){
+            if(moveVec.x<0)
+                self.moveLeft(dt);
+            else
+                self.moveRight(dt);
+        }else if (std::abs(moveVec.x)<std::abs(moveVec.y)){
+            if(moveVec.y<0)
+                self.moveUp(dt);
+            else
+                self.moveDown(dt);
+        }
     }
-
     //float vecLength = sqrt(pow(moveVec.x, 2) + pow(moveVec.y, 2));
     //moveVec /= vecLength;
     //if ((self.getPosition().x != entity.getPosition().x) && std::abs(vecLength) < 500.f)
        // self.move(moveVec.x, moveVec.y, dt);
 }
-
-sf::Vector2f AIcomponent::calculateDistance() {
-    sf::Vector2f moveVec;
-    moveVec.x = this->entity.getGlobalBounds().left - this->self.getGlobalBounds().left;
-    moveVec.y = this->entity.getGlobalBounds().top - this->self.getGlobalBounds().top;
-    return moveVec;
+bool AIcomponent::getDirectionTimer() const {
+    return keepCurrentDirectionTimer.getElapsedTime().asSeconds()>=0.5f;
 }
 
-sf::Vector2f AIcomponent::moveRandomdirection() {
+bool AIcomponent::getDamageTimer() const
+{
+    return attackTimer.getElapsedTime().asSeconds() >= attackTimerMax;
+}
+void AIcomponent::resetDirectionTimer() {
+    keepCurrentDirectionTimer.restart();
+}
+
+void AIcomponent::resetDamageTimer()
+{
+    attackTimer.restart();
+}
+sf::Vector2f AIcomponent::calculateDistance() {
+    sf::Vector2f moveVec;
+    moveVec.x = entity.getGlobalBounds().left - self.getGlobalBounds().left;
+    moveVec.y = entity.getGlobalBounds().top - self.getGlobalBounds().top;
+    return moveVec;
+}
+//NOT USED
+void AIcomponent::moveRandomdirection(const float &dt) {
     int xDir_or_yDir;
     int posOrNeg;
     sf::Vector2f direction;
     xDir_or_yDir= rand() % 2;
     posOrNeg = rand() % 2;
     if (xDir_or_yDir==0){//x
-        direction.y=0;
-        if(posOrNeg==0){//pos
-            direction.x=1.f;
-            return direction;
-        }
+        if(posOrNeg==0)//pos
+            self.moveRight(dt);
         else if(posOrNeg==1){//ng
-            direction.x=-1.f;
-            return direction;
+            self.moveLeft(dt);
         }
     }else if(xDir_or_yDir==1){//y
-        direction.x=0;
-        if(posOrNeg==0){//pos
-            direction.y=1.f;
-            return direction;
-        }
-        else if(posOrNeg==1){
-            direction.y=-1.f;
-            return direction;
-        }
+        if(posOrNeg==0)//pos
+            self.moveDown(dt);
+        else if(posOrNeg==1)
+            self.moveUp(dt);
     }
 }
 
+bool AIcomponent::doDamage(const float &dt) {
+    if(getDamageTimer()){
+        resetDamageTimer();
+        return true;
+    }
+    return false;
+}

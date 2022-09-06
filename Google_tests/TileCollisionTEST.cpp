@@ -45,6 +45,7 @@ TEST_F(TileCollisionFixture,RightCollision){
      std::cout<<"TESTING RIGHT COLLISIONS"<<"\n";
      gc1->setPosition(0,50.f);
      gc1->moveRight(dt);
+     gc1->Entity::update(dt);
      ASSERT_TRUE(gc1->getMovementComponent()->getVelocityX()>0.f);
      gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                       gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
@@ -56,6 +57,7 @@ TEST_F(TileCollisionFixture,RightCollision){
      //bot side of character collides with collision tile
      gc1->setPosition(65.f,50.f);
      gc1->moveRight(dt);
+     gc1->Entity::update(dt);
      ASSERT_TRUE(gc1->getMovementComponent()->getVelocityX()>0.f);
      gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                       gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
@@ -67,6 +69,7 @@ TEST_F(TileCollisionFixture,RightCollision){
      //top side of character collides with collision tile
      gc1->setPosition(65.f,175.f);
      gc1->moveRight(dt);
+     gc1->Entity::update(dt);
      ASSERT_TRUE(gc1->getMovementComponent()->getVelocityX()>0.f);
      gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                       gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
@@ -81,6 +84,7 @@ TEST_F(TileCollisionFixture,LeftCollision){
     std::cout<<"TESTING LEFT COLLISIONS"<<"\n";
     gc1->setPosition(250.f,50.f);
     gc1->moveLeft(dt);
+    gc1->Entity::update(dt);
     ASSERT_TRUE(gc1->getMovementComponent()->getVelocityX()<0.f);
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
@@ -94,6 +98,7 @@ TEST_F(TileCollisionFixture,LeftCollision){
     //bot side of character collides with collision tile
     gc1->setPosition(200.f,50.f);
     gc1->moveLeft(dt);
+    gc1->Entity::update(dt);
     ASSERT_TRUE(gc1->getMovementComponent()->getVelocityX()<0.f);
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
@@ -105,6 +110,7 @@ TEST_F(TileCollisionFixture,LeftCollision){
     //top side of character collides with collision tile
     gc1->setPosition(200.f,175.f);
     gc1->moveLeft(dt);
+    gc1->Entity::update(dt);
     ASSERT_TRUE(gc1->getMovementComponent()->getVelocityX()<0.f);
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
@@ -118,6 +124,7 @@ TEST_F(TileCollisionFixture,DownCollision){
     std::cout<<"TESTING DOWNWARDS COLLISIONS"<<"\n";
     gc1->setPosition(0.f,50.f);
     gc1->moveDown(dt);
+    gc1->Entity::update(dt);
     ASSERT_TRUE(gc1->getMovementComponent()->getVelocityY()>0.f);
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
@@ -130,6 +137,7 @@ TEST_F(TileCollisionFixture,DownCollision){
     //bot side of character collides with collision tile
     gc1->setPosition(125.f,15.f);
     gc1->moveDown(dt);
+    gc1->Entity::update(dt);
     ASSERT_TRUE(gc1->getMovementComponent()->getVelocityY()>0.f);
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
@@ -142,6 +150,7 @@ TEST_F(TileCollisionFixture,UpCollision){
     std::cout<<"TESTING UPWARD COLLISIONS"<<"\n";
     gc1->setPosition(0.f,50.f);
     gc1->moveUp(dt);
+    gc1->Entity::update(dt);
     ASSERT_TRUE(gc1->getMovementComponent()->getVelocityY()<0.f);
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);
@@ -154,6 +163,7 @@ TEST_F(TileCollisionFixture,UpCollision){
     //bot side of character collides with collision tile
     gc1->setPosition(125.f,200.f);
     gc1->moveUp(dt);
+    gc1->Entity::update(dt);
     ASSERT_TRUE(gc1->getMovementComponent()->getVelocityY()<0.f);
     gc1->setPosition(gc1->getPositionX()+gc1->getMovementComponent()->getVelocityX()*dt,
                      gc1->getPositionY()+gc1->getMovementComponent()->getVelocityY()*dt);

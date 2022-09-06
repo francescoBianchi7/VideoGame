@@ -1,9 +1,9 @@
 
 #include "Enemy.h"
 
-void Enemy::initVariables(Entity& player) {
+void Enemy::initVariables() {
     speed=100.f;
-    AI=new AIcomponent(*this, player);
+    AI= nullptr;
 }
 
 void Enemy::createAIcomponent(Entity &Self, Entity &player) {
@@ -20,6 +20,7 @@ void Enemy::initAnimations() {
 ///getter
 
 Enemy::Enemy(){
+    initVariables();
 }
 
 Enemy::~Enemy() {

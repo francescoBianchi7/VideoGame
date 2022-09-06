@@ -62,8 +62,10 @@ public:
     static void setupText(sf::Text *textItem, const sf::Font &font, const std::string &value, int size, sf::Color color);
     ///update functions
     void updatePlayerInput(const float& dt);//choose player actions based on input received
+    void updateEnemiesMovement(const float &dt);//move the enemies based on shortest direction
     void updatePlayer(const float& dt);//updates player
     void updateEnemies(const float& dt);
+    void updateEnemyAttack(Enemy* enemy,GameCharacter* player,const float& dt);
     void updateCombat(Enemy* enemy, const float& dt);
     void updateInput(const float& dt) override;//pause & unpuase & quit
     void updatePlayerGui(const float& dt);

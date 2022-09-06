@@ -96,10 +96,10 @@ GameState::GameState(StateData &stateData)
     initKeybinds();
     initFonts();
     initTextures();
-    initPlayerGui();
     initPauseMenu();
     initTileMap();
     initPlayer();
+    initPlayerGui();
     initGameOver();
     //initBullets();
     //temporary
@@ -127,12 +127,11 @@ void GameState::render(sf::RenderTarget* target) {
     renderTexture.setView(view);
     tileMap->render(renderTexture,player->getGridPosition(static_cast<int>(stateData.tileSize)/2),false);
     player->render(renderTexture,true);
-
     for(auto *i :activeEnemies)
         i->render(renderTexture,true);
     for(auto & bullet : bullets)
         bullet.render(renderTexture);
-    //render Gui
+
     renderTexture.setView(renderTexture.getDefaultView());
     playerGui->render(renderTexture);
     if(paused)
@@ -194,11 +193,19 @@ void GameState::updatePlayer(const float & dt) {
 }
 void GameState::updateEnemies(const float & dt) {
     for(size_t i=0;i<activeEnemies.size();i++){
-        activeEnemies[i]->update(dt,mouseposView);
         updateCombat(activeEnemies[i],dt);
-        activeEnemies[i]->update(dt,mouseposView);
         if (activeEnemies[i]->getHp()<0)
             activeEnemies.erase(activeEnemies.begin()+i);
+        activeEnemies[i]->update(dt,mouseposView);
+        updateEnemyAttack(activeEnemies[i],player,dt);
+    }
+}
+void GameState::updateEnemyAttack(Enemy* enemy,GameCharacter* player,const float& dt) {
+    if(enemy->getGlobalBounds().intersects(player->getGlobalBounds())){
+        if(enemy->getAi()->doDamage(dt)){
+            if(getKeyTime())
+                player->getAttributeComponent()->loseHP(enemy->getAttributeComponent()->bonusDmg);
+        }
     }
 }
 
@@ -212,7 +219,7 @@ void GameState::updateInput(const float &dt) {
     }
 }
 void GameState::updatePlayerGui(const float &dt) {
-
+    playerGui->update(dt);
 }
 
 
@@ -221,6 +228,7 @@ void GameState::updatePMenuButtons() {
     if(this->pmenu->isButtonPressed("QUIT"))
         endState();
 }
+
 void GameState::updateCombat(Enemy* enemy,const float &dt) {
     for (size_t i=0;i<bullets.size();i++){
         if(enemy->getGlobalBounds().contains(bullets[i].getPosition())){
@@ -275,9 +283,9 @@ void GameState::update(const float& dt) {
     if(!paused){
         updateTileMap(dt);
         updateView(dt);
+        updateEnemies(dt);
         updatePlayerInput(dt);
         updatePlayer(dt);
-        updateEnemies(dt);
         updatePlayerGui(dt);
     }else{//paused state
         pmenu->update(mouseposWindow);
@@ -293,4 +301,8 @@ void GameState::endState() {
 void GameState::setGameOver() {
     if(player->getAttributeComponent()->isDead())
         gameOver=true;
+}
+
+void GameState::updateEnemiesMovement(const float &dt) {
+
 }

@@ -11,7 +11,7 @@ private:
     //EnemySpawner& enemySpawner;
     //initializers
     AIcomponent *AI;
-    void initVariables(Entity &player);
+    void initVariables();
     void initAnimations();
 public:
     Enemy();

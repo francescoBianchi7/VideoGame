@@ -49,6 +49,7 @@ public:
     void moveUp(const float &dt);
     void moveDown(const float &dt);
     virtual void update(const float& dt, sf::Vector2f mouseposView)=0;
+    void update(const float& dt);
     virtual void render(sf::RenderTarget& target,const bool showHitbox=false)=0;
 
     virtual const float getSpriteDistance(const Entity& entity) const;
