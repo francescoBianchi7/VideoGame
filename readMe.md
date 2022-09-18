@@ -19,7 +19,8 @@ the Supported Keys for this State are:
 ![2022-09-16 11-27-23](https://user-images.githubusercontent.com/81578895/190615222-f17d7566-6b5b-40e2-995a-2981d3f317f5.gif)
 ![2022-09-16 11-27-23 (1)](https://user-images.githubusercontent.com/81578895/190615435-e8af505f-92c8-4fbc-a9a1-d2994291478d.gif)
 
-Inoltre è possibile scegliere di posizionare EnemySpawners,evidenziate in blue(non hanno texture). oppure una tile hanno collision(in questo state sono evidenziate in rosso e posizionare 
+It is also possible to place EnemySpawners,highLighted in blue(notexture) and choose if a tile has collision(highlighted in red)
+
 ![2022-09-16 11-43-48](https://user-images.githubusercontent.com/81578895/190615725-8c8c5641-414f-4e84-9acf-951a2372c245.gif)
 ![2022-09-16 11-27-23 (2)](https://user-images.githubusercontent.com/81578895/190615779-3fffe81a-5bea-48a4-932d-debeabf78f46.gif)
 
