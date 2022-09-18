@@ -8,8 +8,9 @@ stack to easily switch between states.
 vector for projectiles and Zombies, and also to save the various videoModes in Setting State(the only way to go fullScreen is by setting the third row of graphics.ini to 1 instead of 0).
    
 The Game is Divided in 4 States: MainMenu is the starting state from which you can access GameState EditorState and SettingState.
-in EditorState you can modify the map by placing and removing Tiles.
-Le keys supportate sono:
+In the Setting state you can change the resolution.
+In EditorState you can modify the map by placing and removing Tiles.
+the Supported Keys for this State are:
           T aumenta tyle type (solo type 0 e 2 sono usati) R per diminuire
           C collisione
           Directional Arrows to switch between tile Textures
@@ -21,3 +22,10 @@ Le keys supportate sono:
 Inoltre è possibile scegliere di posizionare EnemySpawners,evidenziate in blue(non hanno texture). oppure una tile hanno collision(in questo state sono evidenziate in rosso e posizionare 
 ![2022-09-16 11-43-48](https://user-images.githubusercontent.com/81578895/190615725-8c8c5641-414f-4e84-9acf-951a2372c245.gif)
 ![2022-09-16 11-27-23 (2)](https://user-images.githubusercontent.com/81578895/190615779-3fffe81a-5bea-48a4-932d-debeabf78f46.gif)
+
+GameState, as the name implies is the actual game, where you will need to survive for as long as possible
+Supported Keys for this state are:
+            Directional Arrows for movement
+            Escape to pause and unpause
+            SpaceBar to shoot
+![2022-09-18 10-56-16 (1)](https://user-images.githubusercontent.com/81578895/190894622-8a6622af-3191-4fda-8724-d50b41fde9c6.gif)
