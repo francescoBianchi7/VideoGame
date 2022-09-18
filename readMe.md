@@ -30,6 +30,7 @@ Supported Keys for this state are:
             Escape to pause and unpause
             SpaceBar to shoot
  
- by kill them and survive to get highest score possible
+ kill the zombies and survive to get highest score possible
+ 
 ![2022-09-18 10-56-16](https://user-images.githubusercontent.com/81578895/190894713-d33cac19-f395-49a8-9456-95102fdf5a49.gif)
 ![2022-09-18 10-56-16 (1)](https://user-images.githubusercontent.com/81578895/190894622-8a6622af-3191-4fda-8724-d50b41fde9c6.gif)
