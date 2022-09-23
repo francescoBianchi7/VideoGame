@@ -3,8 +3,11 @@ the c++ libraries used are:
 random for AI movement
 map for the tiles in TileMap, Buttons, and Supportekeys
 string for Gui.
+
 cmath per operazioni matematiche
+
 stack to easily switch between states.
+
 vector for projectiles and Zombies, and also to save the various videoModes in Setting State(the only way to go fullScreen is by setting the third row of graphics.ini to 1 instead of 0).
    
 The Game is Divided in 4 States: MainMenu is the starting state from which you can access GameState EditorState and SettingState.
